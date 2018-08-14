@@ -8,6 +8,6 @@
 
 @auth
 	<p class="text-center">
-		<a href="#">Admin Dashboard</a>
+		<a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
 	</p>
 @endauth

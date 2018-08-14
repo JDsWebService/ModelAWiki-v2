@@ -14,11 +14,19 @@
 // Authentication Routes
 Auth::routes();
 
+// (/admin)
+Route::prefix('admin')->group(function () {
+
+	// (/admin/dashboard)
+	Route::get('dashboard', 'AdminController@getDashboard')->name('admin.dashboard');
+
+});
+
 // (/user)
 Route::prefix('user')->group(function () {
 	// (/user/dashboard)
 	Route::get('dashboard', 'UserController@getDashboard')->name('user.dashboard');
 });
 
-// Homepage
-Route::get('/', 'PagesController@getIndex');
+// Homepage (/)
+Route::get('/', 'PagesController@getIndex')->name('pages.index');

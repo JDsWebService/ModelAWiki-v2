@@ -4,7 +4,7 @@
     <head>
         
         {{-- Header --}}
-        @include('partials.global._head')
+        @include('partials.main._head')
         
         {{-- Page Specific Stylesheets --}}
         @yield('stylesheets')
@@ -23,10 +23,10 @@
             {{-- Page Content --}}
             <div class="container mt-4">
                 @yield('content')
+
+                {{-- Footer --}}
+                @include('partials.global._footer')
             </div>
-            
-            {{-- Footer --}}
-            @include('partials.global._footer')
 
         </div> <!-- /.app -->
 
