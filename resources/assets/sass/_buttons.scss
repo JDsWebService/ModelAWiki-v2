@@ -1,0 +1,28 @@
+.btn-google {
+	background-color: $google;
+	color: white;
+	&:hover {
+		background-color: lighten($google, 6);
+		color: darken(white, 6);
+	}
+}
+
+.btn-facebook {
+	background-color: $facebook;
+	color: white;
+	&:hover {
+		background-color: lighten($facebook, 6);
+		color: darken(white, 6);
+	}
+}
+
+
+
+.btn-twitter {
+	background-color: $twitter;
+	color: white;
+	&:hover {
+		background-color: lighten($twitter, 6);
+		color: darken(white, 6);
+	}
+}
