@@ -46,6 +46,8 @@
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
+
+        @include('partials.global._scripts')
         
         {{-- Page Specific Scripts --}}
         @yield('scripts')

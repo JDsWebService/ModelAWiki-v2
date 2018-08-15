@@ -1,32 +1,38 @@
 <h6 class="mt-3">Blog</h6>
 <div class="list-group">
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action">
   	Posts
-  </button>
+  </a>
+  <a href="{{ route('tag.create') }}" class="list-group-item list-group-item-action">
+    Tags
+  </a>
+  <a href="{{ route('category.create') }}" class="list-group-item list-group-item-action">
+    Categories
+  </a>
 
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="#" class="list-group-item list-group-item-action">
   	Analytics
-  </button>
+  </a>
 </div>
 
 <h6 class="mt-3">Parts</h6>
 <div class="list-group">
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="#" class="list-group-item list-group-item-action">
   	Sections
-  </button>
+  </a>
 
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="#" class="list-group-item list-group-item-action">
   	Parts
-  </button>
+  </a>
 </div>
 
 <h6 class="mt-3">Users</h6>
 <div class="list-group">
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="#" class="list-group-item list-group-item-action">
   	Editors
-  </button>
+  </a>
 
-  <button type="button" class="list-group-item list-group-item-action">
+  <a href="#" class="list-group-item list-group-item-action">
   	User Management
-  </button>
+  </a>
 </div>

@@ -14,6 +14,15 @@
 // Authentication Routes
 Auth::routes();
 
+// (/tag)
+Route::resource('tag', 'TagsController');
+
+// (/category)
+Route::resource('category', 'CategoriesController');
+
+// (/post)
+Route::resource('post', 'PostsController');
+
 // (/admin)
 Route::prefix('admin')->group(function () {
 

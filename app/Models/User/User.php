@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models\User;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -28,7 +28,12 @@ class User extends Authenticatable
     ];
 
     // Get Full Name
-    public function fullName() {
+    public function getFullNameAttribute() {
         return $full_name = $this->first_name . ' ' . $this->last_name;
+    }
+
+    // Post Relationship
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
     }
 }
