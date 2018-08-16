@@ -3,6 +3,12 @@
 @section('title', 'View Post')
 
 @section('content')
+	
+	<div class="row mb-3">
+        <div class="col-sm-12">
+            <a href="{{ route('post.index') }}"><< Go Back</a>
+        </div>
+    </div>
 
 	<div class="row justify-content-center">
 
@@ -41,6 +47,11 @@
 							<a href="{{ config('app.url') }}/blog/{{ $post->slug }}">
 								{{ config('app.url') }}/blog/{{ $post->slug }}
 							</a>
+						</dd>
+
+						<dt class="col-sm-5">Category</dt>
+						<dd class="col-sm-7">
+							<a href="#">{{ $post->category->name }}</a>
 						</dd>
 						
 						@if($post->image != 'placeholder.png')

@@ -68,13 +68,13 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-sm-12">
             <a href="{{ route('post.index') }}"><< Go Back</a>
         </div>
     </div>
     
-	{{ Form::postForm('update', 'PUT', 'Save Post', $post, $post->id) }}
+	{{ Form::postForm($categories, 'update', 'PUT', 'Save Post', $post, $post->id) }}
 
 @endsection
 

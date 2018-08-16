@@ -2,10 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Session;
+use App\Models\Category;
+use App\Traits\PostsTrait;
+use App\Traits\CategoryTrait;
+use App\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
-{
+{   
+    use PostsTrait;
+    use CategoryTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +20,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::paginate(10);
+
+        return view('category.index')->withCategories($categories);
     }
 
     /**
@@ -30,12 +39,20 @@ class CategoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $category = new Category;
+
+        $this->processCategoryObject($category, $request);
+
+        $category->save();
+
+        Session::flash('success', 'Created the Category successfully!');
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -46,7 +63,9 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('category.show')->withCategory($category);
     }
 
     /**
@@ -57,19 +76,29 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('category.edit')->withCategory($category);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\CategoryRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $this->processCategoryObject($category, $request);
+
+        $category->save();
+
+        Session::flash('success', 'Saved the Category successfully!');
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -80,6 +109,20 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+
+        $posts = $category->posts;
+
+        foreach($posts as $post) {
+            $this->deleteImage($post->image);
+        }
+
+        $category->delete();
+
+        Session::flash('success', 'You deleted the category successfully!');
+
+        return redirect()->route('category.index');
     }
+
+    
 }

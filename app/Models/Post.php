@@ -31,13 +31,13 @@ class Post extends Model
 	* @param $date
 	* @return string
 	*/
-	public function getPublishedAtAttribute($date)
+	public function getPublishedAtAttribute()
 	{
-		if($date === null) {
+		if($this->attributes['published_at'] === null) {
 			return "Not Published";
 		}
 
-		return $this->attributes['published_at'] = Carbon::parse($date)->diffForHumans();
+		return Carbon::parse($this->attributes['published_at'])->diffForHumans();
 	}
 
 	/**
@@ -46,9 +46,9 @@ class Post extends Model
 	* @param $date
 	* @return string
 	*/
-	public function getCreatedAtAttribute($date)
+	public function getCreatedAtAttribute()
 	{
-		return $this->attributes['created_at'] = Carbon::parse($date)->diffForHumans();
+		return Carbon::parse($this->attributes['created_at'])->diffForHumans();
 	}
 
 	/**
@@ -57,13 +57,18 @@ class Post extends Model
 	* @param $date
 	* @return string
 	*/
-	public function getUpdatedAtAttribute($date)
+	public function getUpdatedAtAttribute()
 	{
-		return $this->attributes['updated_at'] = Carbon::parse($date)->diffForHumans();
+		return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
 	}
 
 	// User Relationship
 	public function user() {
 		return $this->belongsTo('App\Models\User\User');
+	}
+
+	// Category Relationship
+	public function category() {
+		return $this->belongsTo('App\Models\Category');
 	}
 }

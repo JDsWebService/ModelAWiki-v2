@@ -17,9 +17,9 @@ class FormServiceProvider extends ServiceProvider
         // Tag Form
         Form::component('tagForm', 'components.form.tag', ['route', 'method', 'submit_text']);
         // Category Form
-        Form::component('categoryForm', 'components.form.category', ['route', 'method', 'submit_text']);
+        Form::component('categoryForm', 'components.form.category', ['route', 'method', 'submit_text', 'category' => null, 'category_id' => null]);
         // Post Form
-        Form::component('postForm', 'components.form.post', ['route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
+        Form::component('postForm', 'components.form.post', ['categories', 'route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
     }
 
     /**

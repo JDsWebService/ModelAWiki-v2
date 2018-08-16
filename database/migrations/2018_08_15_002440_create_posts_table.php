@@ -16,6 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
+            $table->integer('category_id')->unsigned();
             $table->string('title');
             $table->string('subtitle', 100)->nullable();
             $table->string('slug', 100)->unique();
@@ -23,12 +24,6 @@ class CreatePostsTable extends Migration
             $table->string('image')->default('placeholder.png');
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
-        });
-
-        Schema::table('posts', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')
-                        ->onDelete('cascade')
-                        ->onUpdate('cascade');
         });
     }
 

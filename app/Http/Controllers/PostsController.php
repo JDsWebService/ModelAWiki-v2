@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Str;
-use Auth;
-use File;
-use Image;
 use Session;
-use Purifier;
-use Carbon\Carbon;
 use App\Models\Post;
+use App\Models\Category;
+use App\Traits\PostsTrait;
 use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
+    use PostsTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +32,13 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $categories = Category::all();
+
+        $this->checkCategories($categories);
+
+        $categories = $this->getCategoriesArray($categories);
+        
+        return view('post.create')->withCategories($categories);
     }
 
     /**
@@ -84,7 +88,13 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
 
-        return view('post.edit')->withPost($post);
+        $categories = Category::all();
+
+        $this->checkCategories($categories);
+
+        $categories = $this->getCategoriesArray($categories);
+
+        return view('post.edit')->withPost($post)->withCategories($categories);
     }
 
     /**
@@ -130,74 +140,7 @@ class PostsController extends Controller
         return redirect()->route('post.index');
     }
 
-    public function getPublishedAtDate($status) {
-        if($status) {
-            return Carbon::now()->toDateTimeString();
-        } else {
-            return null;
-        }
-    }
-
-    // Upload Image
-    protected function uploadImage($request, $post = NULL) {
-            
-        if($request->isMethod('PUT')) {
-            // Check to see if part_id is null
-            if($post == NULL) {
-                die('Post Object has not been passed.');
-            }
-
-            $this->deleteImage($post->image);
-        }
-        
-        // Grab the file out of the request
-        $image = $request->file('image');
-
-        // Created a filename
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-
-        // Save the Post Image
-            // Choose a location for the file
-            $location = public_path('images/posts/' . $filename);
-            // Create the Image, resize it, and save it to the path
-            Image::make($image)->fit(1600,250)->save($location);
-
-        // Put path into the DB
-        return $filename;
-    }
-
-    // Delete Image
-    public function deleteImage($image) {
-        // Check to see if the user profile picture is not default placeholder
-        // This prevents deletion of the default placeholder image
-        if($image !== 'placeholder.png') {
-            // Delete the old files
-            File::delete('images/posts/' . $image);
-        }
-    }
-
-    // Process Post Object
-    public function processPostObject($post, $request) {
-        // Store all the data in the object
-        $post->title = Purifier::clean($request->title);
-        $post->subtitle = Purifier::clean($request->subtitle);
-        $post->body = Purifier::clean($request->body);
-        $post->slug = Str::slug($request->title, '-') . '-' . time();
-        $post->user_id = Auth::user()->id;
-        $post->published_at = $this->getPublishedAtDate($request->status);
-
-        // Upload the Image and Save the Filename to the Part Object
-        // Check if the request has an image
-        if($request->hasFile('image')) {
-            if($request->isMethod('PUT')) {
-                $post->image = $this->uploadImage($request, $post);
-            } else {
-                $post->image = $this->uploadImage($request);
-            }
-        }
-    }
-
-
+    
 
 
 

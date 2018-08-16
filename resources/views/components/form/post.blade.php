@@ -7,6 +7,9 @@
 		    {{ Form::label('subtitle', null, ['class' => 'control-label mt-3']) }}
 		    {{ Form::text('subtitle', null, ['class' => 'form-control']) }}
 
+		    {{ Form::label('category', null, ['class' => 'control-label mt-3']) }}
+		    {{ Form::select('category', $categories, null, ['class' => 'form-control', 'placeholder' => 'Pick a category...']) }}
+
 		    {{ Form::label('body', null, ['class' => 'control-label mt-3']) }}
 		    {{ Form::textarea('body', null, ['class' => 'form-control']) }}
 

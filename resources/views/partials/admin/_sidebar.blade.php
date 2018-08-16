@@ -6,7 +6,7 @@
   <a href="{{ route('tag.create') }}" class="list-group-item list-group-item-action">
     Tags
   </a>
-  <a href="{{ route('category.create') }}" class="list-group-item list-group-item-action">
+  <a href="{{ route('category.index') }}" class="list-group-item list-group-item-action">
     Categories
   </a>
 
