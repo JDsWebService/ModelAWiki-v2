@@ -20,6 +20,9 @@ class FormServiceProvider extends ServiceProvider
         Form::component('categoryForm', 'components.form.category', ['route', 'method', 'submit_text', 'category' => null, 'category_id' => null]);
         // Post Form
         Form::component('postForm', 'components.form.post', ['categories', 'tags', 'route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
+
+        // Part Section Form
+        Form::component('partSectionForm', 'components.form.part.section', ['route', 'method', 'submit_text', 'section' => null, 'section_id' => null]);
     }
 
     /**

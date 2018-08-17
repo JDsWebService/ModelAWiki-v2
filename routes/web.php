@@ -17,6 +17,14 @@ Auth::routes();
 // (/blog)
 Route::get('blog', 'BlogController@index')->name('blog.index');
 
+// (/part)
+Route::prefix('part')->group(function () {
+
+	// (/part/section)
+	Route::resource('section', 'Parts\SectionsController', ['as' => 'part']); // name('part.section.*')
+
+});
+
 // (/tag)
 Route::resource('tag', 'TagsController');
 
