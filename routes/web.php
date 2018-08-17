@@ -14,6 +14,9 @@
 // Authentication Routes
 Auth::routes();
 
+// (/blog)
+Route::get('blog', 'BlogController@index')->name('blog.index');
+
 // (/tag)
 Route::resource('tag', 'TagsController');
 
