@@ -10738,3 +10738,11 @@ hr {
   background-color: #cccccc;
 }
 
+.select2-results__option {
+  color: black;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  color: black;
+}
+

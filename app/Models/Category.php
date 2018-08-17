@@ -48,6 +48,6 @@ class Category extends Model
 
     // Posts Relationship
     public function posts() {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany('App\Models\Post')->orderBy('created_at', 'desc');
     }
 }

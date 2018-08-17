@@ -4,10 +4,15 @@
     <head>
         
         {{-- Header --}}
-        @include('partials.main._head')
+        @include('partials.global._head')
+        
+        {{-- Main Layout CSS --}}
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
         {{-- Page Specific Stylesheets --}}
         @yield('stylesheets')
+
+        <title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
         
     </head>
 
@@ -31,8 +36,6 @@
         </div> <!-- /.app -->
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
-        
         @include('partials.global._scripts')
         
         {{-- Page Specific Scripts --}}

@@ -13,12 +13,19 @@
 	<div class="row justify-content-center">
 
 		<div class="col-sm-7">
+
 			<h3>{{ $post->title }}</h3>
 			@if(!is_null($post->subtitle))
 				<h6>{{ $post->subtitle }}</h6>
 			@endif
 			<hr>
 			{!! $post->body !!}
+			<div class="tags mt-3">
+				@foreach($post->tags as $tag)
+					<span class="badge badge-pill badge-secondary">{{ $tag->name }}</span>
+				@endforeach	
+			</div>
+			
 		</div>
 
 		<div class="col-sm-5">

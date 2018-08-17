@@ -21,6 +21,11 @@ class DefineRelationshipsMigration extends Migration
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
         });
+
+        Schema::table('post_tag', function (Blueprint $table) {
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('tag_id')->references('id')->on('tags');
+        });
     }
 
     /**
@@ -33,6 +38,11 @@ class DefineRelationshipsMigration extends Migration
         Schema::table('posts', function (Blueprint $table) {
              $table->dropForeign('posts_category_id_foreign');
              $table->dropForeign('posts_user_id_foreign');
+        });
+
+        Schema::table('post_tag', function (Blueprint $table) {
+            $table->dropForeign('post_tag_post_id_foreign');
+            $table->dropForeign('post_tag_tag_id_foreign');
         });
     }
 }

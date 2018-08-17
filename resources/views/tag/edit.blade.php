@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Tag')
+@section('title', 'Edit Tag')
 
 @section('content')
 	<div class="row mb-3">
@@ -9,6 +9,6 @@
 	    </div>
 	</div>
 
-	{{ Form::tagForm('store', 'POST', 'Create Tag') }}
+	{{ Form::tagForm('update', 'PUT', 'Save Tag', $tag, $tag->id) }}
 
 @endsection

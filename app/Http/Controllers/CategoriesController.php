@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Session;
 use App\Models\Category;
 use App\Traits\PostsTrait;
-use App\Traits\CategoryTrait;
+use App\Traits\CategoriesTrait;
 use App\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
 {   
     use PostsTrait;
-    use CategoryTrait;
+    use CategoriesTrait;
 
     /**
      * Display a listing of the resource.

@@ -15,11 +15,11 @@ class FormServiceProvider extends ServiceProvider
     public function boot()
     {
         // Tag Form
-        Form::component('tagForm', 'components.form.tag', ['route', 'method', 'submit_text']);
+        Form::component('tagForm', 'components.form.tag', ['route', 'method', 'submit_text', 'tag' => null, 'tag_id' => null]);
         // Category Form
         Form::component('categoryForm', 'components.form.category', ['route', 'method', 'submit_text', 'category' => null, 'category_id' => null]);
         // Post Form
-        Form::component('postForm', 'components.form.post', ['categories', 'route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
+        Form::component('postForm', 'components.form.post', ['categories', 'tags', 'route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
     }
 
     /**

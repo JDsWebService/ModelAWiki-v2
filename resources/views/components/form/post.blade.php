@@ -7,8 +7,28 @@
 		    {{ Form::label('subtitle', null, ['class' => 'control-label mt-3']) }}
 		    {{ Form::text('subtitle', null, ['class' => 'form-control']) }}
 
-		    {{ Form::label('category', null, ['class' => 'control-label mt-3']) }}
-		    {{ Form::select('category', $categories, null, ['class' => 'form-control', 'placeholder' => 'Pick a category...']) }}
+		    {{ Form::label('category_id', null, ['class' => 'control-label mt-3']) }}
+		    <select name="category_id" class="form-control">
+		    	<option value="" disabled selected>Select A Category. . .</option>
+		    	@foreach($categories as $category)
+					<option value="{{ $category->id }}"
+						@if(isset($post->category_id))
+							{{ $category->id == $post->category_id ? 'selected' : ''}}
+						@endif
+					>{{ $category->name }}</option>
+		    	@endforeach
+		    </select>
+
+		    {{ Form::label('tags', null, ['class' => 'control-label mt-3']) }}
+		    @if(Route::is('post.edit'))
+				{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}
+			@else
+				<select name="tags[]" class="form-control select2-multi" multiple="multiple">
+			    	@foreach($tags as $tag)
+						<option value="{{ $tag->id }}">{{ $tag->name }}</option>
+			    	@endforeach
+			    </select>
+		    @endif
 
 		    {{ Form::label('body', null, ['class' => 'control-label mt-3']) }}
 		    {{ Form::textarea('body', null, ['class' => 'form-control']) }}

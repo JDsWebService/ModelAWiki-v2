@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Session;
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use App\Traits\PostsTrait;
+use App\Traits\CategoriesTrait;
+use App\Traits\TagsTrait;
 use App\Http\Requests\PostRequest;
 
 class PostsController extends Controller
 {
     use PostsTrait;
+    use CategoriesTrait;
+    use TagsTrait;
 
     /**
      * Display a listing of the resource.
@@ -20,7 +25,7 @@ class PostsController extends Controller
     public function index()
     {
         // Grab all the posts from the database
-        $posts = Post::select('id', 'title', 'created_at', 'published_at')->orderBy('published_at', 'created_at')->paginate(10);
+        $posts = Post::select('id', 'title', 'created_at', 'published_at')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('post.index')->withPosts($posts);
     }
@@ -34,11 +39,13 @@ class PostsController extends Controller
     {
         $categories = Category::all();
 
-        $this->checkCategories($categories);
+        if($this->checkIfCategoriesExist($categories)) {
+            return redirect()->route('category.index');
+        }
 
-        $categories = $this->getCategoriesArray($categories);
+        $tags = Tag::all();
         
-        return view('post.create')->withCategories($categories);
+        return view('post.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -49,6 +56,7 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
+
         // Get a new post object
         $post = new Post;
 
@@ -57,6 +65,9 @@ class PostsController extends Controller
 
         // Save the post to the database
         $post->save();
+
+        // Process the Tags
+        $post->tags()->sync($request->tags, false);
 
         // Flash the Session Message
         Session::flash('success', 'Saved the post successfully!');
@@ -90,11 +101,15 @@ class PostsController extends Controller
 
         $categories = Category::all();
 
-        $this->checkCategories($categories);
+        if($this->checkIfCategoriesExist($categories)) {
+            return redirect()->route('category.index');
+        }
 
-        $categories = $this->getCategoriesArray($categories);
+        $tags = Tag::all();
 
-        return view('post.edit')->withPost($post)->withCategories($categories);
+        $tags = $this->getTagsArray($tags);
+
+        return view('post.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -115,6 +130,9 @@ class PostsController extends Controller
         // Save the post to the database
         $post->save();
 
+        // Sync Tags
+        $post->tags()->sync($request->tags);
+
         // Flash the Session Message
         Session::flash('success', 'Saved the post successfully!');
 
@@ -130,6 +148,8 @@ class PostsController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
+
+        $post->tags()->detach();
 
         $this->deleteImage($post->image);
 

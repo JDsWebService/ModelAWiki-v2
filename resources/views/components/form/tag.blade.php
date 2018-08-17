@@ -1,11 +1,8 @@
 <div class="row justify-content-center">
 	<div class="col-sm-8">
-		{!! Form::open(['route' => 'tag.' . $route, 'method' => $method]) !!}
+		{!! Form::model($tag, ['route' => ['tag.' . $route, $tag_id], 'method' => $method]) !!}
 		    {{ Form::label('name', null, ['class' => 'control-label']) }}
 		    {{ Form::text('name', null, ['class' => 'form-control']) }}
-
-		    {{ Form::label('slug', null, ['class' => 'control-label mt-3']) }}
-		    {{ Form::text('slug', null, ['class' => 'form-control']) }}
 			
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
