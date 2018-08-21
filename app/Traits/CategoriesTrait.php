@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Str;
+use Session;
 
 trait CategoriesTrait {
 

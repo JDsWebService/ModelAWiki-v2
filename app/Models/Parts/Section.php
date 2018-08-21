@@ -48,4 +48,9 @@ class Section extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
     }
+
+    // Define the Parts Relationship
+    public function parts() {
+        return $this->hasMany('App\Models\Parts\Part');
+    }
 }

@@ -23,6 +23,9 @@ class FormServiceProvider extends ServiceProvider
 
         // Part Section Form
         Form::component('partSectionForm', 'components.form.part.section', ['route', 'method', 'submit_text', 'section' => null, 'section_id' => null]);
+
+        // Part Section Form
+        Form::component('partForm', 'components.form.part.part', ['sections', 'route', 'method', 'submit_text', 'part' => null, 'part_id' => null]);        
     }
 
     /**

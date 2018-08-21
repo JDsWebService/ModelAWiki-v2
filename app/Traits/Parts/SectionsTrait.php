@@ -3,6 +3,7 @@
 namespace App\Traits\Parts;
 
 use Str;
+use Session;
 
 trait SectionsTrait {
 
@@ -18,15 +19,17 @@ trait SectionsTrait {
 	    return $slug = Str::slug($trimedName, '-') . '-' . time();
 	}
 
-	// Check if sections exist
-	public function checkIfCategoriesExist($sections) {
-	    if(!$sections->count()) {
-	    	Session::flash('info', 'You\'ve been automatically redirected.');
-	    	
-	        Session::flash('warning', 'You haven\'t created any sections. Please create a section first before making a Part.');
+	// Check if Sections Exist
+	public function doSectionsExist($sections) {
+		// If sections count is 0 then return false
+		if($sections->count() == 0) {
+			Session::flash('info', 'You have automatically been redirected.');
+			Session::flash('warning', 'There are no sections. Please create a section first!');
+			return false;
+		}
 
-	        return true;
-	    }
+		// Otherwise return true
+		return true;
 	}
 
 }

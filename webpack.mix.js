@@ -13,8 +13,7 @@ let mix = require('laravel-mix');
 
 mix.sass('resources/assets/sass/app.scss', 'public/css') // Main Layout CSS
    .sass('resources/assets/sass/admin/app.scss', 'public/css/admin') // Admin CSS
-   .copy('resources/assets/css/slider.css', 'public/css') // CSS Button Slider
-   .copy('resources/assets/js/imageupload.js', 'public/js') // CSS Button Slider
-   .copy('resources/assets/js/tinymce', 'public/js/tinymce'); // TinyMCE Editor
+   .copy('resources/assets/css', 'public/css') // Load All Custom CSS Files
+   .copy('resources/assets/js', 'public/js') // Load All Custom JS Files
 
 mix.browserSync('http://localhost:8000');

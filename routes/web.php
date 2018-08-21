@@ -14,16 +14,14 @@
 // Authentication Routes
 Auth::routes();
 
-// (/blog)
+// Parts Group (/blog)
 Route::get('blog', 'BlogController@index')->name('blog.index');
 
-// (/part)
-Route::prefix('part')->group(function () {
+// (/part/section)
+Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part']); // name('part.section.*')
 
-	// (/part/section)
-	Route::resource('section', 'Parts\SectionsController', ['as' => 'part']); // name('part.section.*')
-
-});
+// Part CRUD
+Route::resource('part', 'Parts\PartsController');
 
 // (/tag)
 Route::resource('tag', 'TagsController');

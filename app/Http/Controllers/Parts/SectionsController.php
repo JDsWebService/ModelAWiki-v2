@@ -64,7 +64,9 @@ class SectionsController extends Controller
     {
         $section = Section::find($id);
 
-        return view('part.section.show')->withSection($section);
+        $parts = Section::find($id)->parts()->paginate(10);
+
+        return view('part.section.show')->withSection($section)->withParts($parts);
     }
 
     /**

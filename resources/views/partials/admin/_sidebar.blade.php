@@ -27,7 +27,7 @@
   	<i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Sections
   </a>
 
-  <a href="#" class="list-group-item list-group-item-action">
+  <a href="{{ route('part.index') }}" class="list-group-item list-group-item-action">
   	<i class="fas fa-wrench"></i>&nbsp;&nbsp;Parts
   </a>
 </div>

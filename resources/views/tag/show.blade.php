@@ -80,9 +80,34 @@
 						</div>
 						<div class="col-sm-6">
 
-							{{ Form::open(['method'  => 'DELETE', 'route' => ['tag.destroy', $tag->id]]) }}
-								{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
-							{{ Form::close() }}
+							<!-- Button trigger modal -->
+							<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteTagModal">
+							  <i class="far fa-trash-alt"></i> Delete
+							</button>
+
+							<!-- Modal -->
+							<div class="modal fade" id="deleteTagModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">Delete "{{ $tag->name }}" Tag?</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<p>By deleting the "{{ $tag->name }}" tag, this tag will no longer be associated with <strong>ANY</strong> posts.</p>
+											<p>Are you sure you want to do that?</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+											{{ Form::open(['method'  => 'DELETE', 'route' => ['tag.destroy', $tag->id]]) }}
+												{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
+											{{ Form::close() }}
+										</div>
+									</div>
+								</div>
+							</div>
 
 						</div>
 					</div>

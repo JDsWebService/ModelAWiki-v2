@@ -58,7 +58,7 @@
 
 						<dt class="col-sm-5">Category</dt>
 						<dd class="col-sm-7">
-							<a href="#">{{ $post->category->name }}</a>
+							<a href="{{ route('category.show', $post->category->id) }}">{{ $post->category->name }}</a>
 						</dd>
 						
 						@if($post->image != 'placeholder.png')

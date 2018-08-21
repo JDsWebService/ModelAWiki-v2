@@ -114,6 +114,7 @@ class CategoriesController extends Controller
         $posts = $category->posts;
 
         foreach($posts as $post) {
+            $post->tags()->detach();
             $this->deleteImage($post->image);
         }
 

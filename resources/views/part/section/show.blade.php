@@ -16,25 +16,35 @@
 			<h3>{{ $section->name }}</h3>
 			<hr>
 			
-				{{-- <table class="table text-center table-hover table-striped">
+			@if($parts->count() != 0)
+				<table class="table text-center table-hover table-striped">
 					<thead>
 						<tr>
-							<th>Title</th>
-							<th>Created At</th>
-							<th>Published</th>
+							<th>Name</th>
+							<th>Part Number</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach($section->parts as $post)
+						@foreach($parts as $part)
 							<tr>
-								<td>{{ $post->title }}</td>
-								<td>{{ $post->created_at }}</td>
-								<td>{{ $post->published_at }}</td>
+								<td style="width: 55%;">{{ $part->name }}</td>
+								<td style="width: 15%;">{{ $part->part_number }}</td>
+								<td class="buttons" style="width: 15%;">
+									<a href="{{ route('part.show', $part->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
+									<a href="{{ route('part.edit', $part->id) }}"><i class="far fa-edit"></i></a>
+								</td>
 							</tr>
 						@endforeach
 					</tbody>
-				</table> --}}	
-			
+				</table>
+
+				<div class="row">
+					<div class="col-sm-12">
+						{{ $parts->links() }}
+					</div>
+				</div>	
+			@else
 				<div class="row justify-content-center">
 					<div class="col-sm-8 text-center">
 						<p>
@@ -45,7 +55,7 @@
 						<a href="#" class="btn btn-success">Create Part</a>
 					</div>
 				</div>
-			
+			@endif
 		</div>
 
 		<div class="col-sm-5">
@@ -64,8 +74,8 @@
 
 						<dt class="col-sm-5">Permalink</dt>
 						<dd class="col-sm-7">
-							<a href="{{ config('app.url') }}/part/section/{{ $section->slug }}">
-								{{ config('app.url') }}/part/section/{{ $section->slug }}
+							<a href="{{ config('app.url') }}/wiki/part/section/{{ $section->slug }}">
+								{{ config('app.url') }}/wiki/part/section/{{ $section->slug }}
 							</a>
 						</dd>
 
