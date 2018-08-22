@@ -31,9 +31,4 @@ class User extends Authenticatable
     public function getFullNameAttribute() {
         return $full_name = $this->first_name . ' ' . $this->last_name;
     }
-
-    // Post Relationship
-    public function posts() {
-        return $this->hasMany('App\Models\Post');
-    }
 }

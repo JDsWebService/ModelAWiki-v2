@@ -17,6 +17,8 @@
     </head>
 
     <body>
+        @component('components.auth-debug')
+        @endcomponent
         <div id="app">
 
             {{-- Navigation Bar --}}
@@ -24,12 +26,14 @@
             
             <div class="container">
 
-                <div class="row mt-3">
+                <div class="row justify-content-center mt-3">
+                    @auth('admin')
                     <div class="col-sm-3">
                         <h3>Sidebar</h3>
                         <hr>
                         @include('partials.admin._sidebar')
                     </div>
+                    @endauth
                     <div class="col-sm-9">
                         <h3>@yield('title')</h3>
                         <hr>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Admin;
 
 use Auth;
 use Illuminate\Http\Request;
@@ -29,7 +29,34 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:user')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+
+    // show the admin login form
+    public function showLoginForm() {
+        return view('auth.admin.login');
+    }
+
+    public function login(Request $request) {
+        // Validate the Form Data
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password
+        ];
+
+        // Attempt to login the admin
+        if (Auth::guard('admin')->attempt($credentials, $request->remember)) {
+            // redirect if successful
+            return redirect()->intended(route('admin.dashboard'));
+        }
+
+        // redirect if unsuccessful w/ form data
+        return redirect()->back()->withInputs($request->only('email', 'remember'));
     }
 
     /**
@@ -40,7 +67,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::guard('user')->logout();
+        Auth::guard('admin')->logout();
 
         return redirect('/');
     }
@@ -54,6 +81,6 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return redirect()->route('user.dashboard');
+        return redirect()->route('admin.dashboard');
     }
 }

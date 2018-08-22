@@ -38,9 +38,9 @@
 			<tbody>
 				@foreach($parts as $part)
 					<tr>
-						<td style="width: 55%;">{{ $part->name }}</td>
-						<td style="width: 15%;">{{ $part->part_number }}</td>
-						<td style="width: 15%;">{{ $part->section->name }}</td>
+						<td style="width: 45%;">{{ $part->name }}</td>
+						<td style="width: 20%;">{{ $part->part_number }}</td>
+						<td style="width: 20%;">{{ $part->section->name }}</td>
 						<td class="buttons" style="width: 15%;">
 							<a href="{{ route('part.show', $part->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
 							<a href="{{ route('part.edit', $part->id) }}"><i class="far fa-edit"></i></a>

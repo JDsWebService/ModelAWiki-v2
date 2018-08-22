@@ -17,6 +17,8 @@
     </head>
 
     <body>
+        @component('components.auth-debug')
+        @endcomponent
         <div id="app">
             
             {{-- Flash Messages --}}
