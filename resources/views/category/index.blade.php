@@ -19,11 +19,13 @@
 @endsection
 
 @section('content')
-	<div class="row justify-content-center mb-4">
-		<div class="col-sm-3 text-center">
-			<a href="{{ route('category.create') }}" class="btn btn-success btn-block btn-sm">Create Category</a>
+	@can('category.create', Auth::guard('admin')->user())
+		<div class="row justify-content-center mb-4">
+			<div class="col-sm-3 text-center">
+				<a href="{{ route('category.create') }}" class="btn btn-success btn-block btn-sm">Create Category</a>
+			</div>
 		</div>
-	</div>
+	@endcan
 
 	@if($categories->count())
 		<table class="table text-center table-hover table-striped">
@@ -40,8 +42,12 @@
 						<td>{{ $category->name }}</td>
 						<td>{{ $category->created_at }}</td>
 						<td class="buttons">
-							<a href="{{ route('category.show', $category->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
-							<a href="{{ route('category.edit', $category->id) }}"><i class="far fa-edit"></i></a>
+							@can('category.view', Auth::guard('admin')->user())
+								<a href="{{ route('category.show', $category->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
+							@endcan
+							@can('category.edit', Auth::guard('admin')->user())
+								<a href="{{ route('category.edit', $category->id) }}"><i class="far fa-edit"></i></a>
+							@endcan
 						</td>
 					</tr>
 				@endforeach

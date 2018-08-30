@@ -2,6 +2,16 @@
 
 @section('title', 'View Section')
 
+@section('stylesheets')
+
+	<style type="text/css">
+		.pagination {
+			justify-content: center;
+		}
+	</style>
+
+@endsection
+
 @section('content')
 	
 	<div class="row mb-3">
@@ -84,40 +94,43 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="{{ route('part.section.edit', $section->id) }}" class="btn btn-block btn-info">
-								<i class="far fa-edit"></i> Edit
-							</a>
+							@can('part.section.edit', Auth::guard('admin')->user())
+								<a href="{{ route('part.section.edit', $section->id) }}" class="btn btn-block btn-info">
+									<i class="far fa-edit"></i> Edit
+								</a>
+							@endcan
 						</div>
 						<div class="col-sm-6">
+							@can('part.section.delete', Auth::guard('admin')->user())
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteSectionModal">
+								  <i class="far fa-trash-alt"></i> Delete
+								</button>
 
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteSectionModal">
-							  <i class="far fa-trash-alt"></i> Delete
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="deleteSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Delete "{{ $section->name }}" Section?</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p>By deleting the "{{ $section->name }}" section, you will delete <strong>ALL</strong> parts associated with this section.</p>
-											<p>Are you sure you want to do that?</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-											{{ Form::open(['method'  => 'DELETE', 'route' => ['part.section.destroy', $section->id]]) }}
-												{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
-											{{ Form::close() }}
+								<!-- Modal -->
+								<div class="modal fade" id="deleteSectionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Delete "{{ $section->name }}" Section?</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p>By deleting the "{{ $section->name }}" section, you will delete <strong>ALL</strong> parts associated with this section.</p>
+												<p>Are you sure you want to do that?</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+												{{ Form::open(['method'  => 'DELETE', 'route' => ['part.section.destroy', $section->id]]) }}
+													{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
+												{{ Form::close() }}
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
+							@endcan
 
 						</div>
 					</div>

@@ -19,11 +19,13 @@
 @endsection
 
 @section('content')
-	<div class="row justify-content-center mb-4">
-		<div class="col-sm-3 text-center">
-			<a href="{{ route('part.section.create') }}" class="btn btn-success btn-block btn-sm">Create Section</a>
+	@can('part.section.create', Auth::guard('admin')->user())
+		<div class="row justify-content-center mb-4">
+			<div class="col-sm-3 text-center">
+				<a href="{{ route('part.section.create') }}" class="btn btn-success btn-block btn-sm">Create Section</a>
+			</div>
 		</div>
-	</div>
+	@endcan
 
 	@if($sections->count())
 		<table class="table text-center table-hover table-striped">
@@ -40,8 +42,12 @@
 						<td>{{ $section->name }}</td>
 						<td>{{ $section->created_at }}</td>
 						<td class="buttons">
-							<a href="{{ route('part.section.show', $section->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
-							<a href="{{ route('part.section.edit', $section->id) }}"><i class="far fa-edit"></i></a>
+							@can('part.section.view', Auth::guard('admin')->user())
+								<a href="{{ route('part.section.show', $section->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
+							@endcan
+							@can('part.section.edit', Auth::guard('admin')->user())
+								<a href="{{ route('part.section.edit', $section->id) }}"><i class="far fa-edit"></i></a>
+							@endcan
 						</td>
 					</tr>
 				@endforeach

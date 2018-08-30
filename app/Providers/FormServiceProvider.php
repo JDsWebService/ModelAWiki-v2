@@ -16,16 +16,24 @@ class FormServiceProvider extends ServiceProvider
     {
         // Tag Form
         Form::component('tagForm', 'components.form.tag', ['route', 'method', 'submit_text', 'tag' => null, 'tag_id' => null]);
+
         // Category Form
         Form::component('categoryForm', 'components.form.category', ['route', 'method', 'submit_text', 'category' => null, 'category_id' => null]);
+        
         // Post Form
         Form::component('postForm', 'components.form.post', ['categories', 'tags', 'route', 'method', 'submit_text', 'post' => null, 'post_id' => null]);
 
         // Part Section Form
         Form::component('partSectionForm', 'components.form.part.section', ['route', 'method', 'submit_text', 'section' => null, 'section_id' => null]);
 
-        // Part Section Form
-        Form::component('partForm', 'components.form.part.part', ['sections', 'route', 'method', 'submit_text', 'part' => null, 'part_id' => null]);        
+        // Part Form
+        Form::component('partForm', 'components.form.part.part', ['sections', 'route', 'method', 'submit_text', 'part' => null, 'part_id' => null]);
+
+        // Role Form
+        Form::component('roleForm', 'components.form.role', ['route', 'method', 'submit_text', 'permissionsByCategory' => null, 'role' => null, 'role_id' => null]);
+
+        // Permission Form
+        Form::component('permissionForm', 'components.form.permission', ['route', 'method', 'submit_text', 'categories' => null, 'permission' => null, 'permission_id' => null]);
     }
 
     /**

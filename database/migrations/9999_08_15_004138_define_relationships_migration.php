@@ -32,6 +32,16 @@ class DefineRelationshipsMigration extends Migration
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
         });
+
+        Schema::table('admin_role', function (Blueprint $table) {
+            $table->foreign('admin_id')->references('id')->on('admins');
+            $table->foreign('role_id')->references('id')->on('roles');
+        });
+
+        Schema::table('permission_role', function (Blueprint $table) {
+            $table->foreign('permission_id')->references('id')->on('permissions');
+            $table->foreign('role_id')->references('id')->on('roles');
+        });
     }
 
     /**
@@ -53,6 +63,16 @@ class DefineRelationshipsMigration extends Migration
 
         Schema::table('parts', function (Blueprint $table) {
             $table->dropForeign('parts_section_id_foreign');
+        });
+
+        Schema::table('admin_role', function (Blueprint $table) {
+            $table->dropForeign('admin_role_admin_id_foreign');
+            $table->dropForeign('admin_role_role_id_foreign');
+        });
+
+        Schema::table('permission_role', function (Blueprint $table) {
+            $table->dropForeign('permission_role_permission_id_foreign');
+            $table->dropForeign('permission_role_role_id_foreign');
         });
     }
 }

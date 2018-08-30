@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use Session;
 use App\Models\Category;
 use App\Traits\PostsTrait;
 use App\Traits\CategoriesTrait;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
 
 class CategoriesController extends Controller
@@ -14,12 +15,25 @@ class CategoriesController extends Controller
     use CategoriesTrait;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Check Authorization
+        $this->authorize('category.global');
+
         $categories = Category::paginate(10);
 
         return view('category.index')->withCategories($categories);
@@ -32,7 +46,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        // Check Authorization
+        $this->authorize('category.create');
+
         return view('category.create');
     }
 
@@ -63,6 +79,9 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
+        // Check Authorization
+        $this->authorize('category.view');
+
         $category = Category::find($id);
 
         return view('category.show')->withCategory($category);
@@ -76,6 +95,9 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
+        // Check Authorization
+        $this->authorize('category.edit');
+
         $category = Category::find($id);
 
         return view('category.edit')->withCategory($category);
@@ -90,6 +112,9 @@ class CategoriesController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
+        // Check Authorization
+        $this->authorize('category.update');
+
         $category = Category::find($id);
 
         $this->processCategoryObject($category, $request);
@@ -109,6 +134,9 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
+        // Check Authorization
+        $this->authorize('category.delete');
+
         $category = Category::find($id);
 
         $posts = $category->posts;

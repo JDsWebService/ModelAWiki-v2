@@ -19,11 +19,13 @@
 @endsection
 
 @section('content')
-	<div class="row justify-content-center mb-4">
-		<div class="col-sm-3 text-center">
-			<a href="{{ route('tag.create') }}" class="btn btn-success btn-block btn-sm">Create Tag</a>
+	@can('tag.create', Auth::guard('admin')->user())
+		<div class="row justify-content-center mb-4">
+			<div class="col-sm-3 text-center">
+				<a href="{{ route('tag.create') }}" class="btn btn-success btn-block btn-sm">Create Tag</a>
+			</div>
 		</div>
-	</div>
+	@endcan
 
 	@if($tags->count())
 		<table class="table text-center table-hover table-striped">
@@ -40,8 +42,12 @@
 						<td>{{ $tag->name }}</td>
 						<td>{{ $tag->created_at }}</td>
 						<td class="buttons">
-							<a href="{{ route('tag.show', $tag->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
-							<a href="{{ route('tag.edit', $tag->id) }}"><i class="far fa-edit"></i></a>
+							@can('tag.view', Auth::guard('admin')->user())
+								<a href="{{ route('tag.show', $tag->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
+							@endcan
+							@can('tag.edit', Auth::guard('admin')->user())
+								<a href="{{ route('tag.edit', $tag->id) }}"><i class="far fa-edit"></i></a>
+							@endcan
 						</td>
 					</tr>
 				@endforeach

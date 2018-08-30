@@ -13,12 +13,25 @@ class SectionsController extends Controller
     use SectionsTrait;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Check Authorization
+        $this->authorize('part.section.global');
+
         $sections = Section::paginate(10);
 
         return view('part.section.index')->withSections($sections);
@@ -31,7 +44,9 @@ class SectionsController extends Controller
      */
     public function create()
     {
-        //
+        // Check Authorization
+        $this->authorize('part.section.create');
+
         return view('part.section.create');
     }
 
@@ -62,6 +77,9 @@ class SectionsController extends Controller
      */
     public function show($id)
     {
+        // Check Authorization
+        $this->authorize('part.section.view');
+
         $section = Section::find($id);
 
         $parts = Section::find($id)->parts()->paginate(10);
@@ -77,6 +95,9 @@ class SectionsController extends Controller
      */
     public function edit($id)
     {
+        // Check Authorization
+        $this->authorize('part.section.edit');
+
         $section = Section::find($id);
 
         return view('part.section.edit')->withSection($section);
@@ -91,6 +112,9 @@ class SectionsController extends Controller
      */
     public function update(SectionRequest $request, $id)
     {
+        // Check Authorization
+        $this->authorize('part.section.update');
+
         $section = Section::find($id);
 
         $this->processSectionObject($section, $request);
@@ -110,6 +134,9 @@ class SectionsController extends Controller
      */
     public function destroy($id)
     {
+        // Check Authorization
+        $this->authorize('part.section.delete');
+
         $section = Section::find($id);
 
         $section->delete();

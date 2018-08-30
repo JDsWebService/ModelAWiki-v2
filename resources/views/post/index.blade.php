@@ -19,11 +19,13 @@
 @endsection
 
 @section('content')
-	<div class="row justify-content-center mb-4">
-		<div class="col-sm-2 text-center">
-			<a href="{{ route('post.create') }}" class="btn btn-success btn-block btn-sm">Create Post</a>
+	@can('post.create', Auth::user())
+		<div class="row justify-content-center mb-4">
+			<div class="col-sm-2 text-center">
+				<a href="{{ route('post.create') }}" class="btn btn-success btn-block btn-sm">Create Post</a>
+			</div>
 		</div>
-	</div>
+	@endcan
 
 	@if($posts->count())
 		<table class="table text-center table-hover table-striped">
@@ -42,8 +44,12 @@
 						<td style="width: 15%;">{{ $post->created_at }}</td>
 						<td style="width: 15%;">{{ $post->published_at }}</td>
 						<td class="buttons" style="width: 15%;">
-							<a href="{{ route('post.show', $post->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
-							<a href="{{ route('post.edit', $post->id) }}"><i class="far fa-edit"></i></a>
+							@can('post.view', Auth::user())
+								<a href="{{ route('post.show', $post->id) }}"><i class="far fa-eye"></i></a>&nbsp;&nbsp;
+							@endcan
+							@can('post.edit', Auth::user())
+								<a href="{{ route('post.edit', $post->id) }}"><i class="far fa-edit"></i></a>
+							@endcan
 						</td>
 					</tr>
 				@endforeach

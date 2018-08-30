@@ -55,10 +55,15 @@
 								{{ config('app.url') }}/wiki/part/{{ $part->slug }}
 							</a>
 						</dd>
-
+						
 						<dt class="col-sm-5">Section</dt>
 						<dd class="col-sm-7">
-							<a href="{{ route('part.section.show', $part->section->id) }}">{{ $part->section->name }}</a>
+							@can('part.create', Auth::guard('admin')->user())
+								<a href="{{ route('part.section.show', $part->section->id) }}">{{ $part->section->name }}</a>
+							@endcan
+							@cannot('part.create', Auth::guard('admin')->user())
+								<a href="#">{{ $part->section->name }}</a>
+							@endcan
 						</dd>
 						
 						@if($part->featured_image == 'placeholder.png')
@@ -71,14 +76,18 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="{{ route('part.edit', $part->id) }}" class="btn btn-block btn-info">
-								<i class="far fa-edit"></i> Edit
-							</a>
+							@can('part.edit', Auth::guard('admin')->user())
+								<a href="{{ route('part.edit', $part->id) }}" class="btn btn-block btn-info">
+									<i class="far fa-edit"></i> Edit
+								</a>
+							@endcan
 						</div>
 						<div class="col-sm-6">
-							{{ Form::open(['method'  => 'DELETE', 'route' => ['part.destroy', $part->id]]) }}
-								{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
-							{{ Form::close() }}
+							@can('part.delete', Auth::guard('admin')->user())
+								{{ Form::open(['method'  => 'DELETE', 'route' => ['part.destroy', $part->id]]) }}
+									{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
+								{{ Form::close() }}
+							@endcan
 						</div>
 					</div>
 				</div> <!-- /.card-body -->

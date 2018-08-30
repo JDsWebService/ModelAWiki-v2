@@ -71,14 +71,18 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="{{ route('post.edit', $post->id) }}" class="btn btn-block btn-info">
-								<i class="far fa-edit"></i> Edit
-							</a>
+							@can('post.edit', Auth::user())
+								<a href="{{ route('post.edit', $post->id) }}" class="btn btn-block btn-info">
+									<i class="far fa-edit"></i> Edit
+								</a>
+							@endcan
 						</div>
 						<div class="col-sm-6">
-							{{ Form::open(['method'  => 'DELETE', 'route' => ['post.destroy', $post->id]]) }}
-								{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
-							{{ Form::close() }}
+							@can('post.delete', Auth::user())
+								{{ Form::open(['method'  => 'DELETE', 'route' => ['post.destroy', $post->id]]) }}
+									{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
+								{{ Form::close() }}
+							@endcan
 						</div>
 					</div>
 				</div> <!-- /.card-body -->

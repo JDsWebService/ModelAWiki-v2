@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use Session;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
+use App\Traits\TagsTrait;
 use App\Traits\PostsTrait;
 use App\Traits\CategoriesTrait;
-use App\Traits\TagsTrait;
 use App\Http\Requests\PostRequest;
+use App\Http\Controllers\Controller;
+
 
 class PostsController extends Controller
 {
@@ -18,12 +20,25 @@ class PostsController extends Controller
     use TagsTrait;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Check Authorization
+        $this->authorize('post.global');
+
         // Grab all the posts from the database
         $posts = Post::select('id', 'title', 'created_at', 'published_at')->orderBy('created_at', 'desc')->paginate(10);
 
@@ -37,6 +52,10 @@ class PostsController extends Controller
      */
     public function create()
     {
+        // Check Authorization
+        $this->authorize('post.global');
+        $this->authorize('post.create');
+
         $categories = Category::all();
 
         if($this->checkIfCategoriesExist($categories)) {
@@ -84,6 +103,10 @@ class PostsController extends Controller
      */
     public function show($id)
     {
+        // Check Authorization
+        $this->authorize('post.global');
+        $this->authorize('post.view');
+
         $post = Post::find($id);
 
         return view('post.show')->withPost($post);
@@ -97,6 +120,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+        // Check Authorization
+        $this->authorize('post.global');
+        $this->authorize('post.edit');
+
         $post = Post::find($id);
 
         $categories = Category::all();
@@ -121,6 +148,10 @@ class PostsController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
+        // Check Authorization
+        $this->authorize('post.global');
+        $this->authorize('post.update');
+
         // Get a new post object
         $post = Post::find($id);
 
@@ -147,6 +178,10 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
+        // Check Authorization
+        $this->authorize('post.global');
+        $this->authorize('post.delete');
+
         $post = Post::find($id);
 
         $post->tags()->detach();

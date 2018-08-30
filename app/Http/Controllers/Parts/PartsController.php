@@ -19,12 +19,25 @@ class PartsController extends Controller
 	use SectionsTrait;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Check Authorization
+        $this->authorize('part.global');
+
         $parts = Part::orderBy('part_number', 'desc')->paginate(10);
 
         return view('part.index')->withParts($parts);
@@ -37,6 +50,9 @@ class PartsController extends Controller
      */
     public function create()
     {
+        // Check Authorization
+        $this->authorize('part.create');
+
         $sections = Section::orderBy('name', 'asc')->get();
 
         if(!$this->doSectionsExist($sections)) {
@@ -78,6 +94,9 @@ class PartsController extends Controller
      */
     public function show($id)
     {
+        // Check Authorization
+        $this->authorize('part.view');
+
         $part = Part::find($id);
 
         return view('part.show')->withPart($part);
@@ -91,6 +110,9 @@ class PartsController extends Controller
      */
     public function edit($id)
     {
+        // Check Authorization
+        $this->authorize('part.edit');
+
         // Grab the Part from the Database using the Part Number
         $part = Part::find($id);
 
@@ -118,6 +140,8 @@ class PartsController extends Controller
      */
     public function update(PartRequest $request, $id)
     {
+        // Check Authorization
+        $this->authorize('part.update');
 
         // Grab the Part from the database
         $part = Part::find($id);
@@ -143,6 +167,9 @@ class PartsController extends Controller
      */
     public function destroy($id)
     {
+        // Check Authorization
+        $this->authorize('part.delete');
+
         $part = Part::find($id);
 
         $this->deleteImages($part->featured_image);

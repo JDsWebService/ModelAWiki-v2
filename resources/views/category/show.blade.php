@@ -74,41 +74,44 @@
 
 					<div class="row">
 						<div class="col-sm-6">
-							<a href="{{ route('category.edit', $category->id) }}" class="btn btn-block btn-info">
-								<i class="far fa-edit"></i> Edit
-							</a>
+							@can('category.edit', Auth::guard('admin')->user())
+								<a href="{{ route('category.edit', $category->id) }}" class="btn btn-block btn-info">
+									<i class="far fa-edit"></i> Edit
+								</a>
+							@endcan
 						</div>
 						<div class="col-sm-6">
+							@can('category.delete', Auth::guard('admin')->user())
+								<!-- Button trigger modal -->
+								<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteCategoryModal">
+								  <i class="far fa-trash-alt"></i> Delete
+								</button>
 
-							<!-- Button trigger modal -->
-							<button type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#deleteCategoryModal">
-							  <i class="far fa-trash-alt"></i> Delete
-							</button>
-
-							<!-- Modal -->
-							<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Delete "{{ $category->name }}" Category?</h5>
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body">
-											<p>By deleting the "{{ $category->name }}" category, you will delete <strong>ALL</strong> posts associated with this category.</p>
-											<p>Are you sure you want to do that?</p>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-											{{ Form::open(['method'  => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
-												{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
-											{{ Form::close() }}
+								<!-- Modal -->
+								<div class="modal fade" id="deleteCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLabel">Delete "{{ $category->name }}" Category?</h5>
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">
+												<p>By deleting the "{{ $category->name }}" category, you will delete <strong>ALL</strong> posts associated with this category.</p>
+												<p>Are you sure you want to do that?</p>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+												{{ Form::open(['method'  => 'DELETE', 'route' => ['category.destroy', $category->id]]) }}
+													{{Form::button('<i class="far fa-trash-alt"></i> Delete', array('type' => 'submit', 'class' => 'btn btn-block btn-danger'))}}
+												{{ Form::close() }}
+											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-
+							@endcan
+							
 						</div>
 					</div>
 				</div> <!-- /.card-body -->

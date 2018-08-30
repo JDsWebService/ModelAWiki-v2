@@ -43,22 +43,24 @@
 		        </label>
 		        <input type="text" class="form-control" style="color: white;" readonly>
 		    </div>
-
-		    {{ Form::label('Published', null, ['class' => 'control-label mt-3']) }}
-		    <label class="switch">
-		    	@if(isset($post->published_at))
-		    		@if($post->published_at != "Not Published")
-			    	    <input type="checkbox" name="status" checked>
-			    	@else
-			    	    <input type="checkbox" name="status">
-			    	@endif
-			    @else
-			    	<input type="checkbox" name="status">
-			    @endif
-	            
-		        <span class="slider round"></span>
-		    </label>
 			
+			@can('post.publish', Auth::user())
+			    {{ Form::label('Published', null, ['class' => 'control-label mt-3']) }}
+			    <label class="switch">
+			    	@if(isset($post->published_at))
+			    		@if($post->published_at != "Not Published")
+				    	    <input type="checkbox" name="status" checked>
+				    	@else
+				    	    <input type="checkbox" name="status">
+				    	@endif
+				    @else
+				    	<input type="checkbox" name="status">
+				    @endif
+		            
+			        <span class="slider round"></span>
+			    </label>
+			@endcan
+
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
 					{{ Form::submit($submit_text, ['class' => 'btn btn-block btn-success mt-4']) }}		

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blog;
 
 use Session;
 use App\Models\Tag;
 use App\Traits\TagsTrait;
 use App\Http\Requests\TagRequest;
+use App\Http\Controllers\Controller;
 
 class TagsController extends Controller
 {
@@ -13,12 +14,25 @@ class TagsController extends Controller
     use TagsTrait;
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
+        // Check Authorization
+        $this->authorize('tag.global');
+
         $tags = Tag::paginate(10);
 
         return view('tag.index')->withTags($tags);
@@ -31,7 +45,9 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        // Check Authorization
+        $this->authorize('tag.create');
+
         return view('tag.create');
     }
 
@@ -62,6 +78,9 @@ class TagsController extends Controller
      */
     public function show($id)
     {
+        // Check Authorization
+        $this->authorize('tag.view');
+
         $tag = Tag::find($id);
 
         return view('tag.show')->withTag($tag);
@@ -75,6 +94,9 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
+        // Check Authorization
+        $this->authorize('tag.edit');
+
         $tag = Tag::find($id);
 
         return view('tag.edit')->withTag($tag);
@@ -89,6 +111,9 @@ class TagsController extends Controller
      */
     public function update(TagRequest $request, $id)
     {
+        // Check Authorization
+        $this->authorize('tag.update');
+
         $tag = Tag::find($id);
 
         $this->processTagObject($tag, $request);
@@ -108,6 +133,9 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
+        // Check Authorization
+        $this->authorize('tag.delete');
+
         $tag = Tag::find($id);
 
         $tag->posts()->detach();
