@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Blog;
 
 use Session;
-use App\Models\Tag;
-use App\Traits\TagsTrait;
-use App\Http\Requests\TagRequest;
+use App\Models\Blog\Tag;
+use App\Traits\Blog\TagsTrait;
+use App\Http\Requests\Blog\TagRequest;
 use App\Http\Controllers\Controller;
 
 class TagsController extends Controller

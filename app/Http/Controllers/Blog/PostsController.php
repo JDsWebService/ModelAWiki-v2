@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Blog;
 
 use Session;
-use App\Models\Tag;
-use App\Models\Post;
-use App\Models\Category;
-use App\Traits\TagsTrait;
-use App\Traits\PostsTrait;
-use App\Traits\CategoriesTrait;
-use App\Http\Requests\PostRequest;
+use App\Models\Blog\Tag;
+use App\Models\Blog\Post;
+use App\Models\Blog\Category;
+use App\Traits\Blog\TagsTrait;
+use App\Traits\Blog\PostsTrait;
+use App\Traits\Blog\CategoriesTrait;
+use App\Http\Requests\Blog\PostRequest;
 use App\Http\Controllers\Controller;
 
 

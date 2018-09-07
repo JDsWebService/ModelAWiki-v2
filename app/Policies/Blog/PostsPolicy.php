@@ -1,28 +1,15 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Blog;
 
 use App\Models\Admin\Admin;
+use App\Traits\Admin\PoliciesTrait;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PostsPolicy
 {
     use HandlesAuthorization;
-
-    /**
-     * Check if the user is a Super Administrator before doing anything else.
-     *
-     * @param  \App\Models\Admin\Admin $admin
-     * @return mixed
-     */
-    public function before($admin)
-    {
-        foreach($admin->roles as $role) {
-            if(strtolower($role->name) == "super user") {
-                return true;
-            }
-        }
-    }
+    use PoliciesTrait;
 
     /**
      * Determine whether the user can view the post.
@@ -99,23 +86,5 @@ class PostsPolicy
     public function global($admin)
     {
         return $this->userHasAccess('post-global', $admin);
-    }
-
-    /**
-     * Check whether the user has the correct permission.
-     *
-     * @param  str $permissionName
-     * @param  \App\Models\Admin\Admin $admin
-     * @return bool
-     */
-    protected function userHasAccess($permissionName, $admin) {
-        foreach($admin->roles as $role) {
-            foreach($role->permissions as $permission) {
-                if($permission->name == $permissionName) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 }

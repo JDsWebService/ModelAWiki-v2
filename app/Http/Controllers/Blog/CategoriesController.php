@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Blog;
 
 use Session;
-use App\Models\Category;
-use App\Traits\PostsTrait;
-use App\Traits\CategoriesTrait;
+use App\Models\Blog\Category;
+use App\Traits\Blog\PostsTrait;
+use App\Traits\Blog\CategoriesTrait;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\Blog\CategoryRequest;
 
 class CategoriesController extends Controller
 {   

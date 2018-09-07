@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Blog;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
-{
+class Tag extends Model
+{	
 	/**
 	* Indicates if the model should be timestamped.
 	*
@@ -45,9 +45,9 @@ class Category extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
     }
-
+    
     // Posts Relationship
     public function posts() {
-        return $this->hasMany('App\Models\Post')->orderBy('created_at', 'desc');
+    	return $this->belongsToMany('App\Models\Post');
     }
 }
