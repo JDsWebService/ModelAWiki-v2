@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -60,6 +61,10 @@ class Post extends Model
 	public function getUpdatedAtAttribute()
 	{
 		return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
+	}
+
+	public function getPreviewAttribute() {
+		return Str::limit($this->attributes['body'], 250);
 	}
 
 	// User Relationship

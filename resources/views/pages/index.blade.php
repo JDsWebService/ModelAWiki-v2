@@ -6,7 +6,7 @@
 		
 		<div class="row">
 			<div class="col-sm-12 text-center">
-				<img src="/images/site/homepage.png" alt="Homepage Image">
+				<img src="/images/site/homepage_placeholder.png" alt="Homepage Image">
 			</div>
 		</div>
 		
