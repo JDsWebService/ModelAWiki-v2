@@ -31,9 +31,6 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('category.global');
-
         $categories = Category::paginate(10);
 
         return view('category.index')->withCategories($categories);
@@ -60,6 +57,9 @@ class CategoriesController extends Controller
      */
     public function store(CategoryRequest $request)
     {
+        // Check Authorization
+        $this->authorize('category.create');
+        
         $category = new Category;
 
         $this->processCategoryObject($category, $request);

@@ -36,9 +36,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('post.global');
-
         // Grab all the posts from the database
         $posts = Post::select('id', 'title', 'created_at', 'published_at')->orderBy('created_at', 'desc')->paginate(10);
 
@@ -53,7 +50,6 @@ class PostsController extends Controller
     public function create()
     {
         // Check Authorization
-        $this->authorize('post.global');
         $this->authorize('post.create');
 
         $categories = Category::all();
@@ -75,7 +71,9 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-
+        // Check Authorization
+        $this->authorize('post.create');
+        
         // Get a new post object
         $post = new Post;
 
@@ -104,7 +102,6 @@ class PostsController extends Controller
     public function show($id)
     {
         // Check Authorization
-        $this->authorize('post.global');
         $this->authorize('post.view');
 
         $post = Post::find($id);
@@ -121,7 +118,6 @@ class PostsController extends Controller
     public function edit($id)
     {
         // Check Authorization
-        $this->authorize('post.global');
         $this->authorize('post.edit');
 
         $post = Post::find($id);
@@ -149,7 +145,6 @@ class PostsController extends Controller
     public function update(PostRequest $request, $id)
     {
         // Check Authorization
-        $this->authorize('post.global');
         $this->authorize('post.update');
 
         // Get a new post object
@@ -179,7 +174,6 @@ class PostsController extends Controller
     public function destroy($id)
     {
         // Check Authorization
-        $this->authorize('post.global');
         $this->authorize('post.delete');
 
         $post = Post::find($id);

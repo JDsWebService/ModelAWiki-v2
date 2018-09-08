@@ -29,9 +29,6 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('part.section.global');
-
         $sections = Section::paginate(10);
 
         return view('part.section.index')->withSections($sections);
@@ -58,6 +55,9 @@ class SectionsController extends Controller
      */
     public function store(SectionRequest $request)
     {
+        // Check Authorization
+        $this->authorize('part.section.create');
+        
         $section = new Section;
 
         $this->processSectionObject($section, $request);

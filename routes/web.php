@@ -15,16 +15,16 @@
 Auth::routes();
 
 // Admin Part Sections (/part/section)
-Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part']); // name('part.section.*')
+Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')
 
 // Admin Part (/part)
-Route::resource('part', 'Parts\PartsController');
+Route::resource('part', 'Parts\PartsController')->middleware('can:part.global');
 
 // Admin (/tag)
-Route::resource('tag', 'Blog\TagsController');
+Route::resource('tag', 'Blog\TagsController')->middleware('can:tag.global');
 
 // Admin (/category)
-Route::resource('category', 'Blog\CategoriesController');
+Route::resource('category', 'Blog\CategoriesController')->middleware('can:category.global');
 
 // Admin (/post)
 Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
@@ -43,10 +43,10 @@ Route::prefix('admin')->group(function () {
 	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Roles (/admin/role)
-	Route::resource('role', 'Admin\RoleController', ['as' => 'admin']);
+	Route::resource('role', 'Admin\RoleController', ['as' => 'admin'])->middleware('can:admin.global');
 
 	// Admin Roles (/admin/permission)
-	Route::prefix('permission')->group(function () {
+	Route::prefix('permission')->middleware('can:admin.global')->group(function () {
 		Route::get('create/single', 'Admin\PermissionController@createSingle')->name('admin.permission.create.single');
 		Route::post('create/single', 'Admin\PermissionController@storeSingle')->name('admin.permission.store.single');
 		Route::put('{permission}', 'Admin\PermissionController@updateSingle')->name('admin.permission.update.single');
@@ -56,7 +56,7 @@ Route::prefix('admin')->group(function () {
 	Route::resource('permission', 'Admin\PermissionController', ['as' => 'admin'])->except('create', 'store', 'update');
 
 	// User Management (/admin/user/manage)
-	Route::prefix('user/manage')->group(function () {
+	Route::prefix('user/manage')->middleware('can:user.global')->group(function () {
 
 		// User Management Index
 		Route::get('/', 'Admin\UserManagementController@index')->name('user.manage.index');
@@ -71,12 +71,12 @@ Route::prefix('admin')->group(function () {
 		Route::get('{id}/ban', 'Admin\UserManagementController@ban')->name('user.manage.ban');
 
 		// User Management Make Admin
-		Route::post('{id}/make-admin', 'Admin\UserManagementController@makeAdmin')->name('user.manage.make-admin');
+		Route::post('{id}/make-admin', 'Admin\UserManagementController@makeAdmin')->name('user.manage.make-admin')->middleware('can:admin.global');
 
 	}); // End User Management
 
 	// Admin Management (/admin/manage)
-	Route::prefix('manage')->group(function () {
+	Route::prefix('manage')->middleware('can:admin.global')->group(function () {
 		// Admin Management Index
 		Route::get('/', 'Admin\AdminManagementController@index')->name('admin.manage.index');
 

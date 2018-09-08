@@ -27,9 +27,6 @@ class AdminManagementController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $admins = Admin::orderBy('created_at', 'asc')->paginate('15');
 
         return view('admin.admin_management.index')->withAdmins($admins);
@@ -43,9 +40,6 @@ class AdminManagementController extends Controller
      */
     public function show($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $admin = Admin::find($id);
 
         return view('admin.admin_management.show')->withAdmin($admin);
@@ -59,9 +53,6 @@ class AdminManagementController extends Controller
      */
     public function edit($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $admin = Admin::find($id);
 
         $roles = Role::all();
@@ -78,9 +69,6 @@ class AdminManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $admin = Admin::find($id);
 
         $this->validate($request, [
@@ -110,9 +98,6 @@ class AdminManagementController extends Controller
      */
     public function deactivate($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-        
         $admin = Admin::find($id);
 
         $admin->active = 0;

@@ -30,9 +30,6 @@ class TagsController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('tag.global');
-
         $tags = Tag::paginate(10);
 
         return view('tag.index')->withTags($tags);
@@ -58,7 +55,10 @@ class TagsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(TagRequest $request)
-    {
+    {   
+        // Check Authorization
+        $this->authorize('tag.create');
+        
         $tag = new Tag;
 
         $this->processTagObject($tag, $request);

@@ -29,9 +29,6 @@ class RoleController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $roles = Role::paginate(10);
 
         return view('admin.role.index')->withRoles($roles);
@@ -44,9 +41,6 @@ class RoleController extends Controller
      */
     public function create()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $permissionsByCategory = Permission::all()->groupBy('category');
 
         return view('admin.role.create')->withPermissionsByCategory($permissionsByCategory);
@@ -60,9 +54,6 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $role = new Role;
 
         $this->processRoleObject($role, $request);
@@ -84,9 +75,6 @@ class RoleController extends Controller
      */
     public function show($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $role = Role::find($id);
 
         $permissionsByCategory = Permission::all()->groupBy('category');
@@ -102,9 +90,6 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $role = Role::find($id);
 
         $permissionsByCategory = Permission::all()->groupBy('category');
@@ -121,9 +106,6 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $role = Role::find($id);
 
         $this->processRoleObject($role, $request);
@@ -145,9 +127,6 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-        
         $role = Role::find($id);
 
         $role->users()->detach();

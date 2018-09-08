@@ -31,9 +31,6 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $permissions = Permission::orderBy('category', 'asc')->paginate(15);
 
         return view('admin.permission.index')->withPermissions($permissions);
@@ -46,9 +43,6 @@ class PermissionController extends Controller
      */
     public function createSingle()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $categories = Permission::all()->pluck('category')->unique();
 
         return view('admin.permission.create-single')->withCategories($categories);
@@ -61,9 +55,6 @@ class PermissionController extends Controller
      */
     public function createCRUD()
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $categories = Permission::all()->pluck('category')->unique();
 
         return view('admin.permission.create-crud')->withCategories($categories);
@@ -77,9 +68,6 @@ class PermissionController extends Controller
      */
     public function storeSingle(Request $request)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $this->validate($request, [
             'name' => 'required|max:255|string',
             'slug' => ['required', 'max:50', 'string', new UniquePermission],
@@ -109,10 +97,7 @@ class PermissionController extends Controller
      */
     public function storeCRUD(Request $request)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-        
-        // Put the requests into an array
+       // Put the requests into an array
         $permissionRequests = $this->createCRUDPermissionsArray($request);
 
         // Validate the CRUD Requests
@@ -149,9 +134,6 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $permission = Permission::find($id);
 
         return view('admin.permission.show')->withPermission($permission);
@@ -165,9 +147,6 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $permission = Permission::find($id);
 
         $categories = Permission::all()->pluck('category')->unique();
@@ -188,9 +167,6 @@ class PermissionController extends Controller
      */
     public function updateSingle(Request $request, $id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $this->validate($request, [
             'name' => 'required|max:255|string',
             'slug' => ['required', 'max:50', 'string', new UniquePermission],
@@ -220,9 +196,6 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-        
         $permission = Permission::find($id);
 
         $permission->roles()->detach();

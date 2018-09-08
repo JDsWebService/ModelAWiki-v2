@@ -30,9 +30,6 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('user.global');
-
         $users = User::orderBy('created_at', 'asc')->paginate('15');
 
         return view('admin.user_management.index')->withUsers($users);
@@ -46,9 +43,6 @@ class UserManagementController extends Controller
      */
     public function show($id)
     {
-        // Check Authorization
-        $this->authorize('user.global');
-
         $user = User::find($id);
 
         return view('admin.user_management.show')->withUser($user);
@@ -96,9 +90,6 @@ class UserManagementController extends Controller
      */
     public function makeAdmin($id)
     {
-        // Check Authorization
-        $this->authorize('admin.global');
-
         $user = User::find($id);
 
         $admin = new Admin;

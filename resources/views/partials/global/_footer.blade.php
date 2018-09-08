@@ -6,7 +6,7 @@
 	<a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
 </p>
 
-@auth
+@auth('admin')
 	<p class="text-center">
 		<a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
 	</p>

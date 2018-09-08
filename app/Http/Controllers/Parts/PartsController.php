@@ -35,9 +35,6 @@ class PartsController extends Controller
      */
     public function index()
     {
-        // Check Authorization
-        $this->authorize('part.global');
-
         $parts = Part::orderBy('part_number', 'desc')->paginate(10);
 
         return view('part.index')->withParts($parts);
@@ -69,7 +66,10 @@ class PartsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PartRequest $request)
-    {
+    {   
+        // Check Authorization
+        $this->authorize('part.create');
+        
         // Create a new Part Object
         $part = New Part;
 
