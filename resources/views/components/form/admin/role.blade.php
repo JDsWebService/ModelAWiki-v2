@@ -6,33 +6,53 @@
 			
 			<h4 class="mt-3">Permissions</h4>
 			<hr>
-			<div class="row">
-				
-				@foreach($permissionsByCategory as $category => $permissions)
-					<div class="col-sm-6 text-center mt-2">
-						<div class="card" style="width: 18rem;">
-							<div class="card-header">
-								{{ $category }}
-							</div>
-							<ul class="list-group list-group-flush">
-								@foreach($permissions as $permission)
-									<li class="list-group-item" style="padding: 5px">
-										<input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
-											@if(Route::is('admin.role.edit'))
-												@foreach($role->permissions as $role_permission)
-													@if($role_permission->id == $permission->id)
-														checked
-													@endif
-												@endforeach
-											@endif
-										>&nbsp;&nbsp;{{ $permission->name }}
-									</li>
-								@endforeach
-							</ul>
-						</div>
-					</div>
-				@endforeach
 
+			<div class="row">
+				<div class="col-sm-12">
+					
+					<div class="accordion" id="accordionPermissions">
+						@foreach($permissionsByCategory as $category => $permissions)
+							
+							  <div class="card">
+							    <div class="card-header" id="heading{{ \Str::slug($category) }}">
+							      <h5 class="mb-0">
+							        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{ \Str::slug($category) }}" aria-expanded="true" aria-controls="{{ $category }}">
+							          {{ $category }}
+							        </button>
+							      </h5>
+							    </div>
+								
+								@if ($loop->first)
+									<div id="{{ \Str::slug($category) }}" class="collapse show" aria-labelledby="heading{{ \Str::slug($category) }}" data-parent="#accordionPermissions">
+								@else
+									<div id="{{ \Str::slug($category) }}" class="collapse" aria-labelledby="heading{{ \Str::slug($category) }}" data-parent="#accordionPermissions">
+								@endif
+							    
+							      <div class="card-body">
+							      	<ul class="list-inline">
+								        @foreach($permissions as $permission)
+								        	<li class="list-inline-item" style="padding: 5px">
+								        		<input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
+								        			@if(Route::is('admin.role.edit'))
+								        				@foreach($role->permissions as $role_permission)
+								        					@if($role_permission->id == $permission->id)
+								        						checked
+								        					@endif
+								        				@endforeach
+								        			@endif
+								        		>&nbsp;&nbsp;{{ $permission->name }}
+								        	</li>
+								        @endforeach
+							    	</ul>
+							      </div>
+							    </div>
+							  </div>
+							  
+							
+						@endforeach
+					</div>
+
+				</div>
 			</div>
 
 			<div class="row justify-content-center">

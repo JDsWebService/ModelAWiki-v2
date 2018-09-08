@@ -121,15 +121,18 @@
 					<dl class="row">
 
 						@foreach($permissionsByCategory as $category => $permissions)
-							
+					
 							<dt class="col-sm-5 text-right">{{ $category }}</dt>
 							<dd class="col-sm-7">
 								@foreach($permissions as $permission)
+								
 									@foreach($role->permissions as $role_permission)
+
 										@if($role_permission->id == $permission->id)
 											<span class="badge badge-pill badge-success">{{ $permission->name }}</span>
 											<br>
 										@endif
+
 									@endforeach
 									
 								@endforeach
