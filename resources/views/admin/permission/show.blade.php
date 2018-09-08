@@ -13,9 +13,9 @@
 	<div class="row justify-content-center">
 
 		<div class="col-sm-7">
-			<h3>{{ $permission->name }}</h3>
+			<h3>{{ $permission->category }} - {{ $permission->name }}</h3>
 			<hr>
-			<p class="lead"><strong>Category:</strong> {{ $permission->category }}</p>
+			<p>{{ $permission->description }}</p>
 		</div>
 
 		<div class="col-sm-5">
@@ -25,6 +25,12 @@
 					<h5 class="card-title">Technical Information</h5>
 					<hr>
 					<dl class="row">
+						
+						<dt class="col-sm-5">Category</dt>
+						<dd class="col-sm-7">{{ $permission->category }}</dd>
+
+						<dt class="col-sm-5">Slug</dt>
+						<dd class="col-sm-7">{{ $permission->slug }}</dd>
 
 						<dt class="col-sm-5">Created</dt>
 						<dd class="col-sm-7">{{ $permission->created_at }}</dd>

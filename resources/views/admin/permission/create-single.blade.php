@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Create Permission')
+@section('title', 'Create Single Permission')
 
 @section('stylesheets')
 	
@@ -16,7 +16,7 @@
 	    </div>
 	</div>
 	
-	{{ Form::permissionForm('store', 'POST', 'Create Permission', $categories) }}
+	{{ Form::singlePermissionForm('store', 'POST', 'Create Permission', $categories) }}
 
 @endsection
 

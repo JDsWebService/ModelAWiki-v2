@@ -21,7 +21,10 @@
 @section('content')
 	<div class="row justify-content-center mb-4">
 		<div class="col-sm-3 text-center">
-			<a href="{{ route('admin.permission.create') }}" class="btn btn-success btn-block btn-sm">Create Permission</a>
+			<a href="{{ route('admin.permission.create.single') }}" class="btn btn-success btn-block btn-sm">Create Single Permission</a>
+		</div>
+		<div class="col-sm-3 text-center">
+			<a href="{{ route('admin.permission.create.crud') }}" class="btn btn-success btn-block btn-sm">Create CRUD Permissions</a>
 		</div>
 	</div>
 

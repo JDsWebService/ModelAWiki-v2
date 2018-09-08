@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Edit Permission')
+@section('title', 'Create CRUD Permissions')
 
 @section('stylesheets')
 	
@@ -16,7 +16,7 @@
 	    </div>
 	</div>
 	
-	{{ Form::singlePermissionForm('update', 'PUT', 'Save Permission', $categories, $permission, $permission->id) }}
+	{{ Form::crudPermissionForm('Create CRUD Permissions', $categories) }}
 
 @endsection
 

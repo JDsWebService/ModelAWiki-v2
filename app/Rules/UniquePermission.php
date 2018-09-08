@@ -8,6 +8,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class UniquePermission implements Rule
 {
+    protected $value;
     /**
      * Create a new rule instance.
      *
@@ -15,7 +16,7 @@ class UniquePermission implements Rule
      */
     public function __construct()
     {
-        //
+
     }
 
     /**
@@ -26,10 +27,16 @@ class UniquePermission implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
-        $permission = Permission::where('name', '=', request('name'))->where('category', '=', request('category'))->count();
+    {   
+        if(request()->method('PUT')) {
+            return true;
+        }
+        
+        $this->value = $value;
 
-        if($permission === 0) {
+        $result = Permission::where($attribute, '=', $value)->where('category', '=', request('category'))->count();
+
+        if($result === 0) {
             return true;
         }
 
@@ -43,6 +50,6 @@ class UniquePermission implements Rule
      */
     public function message()
     {
-        return 'The permission already exists for this category.';
+        return 'The permission ' . $this->value . ' already exists for this category.';
     }
 }

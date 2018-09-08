@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        @component('components.auth-debug')
+        @component('components.debug.auth')
         @endcomponent
         <div id="app">
             

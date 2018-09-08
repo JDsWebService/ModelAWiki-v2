@@ -46,7 +46,14 @@ Route::prefix('admin')->group(function () {
 	Route::resource('role', 'Admin\RoleController', ['as' => 'admin']);
 
 	// Admin Roles (/admin/permission)
-	Route::resource('permission', 'Admin\PermissionController', ['as' => 'admin']);
+	Route::prefix('permission')->group(function () {
+		Route::get('create/single', 'Admin\PermissionController@createSingle')->name('admin.permission.create.single');
+		Route::post('create/single', 'Admin\PermissionController@storeSingle')->name('admin.permission.store.single');
+		Route::put('{permission}', 'Admin\PermissionController@updateSingle')->name('admin.permission.update.single');
+		Route::get('create/crud', 'Admin\PermissionController@createCRUD')->name('admin.permission.create.crud');
+		Route::post('create/crud', 'Admin\PermissionController@storeCRUD')->name('admin.permission.store.crud');
+	});
+	Route::resource('permission', 'Admin\PermissionController', ['as' => 'admin'])->except('create', 'store', 'update');
 
 	// User Management (/admin/user/manage)
 	Route::prefix('user/manage')->group(function () {
@@ -80,7 +87,7 @@ Route::prefix('admin')->group(function () {
 		Route::get('{id}/edit', 'Admin\AdminManagementController@edit')->name('admin.manage.edit');
 
 		// Admin Management Update
-		Route::put('{id}/update', 'Admin\AdminManagementController@update')->name('admin.manage.update');
+		Route::put('{id}', 'Admin\AdminManagementController@update')->name('admin.manage.update');
 
 		// Admin Management Deactivate
 		Route::post('{id}/deactivate', 'Admin\AdminManagementController@deactivate')->name('admin.manage.deactivate');
