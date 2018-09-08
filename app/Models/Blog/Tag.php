@@ -48,6 +48,6 @@ class Tag extends Model
     
     // Posts Relationship
     public function posts() {
-    	return $this->belongsToMany('App\Models\Post');
+    	return $this->belongsToMany('App\Models\Blog\Post');
     }
 }

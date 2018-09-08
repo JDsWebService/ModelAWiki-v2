@@ -27,7 +27,7 @@ Route::resource('tag', 'Blog\TagsController');
 Route::resource('category', 'Blog\CategoriesController');
 
 // Admin (/post)
-Route::resource('post', 'Blog\PostsController');
+Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
 
 // User (/blog)
 Route::get('blog', 'Blog\BlogController@index')->name('blog.index');

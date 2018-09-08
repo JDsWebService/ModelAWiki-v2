@@ -29,7 +29,7 @@ trait PoliciesTrait {
 	protected function userHasAccess($permissionName, $admin) {
 	    foreach($admin->roles as $role) {
 	        foreach($role->permissions as $permission) {
-	            if($permission->name == $permissionName) {
+	            if($permission->slug == $permissionName) {
 	                return true;
 	            }
 	        }
