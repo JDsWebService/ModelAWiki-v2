@@ -29,4 +29,4 @@ yarn-error.log
 
 !/public/images/parts/thumbnails
 /public/images/parts/thumbnails/*
-!/public/images/parts/thumbnails/placeholder.png
+!/public/images/parts/thumbnails/placeholder.png.DS_Store
