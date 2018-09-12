@@ -4,13 +4,14 @@ namespace App\Models\Admin;
 
 
 use App\Notifications\AdminResetPasswordNotification;
-use Carbon\Carbon;
+use App\Traits\TimestampsTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
     use Notifiable;
+    use TimestampsTrait;
 
     /**
     * Indicates if the guard should be used.
@@ -18,13 +19,6 @@ class Admin extends Authenticatable
     * @var string
     */
     protected $guard = 'admin';
-
-    /**
-    * Indicates if the model should be timestamped.
-    *
-    * @var bool
-    */
-    public $timestamps = true;
 
     /**
      * The attributes that are mass assignable.
@@ -43,38 +37,6 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-    * Carbon date setup
-    *
-    * @return array
-    */
-    public function getDates()
-    {
-       return ['created_at', 'updated_at'];
-    }
-
-    /**
-    * Created at accessor
-    *
-    * @param $date
-    * @return string
-    */
-    public function getCreatedAtAttribute()
-    {
-        return Carbon::parse($this->attributes['created_at'])->diffForHumans();
-    }
-
-    /**
-    * Updated at accessor
-    *
-    * @param $date
-    * @return string
-    */
-    public function getUpdatedAtAttribute()
-    {
-        return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
-    }
 
     // Get Full Name
     public function getFullNameAttribute() {

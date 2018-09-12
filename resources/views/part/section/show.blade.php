@@ -2,16 +2,6 @@
 
 @section('title', 'View Section')
 
-@section('stylesheets')
-
-	<style type="text/css">
-		.pagination {
-			justify-content: center;
-		}
-	</style>
-
-@endsection
-
 @section('content')
 	
 	<div class="row mb-3">

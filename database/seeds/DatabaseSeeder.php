@@ -27,8 +27,8 @@ class DatabaseSeeder extends Seeder
      //    });
 
         // Parts Section and Parts Seeders
-        factory(App\Models\Parts\Section::class, 20)->create();
-        factory(App\Models\Parts\Part::class, 500)->create();
+        // factory(App\Models\Parts\Section::class, 20)->create();
+        // factory(App\Models\Parts\Part::class, 500)->create();
 
     	
     }

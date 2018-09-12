@@ -28,7 +28,7 @@
 								<p class="card-text lead">{{ $section->name }}</p>
 								<div class="col-sm-12">
 									<div class="btn-group">
-										<a href="#" class="btn btn-sm btn-outline-secondary">View</a>
+										<a href="{{ route('wiki.section', $section->slug) }}" class="btn btn-sm btn-outline-secondary">View</a>
 									</div>
 								</div>
 							</div>

@@ -30,5 +30,6 @@ $factory->define(App\Models\Parts\Part::class, function (Faker $faker) {
         'fun_fact' => $faker->paragraphs(3, true),
         // 'featured_image' => $original,
         'featured_image' => 'placeholder.png',
+        'created_at' => $faker->dateTimeThisMonth(),
     ];
 });

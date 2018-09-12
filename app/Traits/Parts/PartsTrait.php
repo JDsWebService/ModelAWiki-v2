@@ -80,13 +80,13 @@ trait PartsTrait {
 	        // Choose a location for the file
 	        $location = public_path('images/parts/headers/' . $filename);
 	        // Create the Image, resize it, and save it to the path
-	        Image::make($image)->fit(1080,350)->save($location);
+	        Image::make($image)->fit(1280,512)->save($location);
 
 	    // Save the Parts Image Thumbnail
 	        // Choose a location for the file
 	        $location = public_path('images/parts/thumbnails/' . $filename);
 	        // Create the Image, resize it, and save it to the path
-	        Image::make($image)->fit(150,150)->save($location);
+	        Image::make($image)->fit(75,75)->save($location);
 
 	    // Save the Original
 	        // Choose a location for the file

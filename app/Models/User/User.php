@@ -2,20 +2,14 @@
 
 namespace App\Models\User;
 
-use Carbon\Carbon;
-use Illuminate\Notifications\Notifiable;
+use App\Traits\TimestampsTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
-    /**
-    * Indicates if the model should be timestamped.
-    *
-    * @var bool
-    */
-    public $timestamps = true;
+    use TimestampsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -34,38 +28,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    /**
-    * Carbon date setup
-    *
-    * @return array
-    */
-    public function getDates()
-    {
-       return ['created_at', 'updated_at'];
-    }
-
-    /**
-    * Created at accessor
-    *
-    * @param $date
-    * @return string
-    */
-    public function getCreatedAtAttribute()
-    {
-        return Carbon::parse($this->attributes['created_at'])->diffForHumans();
-    }
-
-    /**
-    * Updated at accessor
-    *
-    * @param $date
-    * @return string
-    */
-    public function getUpdatedAtAttribute()
-    {
-        return Carbon::parse($this->attributes['updated_at'])->diffForHumans();
-    }
 
     // Get Full Name
     public function getFullNameAttribute() {

@@ -19,7 +19,13 @@
 Route::prefix('wiki')->group(function () {
 
 	// Sections Index
-	Route::get('sections', 'Wiki\WikiController@sectionsIndex')->name('wiki.sections');
+	Route::get('sections', 'Wiki\WikiController@sectionsIndex')->name('wiki.section.index');
+
+	// Specific Section
+	Route::get('section/{slug}', 'Wiki\WikiController@getSection')->name('wiki.section');
+
+	// Specific Part
+	Route::get('part/{part_number}', 'Wiki\WikiController@getPart')->name('wiki.part');
 
 });
 
