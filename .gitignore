@@ -1,4 +1,4 @@
-# Ignore
+############# Ignore
 /snippets
 /node_modules
 /public/hot
@@ -14,9 +14,12 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .env
+.DS_Store
 .phpunit.result.cache
 
-# Except
+############# Except These
+
+# Parts
 !/public/images/parts
 
 !/public/images/parts/headers
@@ -29,4 +32,22 @@ yarn-error.log
 
 !/public/images/parts/thumbnails
 /public/images/parts/thumbnails/*
-!/public/images/parts/thumbnails/placeholder.png.DS_Store
+!/public/images/parts/thumbnails/placeholder.png
+
+# Posts
+!/public/images/posts
+
+/public/images/posts/*
+!/public/images/posts/placeholder.png
+
+# Sections
+!/public/images/sections
+
+/public/images/sections/*
+!/public/images/sections/placeholder.png
+
+# Site Settings
+!/public/images/site/homepage
+
+/public/images/site/homepage/*
+!/public/images/site/homepage/placeholder.png
