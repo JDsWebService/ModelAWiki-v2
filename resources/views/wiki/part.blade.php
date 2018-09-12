@@ -31,7 +31,7 @@
 					<div class="card text-white bg-primary mb-3">
 						<div class="card-header"><i class="fas fa-bell"></i> Reminders</div>
 						<div class="card-body">
-							<p class="card-text">{{ $part->reminder }}</p>
+							<p class="card-text">{!! $part->reminder !!}</p>
 						</div>
 					</div>
 				@endif
@@ -39,7 +39,7 @@
 					<div class="card text-white bg-info mb-3">
 						<div class="card-header"><i class="fas fa-info-circle"></i> Tips</div>
 						<div class="card-body">
-							<p class="card-text">{{ $part->tip }}</p>
+							<p class="card-text">{!! $part->tip !!}</p>
 						</div>
 					</div>
 				@endif
@@ -47,7 +47,7 @@
 					<div class="card text-white bg-danger mb-3">
 						<div class="card-header"><i class="fas fa-exclamation-triangle"></i> Warnings</div>
 						<div class="card-body">
-							<p class="card-text">{{ $part->warning }}</p>
+							<p class="card-text">{!! $part->warning !!}</p>
 						</div>
 					</div>
 				@endif
@@ -55,7 +55,7 @@
 					<div class="card text-white bg-warning mb-3">
 						<div class="card-header"><i class="fas fa-lightbulb"></i> Fun Fact</div>
 						<div class="card-body">
-							<p class="card-text">{{ $part->fun_fact }}</p>
+							<p class="card-text">{!! $part->fun_fact !!}</p>
 						</div>
 					</div>
 				@endif

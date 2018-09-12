@@ -23,7 +23,7 @@
 						<div class="col-sm-10 align-self-center">
 							<h5>{{ $part->name }}</h5>
 							<p><strong>Part Number:</strong> <small>{{ $part->part_number }}</small></p>
-							<p>{{ $part->preview }}</p>
+							<p>{!! $part->preview !!}</p>
 							<a href="{{ route('wiki.part', $part->part_number) }}" class="btn btn-sm btn-info">View Information</a>
 						</div>
 					</div>
