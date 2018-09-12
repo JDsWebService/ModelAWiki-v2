@@ -128,7 +128,18 @@ trait PartsTrait {
 	    return $year;
 	}
 
-	
+	// Check if Sections Exist
+	public function doSectionsExist($sections) {
+		// If sections count is 0 then return false
+		if($sections->count() == 0) {
+			Session::flash('info', 'You have automatically been redirected.');
+			Session::flash('warning', 'There are no sections. Please create a section first!');
+			return false;
+		}
+
+		// Otherwise return true
+		return true;
+	}
 
 
 }

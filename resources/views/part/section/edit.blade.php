@@ -12,3 +12,10 @@
 	{{ Form::partSectionForm('update', 'PUT', 'Save Section', $section, $section->id) }}
 
 @endsection
+
+@section('scripts')
+
+	{{-- Image Upload Javascript --}}
+	<script src="/js/imageupload.js"></script>
+
+@endsection

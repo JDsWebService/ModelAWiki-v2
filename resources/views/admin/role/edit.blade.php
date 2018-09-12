@@ -12,3 +12,13 @@
 	{{ Form::roleForm('update', 'PUT', 'Save Role', $permissionsByCategory, $role, $role->id) }}
 
 @endsection
+
+@section('scripts')
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip();   
+	});
+	</script>
+
+@endsection

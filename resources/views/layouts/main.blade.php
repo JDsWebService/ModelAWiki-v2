@@ -28,12 +28,10 @@
             @include('partials.main._navbar')
 
             {{-- Page Content --}}
-            <div class="container mt-4">
-                @yield('content')
+            @yield('content')
 
-                {{-- Footer --}}
-                @include('partials.global._footer')
-            </div>
+            {{-- Footer --}}
+            @include('partials.global._footer')
 
         </div> <!-- /.app -->
 

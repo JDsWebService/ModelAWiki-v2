@@ -11,8 +11,34 @@
 |
 */
 
+
+// ------------------------- User Facing Routes ------------------------- //
+
+
+// Wiki Routes
+Route::prefix('wiki')->group(function () {
+
+	// Sections Index
+	Route::get('sections', 'Wiki\WikiController@sectionsIndex')->name('wiki.sections');
+
+});
+
+// User (/blog)
+Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
+
+// User (/user)
+Route::prefix('user')->group(function () {
+
+	// (/user/dashboard)
+	Route::get('dashboard', 'User\UserController@getDashboard')->name('user.dashboard');
+
+}); // End User
+
 // User Authentication Routes
 Auth::routes();
+
+
+// ------------------------- Admin Facing Routes ------------------------- //
 
 // Admin Part Sections (/part/section)
 Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')
@@ -28,9 +54,6 @@ Route::resource('category', 'Blog\CategoriesController')->middleware('can:catego
 
 // Admin (/post)
 Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
-
-// User (/blog)
-Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
 
 // Admin (/admin)
 Route::prefix('admin')->group(function () {
@@ -106,14 +129,6 @@ Route::prefix('admin')->group(function () {
 	Route::post('password/reset', 'Auth\Admin\ResetPasswordController@reset');
 
 }); // End Admin
-
-// User (/user)
-Route::prefix('user')->group(function () {
-
-	// (/user/dashboard)
-	Route::get('dashboard', 'User\UserController@getDashboard')->name('user.dashboard');
-
-}); // End User
 
 // Site Homepage (/)
 Route::get('/', 'PagesController@getIndex')->name('pages.index');

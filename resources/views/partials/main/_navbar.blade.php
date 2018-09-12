@@ -17,7 +17,7 @@
                     <a class="nav-link" href="{{ route('blog.index') }}">Blog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Parts</a>
+                    <a class="nav-link" href="{{ route('wiki.sections') }}">Wiki</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Forums</a>

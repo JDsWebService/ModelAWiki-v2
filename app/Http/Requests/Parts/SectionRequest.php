@@ -22,9 +22,34 @@ class SectionRequest extends FormRequest
      * @return array
      */
     public function rules()
-    {
-        return [
-            'name' => 'required|max:255|unique:part_sections,name'
-        ];
+    {   
+        // Switch on the method
+        switch($this->method()) {
+            case 'GET':
+            case 'DELETE':
+            {
+                return [];
+            }
+            case 'POST':
+            {
+                return [
+                    'name' => 'required|string|max:255',
+                    'image' => 'sometimes|image',
+                ];
+            }
+            case 'PUT':
+            case 'PATCH':
+            {   
+                // Grab the section id from the route
+                $section_id = $this->route('section');
+
+                return [
+                    'name' => 'required|max:255|unique:part_sections,name,' . $section_id,
+                    'image' => 'sometimes|image',
+                ];
+            }
+            default:break;
+        }
+
     }
 }

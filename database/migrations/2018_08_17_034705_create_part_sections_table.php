@@ -16,6 +16,7 @@ class CreatePartSectionsTable extends Migration
         Schema::create('part_sections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('image');
             $table->string('slug', 100);
             $table->timestamps();
         });

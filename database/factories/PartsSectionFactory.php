@@ -10,6 +10,7 @@ $factory->define(App\Models\Parts\Section::class, function (Faker $faker) {
 
     return [
         'name' => $name,
+        'image' => 'placeholder.png',
         'slug' => $slug,
     ];
 });

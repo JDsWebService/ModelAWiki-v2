@@ -7,7 +7,6 @@ use Session;
 use App\Models\Parts\Part;
 use App\Models\Parts\Section;
 use App\Traits\Parts\PartsTrait;
-use App\Traits\Parts\SectionsTrait;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Parts\PartRequest;
 
@@ -16,7 +15,6 @@ class PartsController extends Controller
 {
 
 	use PartsTrait;
-	use SectionsTrait;
 
     /**
      * Create a new controller instance.

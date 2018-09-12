@@ -31,8 +31,8 @@
 							      <div class="card-body">
 							      	<ul class="list-inline">
 								        @foreach($permissions as $permission)
-								        	<li class="list-inline-item" style="padding: 5px">
-								        		<input type="checkbox" name="permissions[]" value="{{ $permission->id }}"
+								        	<li class="list-inline-item" data-toggle="tooltip" title="{{ $permission->description }}" style="padding: 5px">
+								        		<input type="checkbox" name="permissions[]" value="{{ $permission->id }}" 
 								        			@if(Route::is('admin.role.edit'))
 								        				@foreach($role->permissions as $role_permission)
 								        					@if($role_permission->id == $permission->id)
@@ -64,3 +64,4 @@
 		{!! Form::close() !!}
 	</div>
 </div>
+

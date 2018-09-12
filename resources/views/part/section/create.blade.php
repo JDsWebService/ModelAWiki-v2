@@ -12,3 +12,10 @@
 	{{ Form::partSectionForm('store', 'POST', 'Create Section') }}
 
 @endsection
+
+@section('scripts')
+
+	{{-- Image Upload Javascript --}}
+	<script src="/js/imageupload.js"></script>
+
+@endsection
