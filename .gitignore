@@ -17,4 +17,4 @@ yarn-error.log
 .phpunit.result.cache
 
 # Except
-# !/public/images/*/placeholder.png
+!/public/images/*/placeholder.png
