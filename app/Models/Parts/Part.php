@@ -2,7 +2,7 @@
 
 namespace App\Models\Parts;
 
-// use App\Traits\TimestampsTrait;
+use App\Traits\TimestampsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
