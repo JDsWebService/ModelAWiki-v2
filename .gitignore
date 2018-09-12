@@ -2,7 +2,7 @@
 /snippets
 /node_modules
 /public/hot
-/public/images
+/public/images/*
 /public/storage
 /storage/*.key
 /vendor
@@ -17,4 +17,16 @@ yarn-error.log
 .phpunit.result.cache
 
 # Except
-!/public/images/*/placeholder.png
+!/public/images/parts
+
+!/public/images/parts/headers
+/public/images/parts/headers/*
+!/public/images/parts/headers/placeholder.png
+
+!/public/images/parts/originals
+/public/images/parts/originals/*
+!/public/images/parts/originals/placeholder.png
+
+!/public/images/parts/thumbnails
+/public/images/parts/thumbnails/*
+!/public/images/parts/thumbnails/placeholder.png
