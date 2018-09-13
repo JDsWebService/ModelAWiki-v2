@@ -21,10 +21,12 @@
 						Blog
 					</h3>
 					
-					@if(!$posts)
-						Nothing to show here yet!
+					@if($posts->count() === 0)
+						<p class="text-center">
+							Nothing to show here yet!
+						</p>
 					@endif
-					
+
 					@foreach($posts as $post)
 						@if($loop->first)
 							<div class="blog-post">
