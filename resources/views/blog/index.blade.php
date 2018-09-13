@@ -20,7 +20,11 @@
 					<h3 class="pb-3 mb-4 font-italic border-bottom">
 						Blog
 					</h3>
-	
+					
+					@if(!$posts)
+						Nothing to show here yet!
+					@endif
+					
 					@foreach($posts as $post)
 						@if($loop->first)
 							<div class="blog-post">
