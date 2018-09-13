@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Wiki - Part')
+@section('title', 'Wiki - Part ' . $part->part_number)
 
 @section('content')
 	

@@ -11,58 +11,33 @@
 |
 */
 
-
-// ------------------------- User Facing Routes ------------------------- //
-
-
-// Wiki Routes
-Route::prefix('wiki')->group(function () {
-
-	// Sections Index
-	Route::get('sections', 'Wiki\WikiController@sectionsIndex')->name('wiki.section.index');
-
-	// Specific Section
-	Route::get('section/{slug}', 'Wiki\WikiController@getSection')->name('wiki.section');
-
-	// Specific Part
-	Route::get('part/{part_number}', 'Wiki\WikiController@getPart')->name('wiki.part');
-
-});
-
-// User (/blog)
-Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
-
-// User (/user)
-Route::prefix('user')->group(function () {
-
-	// (/user/dashboard)
-	Route::get('dashboard', 'User\UserController@getDashboard')->name('user.dashboard');
-
-}); // End User
-
-// User Authentication Routes
-Auth::routes();
-
-
 // ------------------------- Admin Facing Routes ------------------------- //
-
-// Admin Part Sections (/part/section)
-Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')
-
-// Admin Part (/part)
-Route::resource('part', 'Parts\PartsController')->middleware('can:part.global');
-
-// Admin (/tag)
-Route::resource('tag', 'Blog\TagsController')->middleware('can:tag.global');
-
-// Admin (/category)
-Route::resource('category', 'Blog\CategoriesController')->middleware('can:category.global');
-
-// Admin (/post)
-Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
 
 // Admin (/admin)
 Route::prefix('admin')->group(function () {
+
+	// Admin About Us Settings
+	Route::prefix('about')->group(function () {
+
+		Route::get('edit', 'Site\AboutController@edit')->name('admin.about.edit');
+		Route::put('update', 'Site\AboutController@update')->name('admin.about.update');
+
+	});
+
+	// Admin Part Sections (/part/section)
+	Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')
+
+	// Admin Part (/part)
+	Route::resource('part', 'Parts\PartsController')->middleware('can:part.global');
+
+	// Admin (/tag)
+	Route::resource('tag', 'Blog\TagsController')->middleware('can:tag.global');
+
+	// Admin (/category)
+	Route::resource('category', 'Blog\CategoriesController')->middleware('can:category.global');
+
+	// Admin (/post)
+	Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
 
 	// Admin Dashboard (/admin/dashboard)
 	Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
@@ -128,13 +103,47 @@ Route::prefix('admin')->group(function () {
 	Route::post('login', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
 	Route::post('logout', 'Auth\Admin\LoginController@logout')->name('admin.logout');
 
-	// Password Reset Routes...
+	// Admin Password Reset Routes...
 	Route::get('password/reset', 'Auth\Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
 	Route::post('password/email', 'Auth\Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
 	Route::get('password/reset/{token}', 'Auth\Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
 	Route::post('password/reset', 'Auth\Admin\ResetPasswordController@reset');
 
 }); // End Admin
+
+// ------------------------- User Facing Routes ------------------------- //
+
+
+// Wiki Routes
+Route::prefix('wiki')->group(function () {
+
+	// Sections Index (/wiki/sections)
+	Route::get('sections', 'Wiki\WikiController@sectionsIndex')->name('wiki.section.index');
+
+	// Specific Section (/wiki/section/{slug})
+	Route::get('section/{slug}', 'Wiki\WikiController@getSection')->name('wiki.section');
+
+	// Specific Part (/wiki/part/{part_number})
+	Route::get('part/{part_number}', 'Wiki\WikiController@getPart')->name('wiki.part');
+
+});
+
+// User (/blog)
+Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
+
+// User (/user)
+Route::prefix('user')->group(function () {
+
+	// (/user/dashboard)
+	Route::get('dashboard', 'User\UserController@getDashboard')->name('user.dashboard');
+
+}); // End User
+
+// User Authentication Routes
+Auth::routes();
+
+// About Us (/about)
+Route::get('about', 'PagesController@getAbout')->name('pages.about');
 
 // Site Homepage (/)
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
