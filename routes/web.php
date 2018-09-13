@@ -145,5 +145,9 @@ Auth::routes();
 // About Us (/about)
 Route::get('about', 'PagesController@getAbout')->name('pages.about');
 
+// About Us (/contact)
+Route::get('contact', 'PagesController@getContact')->name('pages.contact');
+Route::post('contact', 'PagesController@sendContact')->name('pages.contact.send');
+
 // Site Homepage (/)
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
