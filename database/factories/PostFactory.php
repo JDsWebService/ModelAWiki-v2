@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Category;
+use App\Models\Blog\Category;
 use App\Models\Admin\Admin;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
-$factory->define(App\Models\Body\Post::class, function (Faker $faker) {
+$factory->define(App\Models\Blog\Post::class, function (Faker $faker) {
 	$title = $faker->words(4, true);
 	$slug = Str::slug($title, '-');
 	$slug = Str::limit($slug, 90);

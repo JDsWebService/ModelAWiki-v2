@@ -41,6 +41,10 @@ class Post extends Model
 		return Str::limit($this->attributes['body'], 250);
 	}
 
+	public function getLongPreviewAttribute() {
+		return Str::limit($this->attributes['body'], 500);
+	}
+
 	// User Relationship
 	public function user() {
 		return $this->belongsTo('App\Models\Admin\Admin');

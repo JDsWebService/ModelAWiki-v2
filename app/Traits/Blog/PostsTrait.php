@@ -42,7 +42,7 @@ trait PostsTrait {
             // Choose a location for the file
             $location = public_path('images/posts/' . $filename);
             // Create the Image, resize it, and save it to the path
-            Image::make($image)->fit(1080,300)->save($location);
+            Image::make($image)->fit(1280,512)->save($location);
 
         // Put path into the DB
         return $filename;

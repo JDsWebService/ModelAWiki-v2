@@ -14,7 +14,7 @@ class DefineRelationshipsMigration extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')
+            $table->foreign('user_id')->references('id')->on('admins')
                         ->onDelete('cascade')
                         ->onUpdate('cascade');
             $table->foreign('category_id')->references('id')->on('categories')

@@ -130,6 +130,8 @@ Route::prefix('wiki')->group(function () {
 
 // User (/blog)
 Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
+Route::get('blog/post/{slug}', 'Blog\BlogController@post')->name('blog.post');
+Route::get('blog/category/{slug}', 'Blog\BlogController@category')->name('blog.category');
 
 // User (/user)
 Route::prefix('user')->group(function () {
