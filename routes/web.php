@@ -126,12 +126,7 @@ Route::prefix('wiki')->group(function () {
 	// Specific Part (/wiki/part/{part_number})
 	Route::get('part/{part_number}', 'Wiki\WikiController@getPart')->name('wiki.part');
 
-});
-
-// User (/blog)
-Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
-Route::get('blog/post/{slug}', 'Blog\BlogController@post')->name('blog.post');
-Route::get('blog/category/{slug}', 'Blog\BlogController@category')->name('blog.category');
+}); // End Wiki
 
 // User (/user)
 Route::prefix('user')->group(function () {
@@ -147,9 +142,14 @@ Auth::routes();
 // About Us (/about)
 Route::get('about', 'PagesController@getAbout')->name('pages.about');
 
-// About Us (/contact)
+// Contact (/contact)
 Route::get('contact', 'PagesController@getContact')->name('pages.contact');
 Route::post('contact', 'PagesController@sendContact')->name('pages.contact.send');
+
+// Blog (/blog)
+Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
+Route::get('blog/post/{slug}', 'Blog\BlogController@post')->name('blog.post');
+Route::get('blog/category/{slug}', 'Blog\BlogController@category')->name('blog.category');
 
 // Site Homepage (/)
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
