@@ -28,10 +28,6 @@
                 <i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Categories
             </a>
         @endcan
-        
-        <a href="#" class="list-group-item list-group-item-action">
-            <i class="fas fa-chart-area"></i>&nbsp;&nbsp;Analytics
-        </a>
     </div>
 @endif
 
@@ -53,6 +49,7 @@
         @endcan
     </div>
 @endif
+
 @if(
     Gate::check('admin.global', Auth::guard('admin')->user()) or 
     Gate::check('user.global', Auth::guard('admin')->user())
@@ -80,18 +77,26 @@
     </div>
 @endif
 
-<h5 class="mt-3"><i class="fas fa-cog"></i>&nbsp;&nbsp;Site Settings</h5>
-<div class="list-group">
-    <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-home"></i>&nbsp;&nbsp;Homepage
-    </a>
-    <a href="{{ route('admin.about.edit') }}" class="list-group-item list-group-item-action">
-        <i class="fas fa-info"></i>&nbsp;&nbsp;About Page
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact Page
-    </a>
-    <a href="#" class="list-group-item list-group-item-action">
-        <i class="fas fa-wrench"></i>&nbsp;&nbsp;Maintenance
-    </a>
-</div>
+@if(Gate::check('admin.global', Auth::guard('admin')->user()))
+    <h5 class="mt-3"><i class="fas fa-cog"></i>&nbsp;&nbsp;Site Settings</h5>
+    <div class="list-group">
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-home"></i>&nbsp;&nbsp;Homepage
+        </a>
+        <a href="{{ route('admin.about.edit') }}" class="list-group-item list-group-item-action">
+            <i class="fas fa-info-circle"></i>&nbsp;&nbsp;About Page
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fab fa-facebook"></i>&nbsp;&nbsp;Social Media Links
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact Page
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-cog"></i>&nbsp;&nbsp;ToS & Privacy Policy
+        </a>
+        <a href="#" class="list-group-item list-group-item-action">
+            <i class="fas fa-wrench"></i>&nbsp;&nbsp;Maintenance
+        </a>
+    </div>
+@endif

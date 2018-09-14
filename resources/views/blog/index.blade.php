@@ -25,28 +25,29 @@
 						<p class="text-center">
 							Nothing to show here yet!
 						</p>
+					@else
+
+						@foreach($posts as $post)
+							@if($loop->first)
+								<div class="blog-post">
+							@else
+								<div class="blog-post mt-3">
+							@endif
+									<h2 class="blog-post-title">{{ $post->title }}</h2>
+									<p class="blog-post-meta">{{ $post->published_at }} by {{ $post->user->full_name }}</p>
+									
+									<p>{!! $post->longPreview !!}</p>
+
+									<a href="{{ route('blog.post', $post->slug) }}" class="btn btn-sm btn-secondary">Read More</a>
+									<hr>
+								</div><!-- /.blog-post -->
+						@endforeach
+						
+						<nav class="pagination mt-3">
+							{{ $posts->links() }}
+						</nav>
+
 					@endif
-
-					@foreach($posts as $post)
-						@if($loop->first)
-							<div class="blog-post">
-						@else
-							<div class="blog-post mt-3">
-						@endif
-							<h2 class="blog-post-title">{{ $post->title }}</h2>
-							<p class="blog-post-meta">{{ $post->published_at }} by {{ $post->user->full_name }}</p>
-							
-							<p>{!! $post->longPreview !!}</p>
-
-							<a href="{{ route('blog.post', $post->slug) }}" class="btn btn-sm btn-secondary">Read More</a>
-							<hr>
-						</div><!-- /.blog-post -->
-					@endforeach
-					
-
-					<nav class="pagination mt-3">
-						{{ $posts->links() }}
-					</nav>
 
 				</div><!-- /.blog-main -->
 
@@ -56,7 +57,7 @@
 						<p class="mb-0">This is a collection of thoughts, ideas, and more from our team! Take the time to read some old legacy articles as well.</p>
 					</div>
 
-					<div class="p-3">
+					{{-- <div class="p-3">
 						<h4 class="font-italic">Archives</h4>
 						<ol class="list-unstyled mb-0">
 							<li><a href="#">March 2014</a></li>
@@ -72,22 +73,22 @@
 							<li><a href="#">May 2013</a></li>
 							<li><a href="#">April 2013</a></li>
 						</ol>
-					</div>
+					</div> --}}
 
-					<div class="p-3">
+					{{-- <div class="p-3">
 						<h4 class="font-italic">Elsewhere</h4>
 						<ol class="list-unstyled">
-							<li><a href="#">GitHub</a></li>
 							<li><a href="#">Twitter</a></li>
 							<li><a href="#">Facebook</a></li>
 						</ol>
-					</div>
+					</div> --}}
 				</aside><!-- /.blog-sidebar -->
+			
 
 			</div><!-- /.row -->
 
 
-	</div>
+	</div> <!-- /.container -->
 	
 
 
