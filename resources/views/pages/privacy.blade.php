@@ -10,9 +10,9 @@
 			<hr>
 			
 			@if($settings)
-				@if($settings->tos)
+				@if($settings->privacy)
 					<p>
-						{!! $settings->tos !!}
+						{!! $settings->privacy !!}
 					</p>
 				@endif
 			@else
