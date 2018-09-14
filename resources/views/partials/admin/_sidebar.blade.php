@@ -92,7 +92,7 @@
         <a href="#" class="list-group-item list-group-item-action">
             <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact Page
         </a>
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="{{ route('admin.site.setting.edit') }}" class="list-group-item list-group-item-action">
             <i class="fas fa-cog"></i>&nbsp;&nbsp;ToS & Privacy Policy
         </a>
         <a href="#" class="list-group-item list-group-item-action">

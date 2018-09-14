@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Admin;
 use App\Models\Pages\About;
+use App\Models\SiteSetting;
 use App\Notifications\ContactPageNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
@@ -17,7 +18,7 @@ class PagesController extends Controller
     	return view('pages.index');
     }
 
-    // About Us Page
+    // About Us Page (/about)
     public function getAbout() {
     	$admins = Admin::all();
 
@@ -28,11 +29,12 @@ class PagesController extends Controller
                     ->withSettings($settings);
     }
 
-    // Contact Page
+    // Contact Page (/contact)
     public function getContact() {
         return view('pages.contact');
     }
 
+    // Send Contact Page Email
     public function sendContact(Request $request) {
 
         $this->validate($request, ['message' => 'required|string|min:10']);
@@ -46,5 +48,19 @@ class PagesController extends Controller
 
         return redirect()->route('pages.contact');
 
+    }
+
+    // Get Terms of Service Page (/terms-of-service)
+    public function getTerms() {
+        $settings = SiteSetting::all()->first();
+
+        return view('pages.terms')->withSettings($settings);
+    }
+
+    // Get Terms of Service Page (/terms-of-service)
+    public function getPrivacy() {
+        $settings = SiteSetting::all()->first();
+
+        return view('pages.privacy')->withSettings($settings);
     }
 }

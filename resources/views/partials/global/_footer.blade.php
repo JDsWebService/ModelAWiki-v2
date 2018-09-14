@@ -3,7 +3,7 @@
 <p class="text-center">
 	&copy; ModelAWiki 2018 - All Rights Reserved
 	<br>
-	<a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
+	<a href="{{ route('pages.terms') }}">Terms of Service</a> | <a href="{{ route('pages.privacy') }}">Privacy Policy</a>
 </p>
 
 @auth('admin')

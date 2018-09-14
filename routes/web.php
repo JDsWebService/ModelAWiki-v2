@@ -16,7 +16,17 @@
 // Admin (/admin)
 Route::prefix('admin')->group(function () {
 
-	// Admin About Us Settings
+	// Site Settings (/admin/site)
+	Route::prefix('site')->group(function () {
+
+		Route::get('settings', 'Site\SettingsController@edit')
+									->name('admin.site.setting.edit');
+		Route::put('settings', 'Site\SettingsController@update')
+									->name('admin.site.setting.update');
+
+	});
+
+	// Admin About Us Settings (/admin/about)
 	Route::prefix('about')->group(function () {
 
 		Route::get('edit', 'Site\AboutController@edit')->name('admin.about.edit');
@@ -150,6 +160,12 @@ Route::post('contact', 'PagesController@sendContact')->name('pages.contact.send'
 Route::get('blog', 'Blog\BlogController@index')->name('blog.index');
 Route::get('blog/post/{slug}', 'Blog\BlogController@post')->name('blog.post');
 Route::get('blog/category/{slug}', 'Blog\BlogController@category')->name('blog.category');
+
+// Terms of Service (/terms-of-service)
+Route::get('terms-of-service', 'PagesController@getTerms')->name('pages.terms');
+
+// Privacy Policy (/privacy-policy)
+Route::get('privacy-policy', 'PagesController@getPrivacy')->name('pages.privacy');
 
 // Site Homepage (/)
 Route::get('/', 'PagesController@getIndex')->name('pages.index');
