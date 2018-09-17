@@ -31,17 +31,20 @@ Route::prefix('admin')->group(function () {
 		Route::put('contact/{id?}', 'Site\ContactController@update')
 									->name('admin.site.contact.update');
 
+		// Admin About Us Settings (/admin/site/about)
+		Route::prefix('about')->group(function () {
+			Route::get('edit', 'Site\AboutController@edit')
+									->name('admin.site.about.edit');
+			Route::put('update', 'Site\AboutController@update')
+									->name('admin.site.about.update');
+		});
 
 		// Social Media Links (/admin/site/social-links)
 		Route::resource('social-links', 'Site\SocialLinksController', ['as' => 'admin.site']);
 
 	});
 
-	// Admin About Us Settings (/admin/about)
-	Route::prefix('about')->group(function () {
-		Route::get('edit', 'Site\AboutController@edit')->name('admin.about.edit');
-		Route::put('update', 'Site\AboutController@update')->name('admin.about.update');
-	});
+	
 
 	// Admin Part Sections (/part/section)
 	Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')

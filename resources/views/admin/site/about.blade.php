@@ -5,9 +5,9 @@
 @section('content')
 
 	@if($settings)
-		{!! Form::model($settings, ['route' => ['admin.about.update', $settings->id], 'method' => 'PUT']) !!}
+		{!! Form::model($settings, ['route' => ['admin.site.about.update', $settings->id], 'method' => 'PUT']) !!}
 	@else
-		{!! Form::open(['route' => ['admin.about.update'], 'method' => 'PUT']) !!}
+		{!! Form::open(['route' => ['admin.site.about.update'], 'method' => 'PUT']) !!}
 	@endif
 
 	{{ Form::label('Mission Statement', null, ['class' => 'control-label']) }}
