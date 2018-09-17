@@ -31,7 +31,11 @@ class PagesController extends Controller
 
     // Contact Page (/contact)
     public function getContact() {
-        return view('pages.contact');
+
+        $settings = SiteSetting::all()->first();
+
+        return view('pages.contact')
+                            ->withSettings($settings);
     }
 
     // Send Contact Page Email

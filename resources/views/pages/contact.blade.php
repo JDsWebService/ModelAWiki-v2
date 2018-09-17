@@ -38,18 +38,21 @@
 					</p>
 				@endif
 			</div>
-
+			
 			<div class="col-md-4">
-				<b>Customer service:</b> <br />
-				Phone: 412.465.0311<br />
-				E-mail: <a href="mailto:modelawiki@gmail.com">modelawiki@gmail.com</a><br />
-				<br /><br />
-				<b>Headquarters:</b><br />
-				Model A Wiki<br />
-				555 Address St.<br />
-				Pittsburgh, PA 15212<br />
-
+				@if($settings->count())
+						<b>Customer service:</b> <br />
+						Phone: {{ $settings->phone }}<br />
+						E-mail: <a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a><br />
+						<br />
+						<b>Headquarters:</b><br />
+						Model A Wiki<br />
+						{{ $settings->address }}
+				@else
+					Nothing To Show Here Yet
+				@endif
 			</div>
+			
 		</div>
 
 	</div>
