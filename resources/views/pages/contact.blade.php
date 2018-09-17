@@ -40,16 +40,24 @@
 			</div>
 			
 			<div class="col-md-4">
-				@if($settings->count())
+				@if($settings->phone or $settings->email)
 						<b>Customer service:</b> <br />
-						Phone: {{ $settings->phone }}<br />
+						@if($settings->phone)
+							Phone: {{ $settings->phone }}<br />
+						@endif
+						@if($settings->email)
 						E-mail: <a href="mailto:{{ $settings->email }}">{{ $settings->email }}</a><br />
+						@endif
 						<br />
+				@else
+						No Customer Service Information<br>
+				@endif
+				@if($settings->address)
 						<b>Headquarters:</b><br />
 						Model A Wiki<br />
 						{{ $settings->address }}
 				@else
-					Nothing To Show Here Yet
+					No Address Listed Yet
 				@endif
 			</div>
 			
