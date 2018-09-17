@@ -74,15 +74,18 @@
 							<li><a href="#">April 2013</a></li>
 						</ol>
 					</div> --}}
-
-					<div class="p-3">
-						<h4 class="font-italic">Elsewhere</h4>
-						<ol class="list-unstyled">
-							@foreach($socialLinks as $link)
-								<li><a href="{{ $link->link }}">{{ $link->name }}</a></li>
-							@endforeach
-						</ol>
-					</div>
+					
+					@if($socialLinks->count())
+						<div class="p-3">
+							<h4 class="font-italic">Elsewhere</h4>
+							<ol class="list-unstyled">
+								@foreach($socialLinks as $link)
+									<li><a href="{{ $link->link }}">{{ $link->name }}</a></li>
+								@endforeach
+							</ol>
+						</div>
+					@endif
+					
 				</aside><!-- /.blog-sidebar -->
 			
 
