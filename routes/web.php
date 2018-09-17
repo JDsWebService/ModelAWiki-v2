@@ -19,19 +19,21 @@ Route::prefix('admin')->group(function () {
 	// Site Settings (/admin/site)
 	Route::prefix('site')->group(function () {
 
+		// Site Settings (/admin/site/settings)
 		Route::get('settings', 'Site\SettingsController@edit')
 									->name('admin.site.setting.edit');
 		Route::put('settings', 'Site\SettingsController@update')
 									->name('admin.site.setting.update');
 
+		// Social Media Links (/admin/site/social-links)
+		Route::resource('social-links', 'Site\SocialLinksController', ['as' => 'admin.site']);
+
 	});
 
 	// Admin About Us Settings (/admin/about)
 	Route::prefix('about')->group(function () {
-
 		Route::get('edit', 'Site\AboutController@edit')->name('admin.about.edit');
 		Route::put('update', 'Site\AboutController@update')->name('admin.about.update');
-
 	});
 
 	// Admin Part Sections (/part/section)

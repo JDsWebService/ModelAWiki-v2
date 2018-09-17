@@ -86,7 +86,7 @@
         <a href="{{ route('admin.about.edit') }}" class="list-group-item list-group-item-action">
             <i class="fas fa-info-circle"></i>&nbsp;&nbsp;About Page
         </a>
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="{{ route('admin.site.social-links.index') }}" class="list-group-item list-group-item-action">
             <i class="fab fa-facebook"></i>&nbsp;&nbsp;Social Media Links
         </a>
         <a href="#" class="list-group-item list-group-item-action">
