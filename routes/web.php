@@ -22,8 +22,15 @@ Route::prefix('admin')->group(function () {
 		// Site Settings (/admin/site/settings)
 		Route::get('settings', 'Site\SettingsController@edit')
 									->name('admin.site.setting.edit');
-		Route::put('settings', 'Site\SettingsController@update')
+		Route::put('settings/{id?}', 'Site\SettingsController@update')
 									->name('admin.site.setting.update');
+
+		// Contact Page Settings (/admin/site/contact)
+		Route::get('contact', 'Site\ContactController@edit')
+									->name('admin.site.contact.edit');
+		Route::put('contact/{id?}', 'Site\ContactController@update')
+									->name('admin.site.contact.update');
+
 
 		// Social Media Links (/admin/site/social-links)
 		Route::resource('social-links', 'Site\SocialLinksController', ['as' => 'admin.site']);

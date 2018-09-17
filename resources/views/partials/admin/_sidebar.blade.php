@@ -89,7 +89,7 @@
         <a href="{{ route('admin.site.social-links.index') }}" class="list-group-item list-group-item-action">
             <i class="fab fa-facebook"></i>&nbsp;&nbsp;Social Media Links
         </a>
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="{{ route('admin.site.contact.edit') }}" class="list-group-item list-group-item-action">
             <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact Page
         </a>
         <a href="{{ route('admin.site.setting.edit') }}" class="list-group-item list-group-item-action">
