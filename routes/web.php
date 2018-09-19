@@ -17,7 +17,7 @@
 Route::prefix('admin')->group(function () {
 
 	// Site Settings (/admin/site)
-	Route::prefix('site')->group(function () {
+	Route::prefix('site')->middleware('can:admin.global')->group(function () {
 
 		// Site Settings (/admin/site/settings)
 		Route::get('settings', 'Site\SettingsController@edit')
@@ -32,12 +32,13 @@ Route::prefix('admin')->group(function () {
 									->name('admin.site.contact.update');
 
 		// Admin About Us Settings (/admin/site/about)
-		Route::prefix('about')->group(function () {
-			Route::get('edit', 'Site\AboutController@edit')
-									->name('admin.site.about.edit');
-			Route::put('update', 'Site\AboutController@update')
-									->name('admin.site.about.update');
-		});
+		Route::get('about', 'Site\AboutController@edit')
+								->name('admin.site.about.edit');
+		Route::put('about/{id?}', 'Site\AboutController@update')
+								->name('admin.site.about.update');
+
+		// Admin Homepage Settings (/admin/site/homepage)
+		Route::resource('homepage', 'Site\HomepageController', ['as' => 'admin.site']);
 
 		// Social Media Links (/admin/site/social-links)
 		Route::resource('social-links', 'Site\SocialLinksController', ['as' => 'admin.site']);
@@ -47,19 +48,24 @@ Route::prefix('admin')->group(function () {
 	
 
 	// Admin Part Sections (/part/section)
-	Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])->middleware('can:part.section.global'); // name('part.section.*')
+	Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])
+							->middleware('can:part.section.global'); // name('part.section.*')
 
 	// Admin Part (/part)
-	Route::resource('part', 'Parts\PartsController')->middleware('can:part.global');
+	Route::resource('part', 'Parts\PartsController')
+							->middleware('can:part.global');
 
 	// Admin (/tag)
-	Route::resource('tag', 'Blog\TagsController')->middleware('can:tag.global');
+	Route::resource('tag', 'Blog\TagsController')
+							->middleware('can:tag.global');
 
 	// Admin (/category)
-	Route::resource('category', 'Blog\CategoriesController')->middleware('can:category.global');
+	Route::resource('category', 'Blog\CategoriesController')
+							->middleware('can:category.global');
 
 	// Admin (/post)
-	Route::resource('post', 'Blog\PostsController')->middleware('can:post.global');
+	Route::resource('post', 'Blog\PostsController')
+							->middleware('can:post.global');
 
 	// Admin Dashboard (/admin/dashboard)
 	Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
@@ -69,7 +75,8 @@ Route::prefix('admin')->group(function () {
 	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Roles (/admin/role)
-	Route::resource('role', 'Admin\RoleController', ['as' => 'admin'])->middleware('can:admin.global');
+	Route::resource('role', 'Admin\RoleController', ['as' => 'admin'])
+							->middleware('can:admin.global');
 
 	// Admin Roles (/admin/permission)
 	Route::prefix('permission')->middleware('can:admin.global')->group(function () {

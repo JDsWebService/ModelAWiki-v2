@@ -80,7 +80,7 @@
 @if(Gate::check('admin.global', Auth::guard('admin')->user()))
     <h5 class="mt-3"><i class="fas fa-cog"></i>&nbsp;&nbsp;Site Settings</h5>
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">
+        <a href="{{ route('admin.site.homepage.index') }}" class="list-group-item list-group-item-action">
             <i class="fas fa-home"></i>&nbsp;&nbsp;Homepage
         </a>
         <a href="{{ route('admin.site.about.edit') }}" class="list-group-item list-group-item-action">
