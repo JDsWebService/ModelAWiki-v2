@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function () {
 								->name('admin.site.about.update');
 
 		// Admin Homepage Settings (/admin/site/homepage)
+		Route::get('homepage/types', 'Site\HomepageController@typesInfo')->name('admin.site.homepage.types');
 		Route::resource('homepage', 'Site\HomepageController', ['as' => 'admin.site']);
 
 		// Social Media Links (/admin/site/social-links)

@@ -23,6 +23,9 @@
 		<div class="col-sm-3 text-center">
 			<a href="{{ route('admin.site.homepage.create') }}" class="btn btn-success btn-block btn-sm">Create Entry</a>
 		</div>
+		<div class="col-sm-3 text-center">
+			<a href="{{ route('admin.site.homepage.types') }}" class="btn btn-primary btn-block btn-sm">Learn More About Types</a>
+		</div>
 	</div>
 
 	@if($entries->count())

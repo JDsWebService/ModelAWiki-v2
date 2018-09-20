@@ -36,6 +36,16 @@ class HomepageController extends Controller
     }
 
     /**
+     * Gives the user information about resource types
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function typesInfo()
+    {
+        return view('admin.homepage.types');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

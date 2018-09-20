@@ -19,7 +19,7 @@ yarn-error.log
 
 ############# Except These
 
-# Parts
+# Parts Images
 !/public/images/parts
 
 !/public/images/parts/headers
@@ -34,21 +34,22 @@ yarn-error.log
 /public/images/parts/thumbnails/*
 !/public/images/parts/thumbnails/placeholder.png
 
-# Posts
+# Posts Images
 !/public/images/posts
 
 /public/images/posts/*
 !/public/images/posts/placeholder.png
 
-# Sections
+# Sections Images
 !/public/images/sections
 
 /public/images/sections/*
 !/public/images/sections/placeholder.png
 
-# Site Settings
-!/public/images/site
+# Site Settings Images
+!/public/images/homepage
 
-!/public/images/site/homepage
-/public/images/site/homepage/*
-!/public/images/site/homepage/placeholder.png
+/public/images/homepage/*
+!/public/images/homepage/carousel_example.png
+!/public/images/homepage/card_example.png
+!/public/images/homepage/story_example.png
