@@ -41,4 +41,10 @@ return [
         'redirect' => '/login/facebook/callback',
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),         // Your TWITTER Client ID
+        'client_secret' => env('TWITTER_CLIENT_SECRET'), // Your TWITTER Client Secret
+        'redirect' => '/login/twitter/callback',
+    ],
+
 ];

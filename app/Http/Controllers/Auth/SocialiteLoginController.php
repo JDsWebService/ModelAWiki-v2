@@ -47,9 +47,34 @@ class SocialiteLoginController extends Controller
         if($this->loginSocialiteUser($socialiteUser)) {
             return redirect()->route('user.dashboard');
         } else {
-            abort(503);
+            abort(401);
         }
+    }
 
+    /**
+     * Redirect the user to the Twitter authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToTwitterProvider()
+    {
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Twitter.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleTwitterProviderCallback()
+    {
+        $socialiteUser = Socialite::driver('twitter')->user();
+
+        if($this->loginSocialiteUser($socialiteUser)) {
+            return redirect()->route('user.dashboard');
+        } else {
+            abort(401);
+        }
     }
 
     /**

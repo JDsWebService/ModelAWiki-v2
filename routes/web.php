@@ -170,7 +170,8 @@ Route::prefix('user')->group(function () {
 Route::get('login/facebook', 'Auth\SocialiteLoginController@redirectToFacebookProvider')->name('login.facebook');
 Route::get('login/facebook/callback', 'Auth\SocialiteLoginController@handleFacebookProviderCallback');
 // Socialite Twitter Login Routes
-
+Route::get('login/twitter', 'Auth\SocialiteLoginController@redirectToTwitterProvider')->name('login.twitter');
+Route::get('login/twitter/callback', 'Auth\SocialiteLoginController@handleTwitterProviderCallback');
 // User Authentication Routes
 Auth::routes();
 
