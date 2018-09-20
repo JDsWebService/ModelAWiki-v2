@@ -18,7 +18,7 @@ class PagesController extends Controller
     public function getIndex() {
 
         $carousels = HomepageEntry::where('type', 'Carousel')->get();
-        $cards = HomepageEntry::where('type', 'Cards')->get();
+        $cards = HomepageEntry::where('type', 'Card')->get();
         $stories = HomepageEntry::where('type', 'Story')->get();
 
     	return view('pages.index')

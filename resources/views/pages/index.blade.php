@@ -9,7 +9,7 @@
 			
 			<div class="carousel-inner">
 				@foreach($carousels as $carousel)
-				<div class="carousel-item {{ $loop->first() ? 'active' : '' }}">
+				<div class="carousel-item {{ $loop->iteration = 1 ? 'active' : '' }}">
 					<img src="/images/homepage/{{ $carousel->image }}">
 					<div class="container">
 						<div class="carousel-caption text-left">
