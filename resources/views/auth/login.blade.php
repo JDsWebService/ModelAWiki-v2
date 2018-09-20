@@ -8,7 +8,7 @@
             <a href="{{ route('login.facebook') }}" class="btn btn-facebook m-2 btn-block">
                 <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;Facebook
             </a>
-            <a href="#" class="btn btn-google m-2 btn-block">
+            <a href="{{ route('login.google') }}" class="btn btn-google m-2 btn-block">
                 <i class="fab fa-google-plus-g"></i>&nbsp;&nbsp;Google
             </a>
             <a href="{{ route('login.twitter') }}" class="btn btn-twitter m-2 btn-block">

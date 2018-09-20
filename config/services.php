@@ -47,4 +47,10 @@ return [
         'redirect' => '/login/twitter/callback',
     ],
 
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),         // Your GOOGLE Client ID
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), // Your GOOGLE Client Secret
+        'redirect' => '/login/google/callback',
+    ],
+
 ];

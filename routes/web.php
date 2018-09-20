@@ -172,6 +172,9 @@ Route::get('login/facebook/callback', 'Auth\SocialiteLoginController@handleFaceb
 // Socialite Twitter Login Routes
 Route::get('login/twitter', 'Auth\SocialiteLoginController@redirectToTwitterProvider')->name('login.twitter');
 Route::get('login/twitter/callback', 'Auth\SocialiteLoginController@handleTwitterProviderCallback');
+// Socialite Google Login Routes
+Route::get('login/google', 'Auth\SocialiteLoginController@redirectToGoogleProvider')->name('login.google');
+Route::get('login/google/callback', 'Auth\SocialiteLoginController@handleGoogleProviderCallback');
 // User Authentication Routes
 Auth::routes();
 

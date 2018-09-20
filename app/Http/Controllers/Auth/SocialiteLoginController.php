@@ -78,6 +78,32 @@ class SocialiteLoginController extends Controller
     }
 
     /**
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToGoogleProvider()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    /**
+     * Obtain the user information from Google.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleGoogleProviderCallback()
+    {
+        $socialiteUser = Socialite::driver('google')->user();
+
+        if($this->loginSocialiteUser($socialiteUser)) {
+            return redirect()->route('user.dashboard');
+        } else {
+            abort(401);
+        }
+    }
+
+    /**
      * Login the Socialite User.
      *
      * @return bool
