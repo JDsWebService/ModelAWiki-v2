@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Admin;
 use App\Models\Pages\About;
+use App\Models\Pages\HomepageEntry;
 use App\Models\SiteSetting;
 use App\Notifications\ContactPageNotification;
 use Illuminate\Http\Request;
@@ -15,7 +16,15 @@ class PagesController extends Controller
 {
     // Get the Index Page (/)
     public function getIndex() {
-    	return view('pages.index');
+
+        $carousels = HomepageEntry::where('type', 'Carousel')->get();
+        $cards = HomepageEntry::where('type', 'Cards')->get();
+        $stories = HomepageEntry::where('type', 'Story')->get();
+
+    	return view('pages.index')
+                                ->withCarousels($carousels)
+                                ->withCards($cards)
+                                ->withStories($stories);
     }
 
     // About Us Page (/about)
