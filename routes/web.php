@@ -166,6 +166,11 @@ Route::prefix('user')->group(function () {
 
 }); // End User
 
+// Socialite Facebook Login Routes
+Route::get('login/facebook', 'Auth\SocialiteLoginController@redirectToFacebookProvider')->name('login.facebook');
+Route::get('login/facebook/callback', 'Auth\SocialiteLoginController@handleFacebookProviderCallback');
+// Socialite Twitter Login Routes
+
 // User Authentication Routes
 Auth::routes();
 
