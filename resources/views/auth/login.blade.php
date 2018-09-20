@@ -5,7 +5,7 @@
 @section('content')
     <div class="row justify-content-center text-center mt-3">
         <div class="col-sm-4 align-self-center">
-            <a href="{{ route('login.facebook') }}" class="btn btn-facebook m-2 btn-block">
+            <a href="#" class="btn btn-facebook m-2 btn-block">
                 <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;Facebook
             </a>
             <a href="{{ route('login.google') }}" class="btn btn-google m-2 btn-block">
