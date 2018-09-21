@@ -1,8 +1,10 @@
-<div class="list-group">
-    <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action">
-        <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard
-    </a>
-</div>
+@if(Auth::guard('admin')->check())
+    <div class="list-group">
+        <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action">
+            <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard
+        </a>
+    </div>
+@endif
 
 @if(
     Gate::check('post.global', Auth::guard('admin')->user()) or 
