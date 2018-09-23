@@ -58,3 +58,7 @@ yarn-error.log
 /public/images/admin/.DS_Store
 !/public/images/admin
 !/public/images/admin/*
+
+# User Profile Images
+!/public/images/users
+!/public/images/users/placeholder.png
