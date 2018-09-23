@@ -53,3 +53,6 @@ yarn-error.log
 !/public/images/homepage/carousel_example.png
 !/public/images/homepage/card_example.png
 !/public/images/homepage/story_example.png
+
+# Admin Images
+!public/images/admin/*
