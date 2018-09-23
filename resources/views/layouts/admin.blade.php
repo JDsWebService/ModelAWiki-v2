@@ -57,7 +57,7 @@
         
         {{-- Admin Template Specific JS --}}
             <script src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-            <script src="/js/admin.js"></script>
+            <script src="/js/admin/app.js"></script>
         {{-- Page Specific Scripts --}}
         @yield('scripts')
 
