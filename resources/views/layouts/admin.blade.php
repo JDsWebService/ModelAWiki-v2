@@ -9,11 +9,14 @@
         {{-- Admin Template Specific CSS --}}
             <!-- Custom Scrollbar CSS -->
             <link rel="stylesheet" href="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
-
+            
+            {{-- Bootstrap Theme Slate from Bootswatch --}}
             <link rel="stylesheet" href="/css/admin/app.css">
+            {{-- Custom Admin Template CSS --}}
             <link rel="stylesheet" href="/css/admin/custom.css">
-            <link rel="stylesheet" href="/css/admin/admin.css">
-            <link rel="stylesheet" href="/css/admin/admin-themes.css">
+            {{-- Sidebar CSS --}}
+            <link rel="stylesheet" href="/css/admin/sidebar.css">
+            <link rel="stylesheet" href="/css/admin/sidebar-themes.css">
             
         
         {{-- Page Specific Stylesheets --}}
