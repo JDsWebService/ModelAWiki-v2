@@ -55,4 +55,5 @@ yarn-error.log
 !/public/images/homepage/story_example.png
 
 # Admin Images
+!/public/images/admin
 !/public/images/admin/*
