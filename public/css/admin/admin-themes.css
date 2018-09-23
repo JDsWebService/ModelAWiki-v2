@@ -23,7 +23,7 @@
 .chiller-theme .sidebar-wrapper .sidebar-brand>a,
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li a,
 .chiller-theme .sidebar-footer>div>a {
-    color: #bdbdbd;
+    color: #ddd;
 }
 
 .chiller-theme .sidebar-wrapper .sidebar-menu ul li:hover>a,
@@ -87,7 +87,7 @@
 /*-----------------------style with background image -----------------------------------*/
 
 .sidebar-bg.chiller-theme .sidebar-wrapper::before {
-    background-color: rgba(29, 29, 29, 0.8);
+    background-color: rgba(29, 29, 29, 0.9);
 }
 
 .sidebar-bg.chiller-theme .sidebar-wrapper .sidebar-header,
