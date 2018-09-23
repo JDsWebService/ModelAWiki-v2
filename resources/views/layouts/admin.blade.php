@@ -6,8 +6,18 @@
         {{-- Header --}}
         @include('partials.global._head')
 
-        <!-- Styles -->
-        <link href="{{ asset('css/admin/app.css') }}" rel="stylesheet">
+        {{-- Admin Template Specific CSS --}}
+            <!-- Custom Scrollbar CSS -->
+            <link rel="stylesheet" href="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+            
+            {{-- Bootstrap Theme Slate from Bootswatch --}}
+            <link rel="stylesheet" href="/css/admin/app.css">
+            {{-- Custom Admin Template CSS --}}
+            <link rel="stylesheet" href="/css/admin/custom.css">
+            {{-- Sidebar CSS --}}
+            <link rel="stylesheet" href="/css/admin/sidebar.css">
+            <link rel="stylesheet" href="/css/admin/sidebar-themes.css">
+            
         
         {{-- Page Specific Stylesheets --}}
         @yield('stylesheets')
@@ -17,45 +27,37 @@
     </head>
 
     <body>
-        @component('components.debug.auth')
-        @endcomponent
-        <div id="app">
-
-            {{-- Navigation Bar --}}
-            @include('partials.admin._navbar')
+    
+        {{-- Page Wrapper --}}
+        <div class="page-wrapper chiller-theme sidebar-bg bg1 toggled">
             
-            <div class="container">
+            {{-- Sidebar --}}
+            @include('partials.admin._sidebar')
 
-                <div class="row justify-content-center mt-3">
-                    @auth('admin')
-                    <div class="col-sm-3">
-                        <h3>Sidebar</h3>
-                        <hr>
-                        @include('partials.admin._sidebar')
-                    </div>
-                    @endauth
-                    <div class="col-sm-9">
-                        <h3>@yield('title')</h3>
-                        <hr>
-                        
-                        {{-- Flash Messages --}}
-                        @include('partials.global._messages')
+            <main class="page-content">
+                <div class="container-fluid">
+                    
+                    <h3>@yield('title')</h3>
+                    <hr>
+                    
+                    {{-- Flash Messages --}}
+                    @include('partials.global._messages')
 
-                        {{-- Page Content --}}
-                        @yield('content')
-                    </div>
+                    @yield('content')
+
+                    {{-- Footer --}}
+                    @include('partials.global._footer')
                 </div>
-
-                {{-- Footer --}}
-                @include('partials.global._footer')
-            </div>
+            </main> <!-- /.page-content -->
             
-
-        </div> <!-- /.app -->
+        </div> <!-- /.page-wrapper -->
 
         <!-- Scripts -->
         @include('partials.global._scripts')
         
+        {{-- Admin Template Specific JS --}}
+            <script src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="/js/admin.js"></script>
         {{-- Page Specific Scripts --}}
         @yield('scripts')
 

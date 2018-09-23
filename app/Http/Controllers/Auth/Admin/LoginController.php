@@ -55,7 +55,7 @@ class LoginController extends Controller
             // redirect if successful
             return redirect()->intended(route('admin.dashboard'));
         } else {
-            return redirect()->back()->withErrors(['msg' => 'Something went wrong while logging in. Contact an Administrator'])->withInputs($request->only('email', 'remember'));
+            return redirect()->back()->withErrors(['msg' => 'Something went wrong while logging in. Contact an Administrator!'])->withInputs($request->only('email', 'remember'));
         }
 
         // redirect if unsuccessful w/ form data

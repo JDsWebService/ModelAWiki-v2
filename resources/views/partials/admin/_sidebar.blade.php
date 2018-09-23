@@ -1,104 +1,309 @@
-@if(Auth::guard('admin')->check())
-    <div class="list-group">
-        <a href="{{ route('admin.dashboard') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Dashboard
-        </a>
-    </div>
-@endif
+{{-- Closed Sidebar Bars --}}
+<a id="show-sidebar" class="btn btn-sm btn-light">
+    <i class="fas fa-bars"></i>
+</a>
+{{-- Sidebar --}}
+<nav id="sidebar" class="sidebar-wrapper">
 
-@if(
-    Gate::check('post.global', Auth::guard('admin')->user()) or 
-    Gate::check('tag.global', Auth::guard('admin')->user()) or 
-    Gate::check('category.global', Auth::guard('admin')->user())
-    )
-    <h5 class="mt-3"><i class="fab fa-blogger"></i>&nbsp;&nbsp;Blog</h5>
-    <div class="list-group">
-        @can('post.global', Auth::guard('admin')->user())
-            <a href="{{ route('post.index') }}" class="list-group-item list-group-item-action">
-                <i class="far fa-newspaper"></i>&nbsp;&nbsp;Posts
-            </a>
-        @endcan
+    {{-- Sidebar Content --}}
+    <div class="sidebar-content">
+
+        {{-- Branding --}}
+        <div class="sidebar-brand">
+            <a href="{{ route('pages.index') }}">Model A Wiki</a>
+            <div id="close-sidebar">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+
+        {{-- Authentication Debug Component --}}
+        @component('components.debug.auth')
+        @endcomponent
+
+        {{-- User Information --}}
+        <div class="sidebar-header">
+            <div class="user-pic">
+                <img class="img-responsive img-rounded" src="/images/users/placeholder.png" alt="User picture">
+            </div>
+            <div class="user-info">
+                <span class="user-name">{{ Auth::guard('admin')->user()->fullName }}</span>
+                <span class="user-role">
+                    @if(Auth::guard('admin')->user()->roles()->first())
+                        {{ Auth::guard('admin')->user()->roles()->first()->name }}
+                    @else
+                        You have no role
+                    @endif
+                </span>
+                <span class="user-status">
+                    <i class="fa fa-circle"></i>
+                    <span>Online</span>
+                </span>
+            </div>
+        </div>
         
-        @can('tag.global', Auth::guard('admin')->user())
-            <a href="{{ route('tag.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-tags"></i>&nbsp;&nbsp;Tags
-            </a>
-        @endcan
+        {{-- Sidebar Menu --}}
+        <div class="sidebar-menu">
+            <ul>
+                
+                {{-- Header --}}
+                <li class="header-menu">
+                    <span>General</span>
+                </li>
+
+                <li>
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                @if(
+                    Gate::check('post.global', Auth::guard('admin')->user()) or 
+                    Gate::check('tag.global', Auth::guard('admin')->user()) or 
+                    Gate::check('category.global', Auth::guard('admin')->user())
+                    )
+                    {{-- Blog Dropdown --}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fab fa-blogger"></i>
+                            <span>Blog</span>
+                            {{-- <span class="badge badge-pill badge-primary">3</span> --}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="list-unstyled">
+                                @can('post.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('post.index') }}">
+                                            <i class="far fa-newspaper"></i>Posts
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('tag.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('tag.index') }}">
+                                            <i class="fas fa-tags"></i>Tags
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('category.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('category.index') }}">
+                                            <i class="fas fa-puzzle-piece"></i>Categories
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                
+
+                @if(
+                    Gate::check('part.section.global', Auth::guard('admin')->user()) or 
+                    Gate::check('part.global', Auth::guard('admin')->user())
+                    )
+                    {{-- Parts Dropdown --}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fas fa-car"></i>
+                            <span>Parts</span>
+                            {{-- <span class="badge badge-pill badge-primary">3</span> --}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="list-unstyled">
+                                @can('part.section.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('part.section.index') }}">
+                                            <i class="fas fa-puzzle-piece"></i>Sections
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('part.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('part.index') }}">
+                                            <i class="fas fa-wrench"></i>Parts
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                
+
+                @if(
+                    Gate::check('admin.global', Auth::guard('admin')->user()) or 
+                    Gate::check('user.global', Auth::guard('admin')->user())
+                    )
+                    {{-- Users Dropdown --}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                            {{-- <span class="badge badge-pill badge-primary">3</span> --}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="list-unstyled">
+                                @can('admin.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('admin.role.index') }}">
+                                            <i class="fas fa-id-badge"></i>Roles
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.permission.index') }}">
+                                            <i class="fas fa-lock"></i>Permissions
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('admin.manage.index') }}">
+                                            <i class="fas fa-user-shield"></i>Admin Management
+                                        </a>
+                                    </li>
+                                @endcan
+                                @can('user.global', Auth::guard('admin')->user())
+                                    <li>
+                                        <a href="{{ route('user.manage.index') }}">
+                                            <i class="fas fa-users-cog"></i>User Management
+                                        </a>
+                                    </li>
+                                @endcan
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+                
+
+                @if(Gate::check('admin.global', Auth::guard('admin')->user()))
+                    {{-- Users Dropdown --}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fas fa-cog"></i>
+                            <span>Site Settings</span>
+                            {{-- <span class="badge badge-pill badge-primary">3</span> --}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{{ route('admin.site.homepage.index') }}">
+                                        <i class="fas fa-home"></i>Homepage
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.site.about.edit') }}">
+                                        <i class="fas fa-info-circle"></i>About Page
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.site.social-links.index') }}">
+                                        <i class="fab fa-facebook"></i>Social Media Links
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.site.contact.edit') }}">
+                                        <i class="fas fa-envelope"></i>Contact Page
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.site.setting.edit') }}">
+                                        <i class="fas fa-cog"></i>ToS & Privacy Policy
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fas fa-wrench"></i>Maintenance
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                @endif
+
+
+                
+                {{-- Header --}}
+                <li class="header-menu">
+                    <span>Help</span>
+                </li>
+                {{-- Menu Item w/o Dropdown --}}
+                <li>
+                    <a href="#">
+                        <i class="far fa-question-circle"></i>
+                        <span>Guides</span>
+                        <span class="badge badge-pill badge-primary">Coming Soon!</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div> <!-- ./sidebar-menu  -->
         
-        @can('category.global', Auth::guard('admin')->user())
-            <a href="{{ route('category.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Categories
-            </a>
-        @endcan
     </div>
-@endif
-
-@if(
-    Gate::check('part.section.global', Auth::guard('admin')->user()) or 
-    Gate::check('part.global', Auth::guard('admin')->user())
-    )
-    <h5 class="mt-3"><i class="fas fa-car"></i>&nbsp;&nbsp;Parts</h5>
-    <div class="list-group">
-        @can('part.section.global', Auth::guard('admin')->user())
-            <a href="{{ route('part.section.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-puzzle-piece"></i>&nbsp;&nbsp;Sections
-            </a>
-        @endcan
-        @can('part.global', Auth::guard('admin')->user())
-            <a href="{{ route('part.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-wrench"></i>&nbsp;&nbsp;Parts
-            </a>
-        @endcan
-    </div>
-@endif
-
-@if(
-    Gate::check('admin.global', Auth::guard('admin')->user()) or 
-    Gate::check('user.global', Auth::guard('admin')->user())
-    )
-    <h5 class="mt-3"><i class="fas fa-users"></i>&nbsp;&nbsp;Users</h5>
-    <div class="list-group">
-        @can('admin.global', Auth::guard('admin')->user())
-            <a href="{{ route('admin.role.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-id-badge"></i>&nbsp;&nbsp;Roles
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+        
+        {{--
+        <div class="dropdown">
+            
+            <a href="#" class="" id="test" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-envelope"></i>
+                <span class="badge badge-pill badge-success notification">7</span>
             </a>
 
-            <a href="{{ route('admin.permission.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-lock"></i>&nbsp;&nbsp;Permissions
-            </a>
+            <div class="dropdown-menu messages" aria-labelledby="test">
+                <div class="messages-header">
+                    <i class="fa fa-envelope"></i>
+                    Messages
+                </div>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">
+                    <div class="message-content">
+                        <div class="pic">
+                            <img src="assets/img/user.jpg" alt="">
+                        </div>
+                        <div class="content">
+                            <div class="message-title">
+                                <strong> Jhon doe</strong>
+                            </div>
+                            <div class="message-detail">Lorem ipsum dolor sit amet consectetur adipisicing elit. In totam explicabo</div>
+                        </div>
+                    </div>
 
-            <a href="{{ route('admin.manage.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-user-shield"></i>&nbsp;&nbsp;Admin Management
-            </a>
-        @endcan
-        @can('user.global', Auth::guard('admin')->user())
-            <a href="{{ route('user.manage.index') }}" class="list-group-item list-group-item-action">
-                <i class="fas fa-users-cog"></i>&nbsp;&nbsp;User Management
-            </a>
-        @endcan
-    </div>
-@endif
+                </a>
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-center" href="#">View all messages</a>
 
-@if(Gate::check('admin.global', Auth::guard('admin')->user()))
-    <h5 class="mt-3"><i class="fas fa-cog"></i>&nbsp;&nbsp;Site Settings</h5>
-    <div class="list-group">
-        <a href="{{ route('admin.site.homepage.index') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-home"></i>&nbsp;&nbsp;Homepage
-        </a>
-        <a href="{{ route('admin.site.about.edit') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-info-circle"></i>&nbsp;&nbsp;About Page
-        </a>
-        <a href="{{ route('admin.site.social-links.index') }}" class="list-group-item list-group-item-action">
-            <i class="fab fa-facebook"></i>&nbsp;&nbsp;Social Media Links
-        </a>
-        <a href="{{ route('admin.site.contact.edit') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-envelope"></i>&nbsp;&nbsp;Contact Page
-        </a>
-        <a href="{{ route('admin.site.setting.edit') }}" class="list-group-item list-group-item-action">
-            <i class="fas fa-cog"></i>&nbsp;&nbsp;ToS & Privacy Policy
-        </a>
-        <a href="#" class="list-group-item list-group-item-action">
-            <i class="fas fa-wrench"></i>&nbsp;&nbsp;Maintenance
-        </a>
-    </div>
-@endif
+            </div>
+        </div>
+        --}}
+        
+        {{-- Admin Settings --}}
+        <div class="dropdown">
+            <a href="#" class="" id="adminUserSettings" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-cog"></i>
+                {{-- <span class="badge-sonar"></span> --}}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="adminUserSettings">
+                <span class="badge badge-pill badge-primary">Coming Soon!</span>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-user"></i> My profile
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+            </div>
+        </div>
+
+        {{-- Logout --}}
+        <div>
+            <a href="#" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                <i class="fa fa-power-off"></i>
+                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </a>
+        </div>
+
+    </div> <!-- /.sidebar-footer -->
+
+</nav>
