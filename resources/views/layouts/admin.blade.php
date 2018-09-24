@@ -8,7 +8,7 @@
 
         {{-- Admin Template Specific CSS --}}
             <!-- Custom Scrollbar CSS -->
-            <link rel="stylesheet" href="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
+            <link rel="stylesheet" href="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.min.css">
             
             {{-- Bootstrap Theme Slate from Bootswatch --}}
             <link rel="stylesheet" href="/css/admin/app.css">
@@ -56,7 +56,7 @@
         @include('partials.global._scripts')
         
         {{-- Admin Template Specific JS --}}
-            <script src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script src="https://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
             <script src="/js/admin/app.js"></script>
         {{-- Page Specific Scripts --}}
         @yield('scripts')
