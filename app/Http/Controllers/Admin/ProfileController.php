@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\Admin;
+use App\Models\Blog\Post;
+use App\Traits\ProfileTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
+
+    use ProfileTrait;
+
 	/**
      * Create a new controller instance.
      *
@@ -18,7 +22,8 @@ class ProfileController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin')
+                                ->except('getPublicProfile');
     }
     
     // Get Admin Profile
@@ -58,39 +63,17 @@ class ProfileController extends Controller
 
     	Session::flash('success', 'Save Profile Successfully!');
 
-    	return redirect()->route('admin.profile');
+    	return redirect()->route('admin.profile.self');
     }
 
-    // Upload Image
-    protected function uploadImage($request, $user) {
+    // Get Public Profile
+    public function getPublicProfile($admin) {
+        $user = Admin::find($admin);
+        $posts = Post::where('user_id', $admin)->paginate(5);
 
-    	// Delete the Old User Profile Image
-        $this->deleteImage($user->profile_image);
-        
-        // Grab the file out of the request
-        $image = $request->file('profile_image');
-
-        // Created a filename
-        $filename = time() . '.' . $image->getClientOriginalExtension();
-
-        // Save the Post Image
-            // Choose a location for the file
-            $location = public_path('images/users/' . $filename);
-            // Create the Image, resize it, and save it to the path
-            Image::make($image)->fit(200,200)->save($location);
-
-        // Put path into the DB
-        return '/images/users/' . $filename;
-    }
-
-    // Delete Image
-    public function deleteImage($image) {
-        // Check to see if the user profile picture is not default placeholder
-        // This prevents deletion of the default placeholder image
-        if($image !== '/images/users/placeholder.png') {
-            // Delete the old files
-            File::delete('images/users/' . $image);
-        }
+        return view('admin.publicProfile')
+                                ->withUser($user)
+                                ->withPosts($posts);
     }
 
 

@@ -34,7 +34,10 @@
 								<div class="blog-post mt-3">
 							@endif
 									<h2 class="blog-post-title">{{ $post->title }}</h2>
-									<p class="blog-post-meta">{{ $post->published_at }} by {{ $post->user->full_name }}</p>
+									<p class="blog-post-meta">
+										{{ $post->published_at }} by 
+										<a href="{{ route('admin.profile.public', $post->user->id) }}">{{ $post->user->full_name }}</a>
+									</p>
 									
 									<p>{!! $post->longPreview !!}</p>
 

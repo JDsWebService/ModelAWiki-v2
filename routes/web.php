@@ -130,9 +130,10 @@ Route::prefix('admin')->group(function () {
 	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Profile
-	Route::get('profile', 'Admin\ProfileController@getProfile')->name('admin.profile');
+	Route::get('profile', 'Admin\ProfileController@getProfile')->name('admin.profile.self');
 	Route::get('profile/settings', 'Admin\ProfileController@getSettings')->name('admin.profile.settings');
 	Route::put('profile/settings', 'Admin\ProfileController@saveProfile')->name('admin.profile.save');
+	Route::get('profile/public/{admin}', 'Admin\ProfileController@getPublicProfile')->name('admin.profile.public');
 
 	// Admin Authentication Routes
 	Route::get('login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
@@ -147,8 +148,8 @@ Route::prefix('admin')->group(function () {
 
 }); // End Admin
 
-// ------------------------- User Facing Routes ------------------------- //
 
+// ------------------------- User Facing Routes ------------------------- //
 
 // Wiki Routes
 Route::prefix('wiki')->group(function () {

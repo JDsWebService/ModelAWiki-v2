@@ -284,7 +284,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="adminUserSettings">
                 <span class="badge badge-pill badge-primary">Coming Soon!</span>
-                <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                <a class="dropdown-item" href="{{ route('admin.profile.self') }}">
                     <i class="fas fa-user"></i> My Profile
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.profile.settings') }}">
