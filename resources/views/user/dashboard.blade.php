@@ -1,5 +1,7 @@
 @extends('layouts.main')
 
+@section('title', 'Your Dashboard')
+
 @section('content')
 <div class="container mt-3">
     <div class="row justify-content-center">
