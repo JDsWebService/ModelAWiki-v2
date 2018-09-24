@@ -126,6 +126,9 @@ Route::prefix('admin')->group(function () {
 		// Admin Management Deactivate
 		Route::post('{id}/deactivate', 'Admin\AdminManagementController@deactivate')->name('admin.manage.deactivate');
 
+		// Admin Management Deactivate
+		Route::get('{id}/activate', 'Admin\AdminManagementController@activate')->name('admin.manage.activate');
+
 	}); // End Admin Management
 
 	// Admin Authentication Routes

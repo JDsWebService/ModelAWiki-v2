@@ -53,8 +53,16 @@
 
 						
 					</dl>
-
+					
 					<div class="row">
+						<div class="col-sm-12">
+							<a href="{{ route('admin.manage.activate', $admin->id) }}" class="btn btn-block btn-success">
+								<i class="far fa-edit"></i> Activate
+							</a>
+						</div>
+					</div>
+					
+					<div class="row mt-3">
 						<div class="col-sm-6">
 							<a href="{{ route('admin.manage.edit', $admin->id) }}" class="btn btn-block btn-info">
 								<i class="far fa-edit"></i> Edit

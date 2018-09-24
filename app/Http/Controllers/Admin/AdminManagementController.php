@@ -108,4 +108,23 @@ class AdminManagementController extends Controller
 
         return redirect()->route('admin.manage.index');
     }
+
+    /**
+     * Active the specified admin in the site.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function activate($id)
+    {
+        $admin = Admin::find($id);
+
+        $admin->active = 1;
+
+        $admin->save();
+
+        Session::flash('success', 'Activated this administrator.');
+
+        return redirect()->route('admin.manage.index');
+    }
 }
