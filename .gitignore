@@ -20,6 +20,7 @@ yarn-error.log
 ############# Except These
 
 # Icons
+!/public/images/icons
 !/public/images/icons/*
 
 # Parts Images
