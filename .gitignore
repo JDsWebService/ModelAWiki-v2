@@ -61,4 +61,5 @@ yarn-error.log
 
 # User Profile Images
 !/public/images/users
+/public/images/users/*
 !/public/images/users/placeholder.png
