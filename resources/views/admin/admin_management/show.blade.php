@@ -57,7 +57,7 @@
 					<div class="row">
 						<div class="col-sm-12">
 							<a href="{{ route('admin.manage.activate', $admin->id) }}" class="btn btn-block btn-success">
-								<i class="far fa-edit"></i> Activate
+								<i class="far fa-check-circle"></i> Activate
 							</a>
 						</div>
 					</div>
