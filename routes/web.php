@@ -46,8 +46,6 @@ Route::prefix('admin')->group(function () {
 
 	});
 
-	
-
 	// Admin Part Sections (/part/section)
 	Route::resource('part/section', 'Parts\SectionsController', ['as' => 'part'])
 							->middleware('can:part.section.global'); // name('part.section.*')
@@ -67,13 +65,6 @@ Route::prefix('admin')->group(function () {
 	// Admin (/post)
 	Route::resource('post', 'Blog\PostsController')
 							->middleware('can:post.global');
-
-	// Admin Dashboard (/admin/dashboard)
-	Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
-
-	// Admin First Login
-	Route::get('first-login/{token}', 'Admin\AdminController@firstLoginForm')->name('admin.first-login');
-	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Roles (/admin/role)
 	Route::resource('role', 'Admin\RoleController', ['as' => 'admin'])
@@ -130,6 +121,18 @@ Route::prefix('admin')->group(function () {
 		Route::get('{id}/activate', 'Admin\AdminManagementController@activate')->name('admin.manage.activate');
 
 	}); // End Admin Management
+
+	// Admin Dashboard (/admin/dashboard)
+	Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
+
+	// Admin First Login
+	Route::get('first-login/{token}', 'Admin\AdminController@firstLoginForm')->name('admin.first-login');
+	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
+
+	// Admin Profile
+	Route::get('profile', 'Admin\ProfileController@getProfile')->name('admin.profile');
+	Route::get('profile/settings', 'Admin\ProfileController@getSettings')->name('admin.profile.settings');
+	Route::put('profile/settings', 'Admin\ProfileController@saveProfile')->name('admin.profile.save');
 
 	// Admin Authentication Routes
 	Route::get('login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');

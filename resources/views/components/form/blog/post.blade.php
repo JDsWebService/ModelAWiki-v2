@@ -63,7 +63,7 @@
 
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
-					{{ Form::submit($submit_text, ['class' => 'btn btn-block btn-success mt-4']) }}		
+					{{ Form::submit($submit_text, ['class' => 'btn btn-block btn-success mt-4']) }}
 				</div>
 			</div>
 		    

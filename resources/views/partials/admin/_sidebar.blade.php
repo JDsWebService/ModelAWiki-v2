@@ -284,11 +284,11 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="adminUserSettings">
                 <span class="badge badge-pill badge-primary">Coming Soon!</span>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-user"></i> My profile
+                <a class="dropdown-item" href="{{ route('admin.profile') }}">
+                    <i class="fas fa-user"></i> My Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cog"></i> Settings
+                <a class="dropdown-item" href="{{ route('admin.profile.settings') }}">
+                    <i class="fas fa-user-cog"></i> Settings
                 </a>
             </div>
         </div>

@@ -12,6 +12,7 @@ use Session;
 class RoleController extends Controller
 {
     use RolesTrait;
+    
     /**
      * Create a new controller instance.
      *
