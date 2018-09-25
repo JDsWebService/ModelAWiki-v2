@@ -49,7 +49,7 @@ class AdminController extends Controller
     				$this->validate($request, [
     					'email' => 'required|email',
     					'password' => 'required|string|min:6|confirmed',
-                        'username' => 'required|string|min:3'
+                        'username' => 'required|string|min:3|unique:admins',
     				]);
     				
     				$newAdmin = Admin::where('email', '=', $request->email)->first();
