@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Session;
-use App\Models\User\User;
+use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
 use App\Models\Admin\MakeAdmin;
+use App\Models\User\User;
 use App\Notifications\MakeAdminNotification;
+use App\Traits\UsernameTrait;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Session;
 
 class UserManagementController extends Controller
 {
+
+    use UsernameTrait;
 
     /**
      * Create a new controller instance.
@@ -96,6 +99,7 @@ class UserManagementController extends Controller
         $admin->first_name = $user->first_name;
         $admin->last_name = $user->last_name;
         $admin->email = $user->email;
+        $admin->username = $this->generateRandomUserNumber('admin');
         $admin->password = null;
         $admin->save();
 
@@ -106,7 +110,7 @@ class UserManagementController extends Controller
         $admin->email = $user->email;
         $admin->save();
 
-        $admin->notify(new MakeAdminNotification($token));
+        $admin->notify(new MakeAdminNotification($token, $user->email));
 
         Session::flash('success', 'User has been made an Administrator');
 

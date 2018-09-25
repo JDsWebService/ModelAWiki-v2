@@ -29,8 +29,11 @@ class AdminController extends Controller
     }
 
     // First Loging Form
-    public function firstLoginForm($token) {
-    	return view('admin.first-login')->withToken($token);
+    public function firstLoginForm($token, $email) {
+        $admin = Admin::where('email', $email)->first();
+    	return view('admin.first-login')
+                                ->withToken($token)
+                                ->withAdmin($admin);
     }
 
     // First Login Submit
@@ -45,14 +48,14 @@ class AdminController extends Controller
     			// Check if the timestamp is older then ten minutes
     			if($this->isLinkActive($admin->created_at)) {
 
+                    $newAdmin = Admin::where('email', '=', $request->email)->first();
+
     				// If you got this far then process the request
     				$this->validate($request, [
     					'email' => 'required|email',
     					'password' => 'required|string|min:6|confirmed',
-                        'username' => 'required|string|min:3|unique:admins',
+                        'username' => 'required|alpha_num|string|min:3|unique:admins,username,' . $newAdmin->id,
     				]);
-    				
-    				$newAdmin = Admin::where('email', '=', $request->email)->first();
 
                     $newAdmin->username = $request->username;
     				$newAdmin->password = Hash::make($request->password);

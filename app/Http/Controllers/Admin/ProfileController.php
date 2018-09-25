@@ -45,15 +45,15 @@ class ProfileController extends Controller
     // Save User Settings
     public function saveProfile(Request $request) {
 
+        $user = Auth::guard('admin')->user();
+
     	$this->validate($request, [
     		'first_name' => 'required|max:50|string',
     		'last_name' => 'required|max:50|string',
     		'email' => 'required|max:255|email',
-            'username' => 'required|min:3|string',
+            'username' => 'required|alpha_num|min:3|string|unique:admins,username,' . $user->id,
     		'image' => 'sometimes|image',
     	]);
-
-    	$user = Auth::guard('admin')->user();
 
     	$user->first_name = $request->first_name;
     	$user->last_name = $request->last_name;

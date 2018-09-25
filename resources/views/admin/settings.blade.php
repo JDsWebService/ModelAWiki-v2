@@ -11,23 +11,23 @@
 				<div class="row">
 					<div class="col-sm-6">
 						{{ Form::label('first_name', null, ['class' => 'control-label']) }}
-						{{ Form::text('first_name', null, ['class' => 'form-control form-control-lg', 'placeholder' => 'First Name']) }}
+						{{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name']) }}
 					</div>
 					<div class="col-sm-6">
 						{{ Form::label('last_name', null, ['class' => 'control-label']) }}
-						{{ Form::text('last_name', null, ['class' => 'form-control form-control-lg', 'placeholder' => 'Last Name']) }}
+						{{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name']) }}
 					</div>
 				</div>
 				
 				{{ Form::label('email', null, ['class' => 'control-label mt-3']) }}
-				{{ Form::text('email', null, ['class' => 'form-control form-control-lg', 'placeholder' => 'eMail']) }}
+				{{ Form::text('email', null, ['class' => 'form-control', 'placeholder' => 'eMail']) }}
 
 				{{ Form::label('username', null, ['class' => 'control-label mt-3']) }}
 				<div class="input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text" id="username_addon">@</span>
 					</div>
-					{{ Form::text('username', null, ['class' => 'form-control form-control-lg', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
+					{{ Form::text('username', null, ['class' => 'form-control', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
 				</div>
 
 				{{-- Image --}}

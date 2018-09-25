@@ -11,18 +11,20 @@ class MakeAdminNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    // Create the token varible
+    // Create public variables
     public $token;
+    public $email;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($token)
+    public function __construct($token, $email)
     {
-        // Assign the token to the objects token
+        // Assign To Public Variables
         $this->token = $token;
+        $this->email = $email;
     }
 
     /**
@@ -48,7 +50,7 @@ class MakeAdminNotification extends Notification implements ShouldQueue
                     ->subject('Congratulations! You are now an Administrator!')
                     ->line('Congratulations! You are now an Administrator of ModelAWiki! Please click below to create your password and log into the Admin portion of the site.')
                     ->line('You have 10 minutes to create your password. If you do not create your password in time, please notifiy an administrator to resend this link.')
-                    ->action('Create Password', route('admin.first-login', $this->token))
+                    ->action('Create Password', route('admin.first-login', ['token' => $this->token, 'email' => $this->email]))
                     ->line('If you did not request this privilage, no further action is required.');
     }
 

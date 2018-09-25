@@ -34,7 +34,7 @@
 					    	<div class="input-group-prepend">
 					    		<span class="input-group-text" id="username_addon">@</span>
 					    	</div>
-					    	{{ Form::text('username', null, ['class' => 'form-control form-control-lg', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
+					    	{{ Form::text('username', null, ['class' => 'form-control', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
 					    </div>
 
 					    <h4 class="mt-3">Roles</h4>

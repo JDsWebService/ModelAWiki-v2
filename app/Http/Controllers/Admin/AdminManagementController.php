@@ -75,7 +75,7 @@ class AdminManagementController extends Controller
             'first_name' => 'required|max:255|string',
             'last_name' => 'required|max:255|string',
             'email' => 'required|max:255|email',
-            'username' => 'required|min:3|string|unique:admins',
+            'username' => 'required|alpha_num|min:3|string|unique:admins,username,' . $admin->id,
         ]);
 
         $admin->first_name = $request->first_name;

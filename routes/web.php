@@ -126,7 +126,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('dashboard', 'Admin\AdminController@getDashboard')->name('admin.dashboard');
 
 	// Admin First Login
-	Route::get('first-login/{token}', 'Admin\AdminController@firstLoginForm')->name('admin.first-login');
+	Route::get('first-login/{token}/{email}', 'Admin\AdminController@firstLoginForm')->name('admin.first-login');
 	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Profile

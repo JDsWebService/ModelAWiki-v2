@@ -1,12 +1,14 @@
-@extends('layouts.admin')
+@extends('layouts.blankWithBackground')
 
 @section('title', 'Create Your Admin Password')
 
 @section('content')
-
+    
     <div class="row justify-content-center">
     	<div class="col-sm-8">
-    		{!! Form::open(['route' => ['admin.first-login.submit'], 'method' => 'POST']) !!}
+            <h1>Create Your Admin Account</h1>
+
+    		{!! Form::model($admin, ['route' => ['admin.first-login.submit'], 'method' => 'POST']) !!}
     		    {{ Form::label('email', null, ['class' => 'control-label mt-3']) }}
     		    {{ Form::text('email', null, ['class' => 'form-control']) }}
 
@@ -15,7 +17,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="username_addon">@</span>
                     </div>
-                    {{ Form::text('username', null, ['class' => 'form-control form-control-lg', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
+                    {{ Form::text('username', '', ['class' => 'form-control form-control', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
                 </div>
 
     		    {{ Form::label('password', null, ['class' => 'control-label mt-3']) }}
