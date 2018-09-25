@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -18,7 +19,10 @@ class UserController extends Controller
 	}
 	
     // Get the User Dashboard (/user/dashboard)
-    public function getDashboard() {
-    	return view('user.dashboard');
+    public function getProfile() {
+    	$user = Auth::guard('user')->user();
+
+    	return view('user.profile')
+    							->withUser($user);
     }
 }

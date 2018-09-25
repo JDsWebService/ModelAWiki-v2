@@ -75,6 +75,6 @@ class RegisterController extends Controller
      */
     protected function registered(Request $request, $user)
     {
-        return redirect()->route('user.dashboard');
+        return redirect()->route('user.profile');
     }
 }

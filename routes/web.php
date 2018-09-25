@@ -169,7 +169,7 @@ Route::prefix('wiki')->group(function () {
 Route::prefix('user')->group(function () {
 
 	// (/user/dashboard)
-	Route::get('dashboard', 'User\UserController@getDashboard')->name('user.dashboard');
+	Route::get('profile', 'User\UserController@getProfile')->name('user.profile');
 
 }); // End User
 

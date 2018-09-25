@@ -33,7 +33,7 @@ class RedirectIfAuthenticated
                 // Check if logged in as user
                 if (Auth::guard($guard)->check()) {
                     // If so return to User Homepage
-                    return redirect()->route('user.dashboard');
+                    return redirect()->route('user.profile');
                 }
                 break;
         }

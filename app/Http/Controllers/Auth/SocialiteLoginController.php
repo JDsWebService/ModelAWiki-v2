@@ -45,7 +45,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('facebook')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.profile');
         } else {
             abort(401);
         }
@@ -71,7 +71,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('twitter')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.profile');
         } else {
             abort(401);
         }
@@ -97,7 +97,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('google')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.profile');
         } else {
             abort(401);
         }
@@ -113,6 +113,11 @@ class SocialiteLoginController extends Controller
         $user = User::where('email', $socialiteUser->getEmail())->first();
 
         if($user) {
+            // Update User Profile Image
+            $user->profile_image = $socialiteUser->getAvatar();
+            
+            $user->save();
+
             // Log the User In
             Auth::guard('user')->login($user);
             return true;
@@ -124,6 +129,7 @@ class SocialiteLoginController extends Controller
             $user->first_name = $name[0];
             $user->last_name = $name[1];
             $user->email = $socialiteUser->getEmail();
+            $user->profile_image = $socialiteUser->getAvatar();
             $user->password = Hash::make(str_random(10));
             // $user->profile_image = $socialiteUser->getAvatar();
             // $user->profile_image_thumbnail = $socialiteUser->getAvatar();
