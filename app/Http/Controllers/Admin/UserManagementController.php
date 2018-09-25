@@ -100,6 +100,7 @@ class UserManagementController extends Controller
         $admin->last_name = $user->last_name;
         $admin->email = $user->email;
         $admin->username = $this->generateRandomUserNumber('admin');
+        $admin->profile_image = $user->profile_image;
         $admin->password = null;
         $admin->save();
 
