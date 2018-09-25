@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.blankWithBackground')
 
 @section('title', 'Admin Forgot Password')
 
