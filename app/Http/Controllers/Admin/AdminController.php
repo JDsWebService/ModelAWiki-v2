@@ -49,16 +49,19 @@ class AdminController extends Controller
     				$this->validate($request, [
     					'email' => 'required|email',
     					'password' => 'required|string|min:6|confirmed',
+                        'username' => 'required|string|min:3'
     				]);
     				
     				$newAdmin = Admin::where('email', '=', $request->email)->first();
+
+                    $newAdmin->username = $request->username;
     				$newAdmin->password = Hash::make($request->password);
     				$newAdmin->active = 1;
     				$newAdmin->save();
 
     				$admin->delete();
 
-    				Session::flash('success', 'You have successfully created your password. You may now login.');
+    				Session::flash('success', 'You have successfully created your username and password. You may now login.');
     				return redirect()->route('admin.login');
 
     			} else {

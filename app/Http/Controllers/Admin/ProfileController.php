@@ -49,6 +49,7 @@ class ProfileController extends Controller
     		'first_name' => 'required|max:50|string',
     		'last_name' => 'required|max:50|string',
     		'email' => 'required|max:255|email',
+            'username' => 'required|min:3|string',
     		'image' => 'sometimes|image',
     	]);
 
@@ -57,8 +58,11 @@ class ProfileController extends Controller
     	$user->first_name = $request->first_name;
     	$user->last_name = $request->last_name;
     	$user->email = $request->email;
-    	$user->profile_image = $this->uploadImage($request, $user);
-
+        $user->username = $request->username;
+        if($request->hasFile('profile_image')) {
+            $user->profile_image = $this->uploadImage($request, $user);
+        }
+    	
     	$user->save();
 
     	Session::flash('success', 'Save Profile Successfully!');
@@ -67,9 +71,9 @@ class ProfileController extends Controller
     }
 
     // Get Public Profile
-    public function getPublicProfile($admin) {
-        $user = Admin::find($admin);
-        $posts = Post::where('user_id', $admin)->paginate(5);
+    public function getPublicProfile($username) {
+        $user = Admin::where('username', $username)->first();
+        $posts = Post::where('user_id', $user->id)->paginate(5);
 
         return view('admin.publicProfile')
                                 ->withUser($user)

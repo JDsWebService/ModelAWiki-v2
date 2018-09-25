@@ -75,11 +75,13 @@ class AdminManagementController extends Controller
             'first_name' => 'required|max:255|string',
             'last_name' => 'required|max:255|string',
             'email' => 'required|max:255|email',
+            'username' => 'required|min:3|string',
         ]);
 
         $admin->first_name = $request->first_name;
         $admin->last_name = $request->last_name;
         $admin->email = $request->email;
+        $admin->username = $request->username;
 
         $admin->save();
 

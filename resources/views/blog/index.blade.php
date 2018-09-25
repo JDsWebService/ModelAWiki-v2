@@ -36,7 +36,7 @@
 									<h2 class="blog-post-title">{{ $post->title }}</h2>
 									<p class="blog-post-meta">
 										{{ $post->published_at }} by 
-										<a href="{{ route('admin.profile.public', $post->user->id) }}">{{ $post->user->full_name }}</a>
+										<a href="{{ route('admin.profile.public', $post->user->username) }}">{{ $post->user->full_name }}</a>
 									</p>
 									
 									<p>{!! $post->longPreview !!}</p>
