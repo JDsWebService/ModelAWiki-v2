@@ -64,7 +64,6 @@ trait PostsTrait {
         $post->title = Purifier::clean($request->title);
         $post->subtitle = Purifier::clean($request->subtitle);
         $post->body = Purifier::clean($request->body);
-        dd($request->body);
         if($request->isMethod('POST')) {
             $post->slug = $this->generatePostSlug($request->title);
         }
