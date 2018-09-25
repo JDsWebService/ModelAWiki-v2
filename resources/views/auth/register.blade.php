@@ -46,6 +46,22 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="username_addon">@</span>
+                                    </div>
+                                    {{ Form::text('username', null, ['class' => 'form-control', 'aria-describedby' => 'username_addon', 'placeholder' => 'Username']) }}
+                                </div>
+
+                                @if ($errors->has('username'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('username') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <div class="col-sm-6">

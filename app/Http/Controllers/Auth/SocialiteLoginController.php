@@ -129,6 +129,7 @@ class SocialiteLoginController extends Controller
             $user->first_name = $name[0];
             $user->last_name = $name[1];
             $user->email = $socialiteUser->getEmail();
+            $user->username = $this->generateRandomUserNumber();
             $user->profile_image = $socialiteUser->getAvatar();
             $user->password = Hash::make(str_random(10));
             // $user->profile_image = $socialiteUser->getAvatar();
@@ -142,10 +143,23 @@ class SocialiteLoginController extends Controller
         return false;
     }
 
+    protected function generateRandomUserNumber() {
+        $number = rand(1, 9999999999); // better than rand()
 
+        // call the same function if the barcode exists already
+        if ($this->userNumberExists($number)) {
+            return generateRandomUserNumber();
+        }
 
+        // otherwise, it's valid and can be used
+        return $number;
+    }
 
-
+    protected function userNumberExists($number) {
+        // query the database and return a boolean
+        // for instance, it might look like this in Laravel
+        return User::whereUsername($number)->exists();
+    }
 
 
 }

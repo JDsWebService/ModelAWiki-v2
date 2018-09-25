@@ -33,7 +33,7 @@
             {{-- Username and Email --}}
             <div class="row justify-content-center">
                 <div class="col-sm-4">
-                    <i class="fas fa-user"></i> @username
+                    <i class="fas fa-user"></i> {{ '@' . $user->username }}
                 </div>
                 <div class="col-sm-4">
                     <i class="fas fa-envelope"></i> {{ $user->email }}
