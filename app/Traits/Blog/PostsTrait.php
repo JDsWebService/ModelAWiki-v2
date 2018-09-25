@@ -64,7 +64,9 @@ trait PostsTrait {
         $post->title = Purifier::clean($request->title);
         $post->subtitle = Purifier::clean($request->subtitle);
         $post->body = Purifier::clean($request->body);
-        $post->slug = $this->generatePostSlug($request->title);
+        if($request->isMethod('STORE')) {
+            $post->slug = $this->generatePostSlug($request->title);
+        }
         $post->user_id = Auth::guard('admin')->user()->id;
         $post->category_id = $request->category_id;
         $post->published_at = $this->getPublishedAtDate($request->status);
