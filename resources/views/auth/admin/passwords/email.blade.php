@@ -39,6 +39,13 @@
                                 </button>
                             </div>
                         </div>
+
+                        <div class="form-group row mt-3">
+                            <div class="col-sm-6 offset-sm-4">
+                                <a href="{{ route('admin.login') }}"><< Back To Login</a>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>
