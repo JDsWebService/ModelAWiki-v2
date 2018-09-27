@@ -172,7 +172,11 @@ Route::prefix('wiki')->group(function () {
 Route::prefix('user')->group(function () {
 
 	// (/user/dashboard)
-	Route::get('profile', 'User\UserController@getProfile')->name('user.profile');
+	Route::get('profile/public/{user}', 'User\ProfileController@getPublicProfile')->name('user.profile.public');
+	Route::get('profile', 'User\ProfileController@getProfile')->name('user.profile.self');
+	// User Settings
+	Route::get('profile/settings', 'User\ProfileController@getSettings')->name('user.profile.settings');
+	Route::put('profile/settings', 'User\ProfileController@saveProfile')->name('user.profile.save');
 
 	// User Social Media Settings
 	Route::resource('profile/social-links', 'User\SocialLinksController', ['as' => 'user.profile'])->except('show');
