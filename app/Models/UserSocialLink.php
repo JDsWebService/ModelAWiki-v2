@@ -13,11 +13,11 @@ class UserSocialLink extends Model
     protected $table = 'user_social_links';
 
     // Define User Relationship
- 	// public function user() {
-	// 	return $this->belongsTo('App\Models\User\User');
-	// }
+ 	public function user() {
+		return $this->belongsTo('App\Models\User\User');
+	}
 
-	// Define User Relationship
+	// Define Admin Relationship
     public function admin() {
 		return $this->belongsTo('App\Models\Admin\Admin');
 	}

@@ -78,7 +78,7 @@ class Admin extends Authenticatable
         return $this->belongsToMany('App\Models\Admin\Role');
     }
 
-    // Posts Relationship
+    // Social Media Links Relationship
     public function socialLinks() {
         return $this->hasMany('App\Models\UserSocialLink', 'admin_id');
     }

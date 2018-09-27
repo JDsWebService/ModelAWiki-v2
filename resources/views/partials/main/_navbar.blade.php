@@ -47,10 +47,15 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                <i class="fas fa-user"></i> Your Profile
+                            </a>
+                            <div class="dropdown-divider"></div>
+
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
+                                <i class="fas fa-sign-out-alt"></i> Logout
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

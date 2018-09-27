@@ -135,6 +135,7 @@ Route::prefix('admin')->group(function () {
 	Route::get('profile/settings', 'Admin\ProfileController@getSettings')->name('admin.profile.settings');
 	Route::put('profile/settings', 'Admin\ProfileController@saveProfile')->name('admin.profile.save');
 	
+	// Admin Social Media Links
 	Route::resource('profile/social-links', 'Admin\SocialLinksController', ['as' => 'admin.profile'])->except('show');
 
 	// Admin Authentication Routes
@@ -172,6 +173,9 @@ Route::prefix('user')->group(function () {
 
 	// (/user/dashboard)
 	Route::get('profile', 'User\UserController@getProfile')->name('user.profile');
+
+	// User Social Media Settings
+	Route::resource('profile/social-links', 'User\SocialLinksController', ['as' => 'user.profile'])->except('show');
 
 }); // End User
 

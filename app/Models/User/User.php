@@ -33,4 +33,9 @@ class User extends Authenticatable
     public function getFullNameAttribute() {
         return $full_name = $this->first_name . ' ' . $this->last_name;
     }
+
+    // Social Media Links Relationship
+    public function socialLinks() {
+        return $this->hasMany('App\Models\UserSocialLink', 'user_id');
+    }
 }

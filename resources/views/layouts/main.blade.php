@@ -21,14 +21,17 @@
         @endcomponent
         <div id="app">
             
-            {{-- Flash Messages --}}
-            @include('partials.global._messages')
-            
             {{-- Navigation Bar --}}
             @include('partials.main._navbar')
 
-            {{-- Page Content --}}
-            @yield('content')
+            <div class="container mt-3">
+                {{-- Flash Messages --}}
+                @include('partials.global._messages')
+
+                {{-- Page Content --}}
+                @yield('content')
+            </div>
+            
 
             {{-- Footer --}}
             @include('partials.global._footer')

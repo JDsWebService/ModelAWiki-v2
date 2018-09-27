@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserSocialLink;
+use App\Traits\SocialMediaTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SocialLinksController extends Controller
 {
-    use SocialMediaLinks;
-
+    use SocialMediaTrait;
+    
     /**
      * Create a new controller instance.
      *
@@ -19,7 +20,7 @@ class SocialLinksController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:user');
     }
 
     /**
@@ -29,9 +30,9 @@ class SocialLinksController extends Controller
      */
     public function index()
     {
-        $links = Auth::guard('admin')->user()->socialLinks()->get();
+        $links = Auth::guard('user')->user()->socialLinks()->get();
 
-        return view('admin.profile.social.index')
+        return view('user.profile.social.index')
                                 ->withLinks($links);
     }
 
@@ -42,7 +43,7 @@ class SocialLinksController extends Controller
      */
     public function create()
     {
-        return view('admin.profile.social.create');
+        return view('user.profile.social.create');
     }
 
     /**
@@ -59,14 +60,14 @@ class SocialLinksController extends Controller
         ]);
 
         if($this->validateLink($request->link, $request->site)) {
-            $user = Auth::guard('admin')->user();
+            $user = Auth::guard('user')->user();
 
-            $link = UserSocialLink::where('admin_id', $user->id)->where('site', $request->site)->first();
+            $link = UserSocialLink::where('user_id', $user->id)->where('site', $request->site)->first();
             if(!$link) {
                 $link = new UserSocialLink;
             }
 
-            $link->admin_id = $user->id;
+            $link->user_id = $user->id;
             $link->site = $request->site;
             $link->link = $request->link;
             $link->icon = $this->getIcon($request->site);
@@ -75,11 +76,11 @@ class SocialLinksController extends Controller
 
             Session::flash('success', 'Added New Social Media Link');
 
-            return redirect()->route('admin.profile.social-links.index');
+            return redirect()->route('user.profile.social-links.index');
         }
 
         // Something went wrong
-        return redirect()->route('admin.profile.social-links.create');
+        return redirect()->route('user.profile.social-links.create');
 
         
     }
@@ -94,7 +95,7 @@ class SocialLinksController extends Controller
     {
         $link = UserSocialLink::find($id);
 
-        return view('admin.profile.social.edit')
+        return view('user.profile.social.edit')
                                 ->withLink($link);
     }
 
@@ -113,11 +114,11 @@ class SocialLinksController extends Controller
         ]);
 
         if($this->validateLink($request->link, $request->site)) {
-            $user = Auth::guard('admin')->user();
+            $user = Auth::guard('user')->user();
 
             $link = UserSocialLink::find($id);
 
-            $link->admin_id = $user->id;
+            $link->user_id = $user->id;
             $link->site = $request->site;
             $link->link = $request->link;
             $link->icon = $this->getIcon($request->site);
@@ -126,11 +127,11 @@ class SocialLinksController extends Controller
 
             Session::flash('success', 'Added New Social Media Link');
 
-            return redirect()->route('admin.profile.social-links.index');
+            return redirect()->route('user.profile.social-links.index');
         }
 
         // Something went wrong
-        return redirect()->route('admin.profile.social-links.create');
+        return redirect()->route('user.profile.social-links.create');
     }
 
     /**
@@ -147,7 +148,7 @@ class SocialLinksController extends Controller
 
         Session::flash('success', 'You have successfully deleted your social media link');
 
-        return redirect()->route('admin.profile.social-links.index');
+        return redirect()->route('user.profile.social-links.index');
     }
 
 
