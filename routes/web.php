@@ -130,10 +130,12 @@ Route::prefix('admin')->group(function () {
 	Route::post('first-login', 'Admin\AdminController@firstLoginSubmit')->name('admin.first-login.submit');
 
 	// Admin Profile
+	Route::get('profile/public/{admin}', 'Admin\ProfileController@getPublicProfile')->name('admin.profile.public');
 	Route::get('profile', 'Admin\ProfileController@getProfile')->name('admin.profile.self');
 	Route::get('profile/settings', 'Admin\ProfileController@getSettings')->name('admin.profile.settings');
 	Route::put('profile/settings', 'Admin\ProfileController@saveProfile')->name('admin.profile.save');
-	Route::get('profile/public/{admin}', 'Admin\ProfileController@getPublicProfile')->name('admin.profile.public');
+	
+	Route::resource('profile/social-links', 'Admin\SocialLinksController', ['as' => 'admin.profile'])->except('show');
 
 	// Admin Authentication Routes
 	Route::get('login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');

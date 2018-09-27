@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Admin;
 use App\Models\Blog\Post;
+use App\Models\UserSocialLink;
 use App\Traits\ProfileTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +30,23 @@ class ProfileController extends Controller
     // Get Admin Profile
     public function getProfile() {
     	$user = Auth::guard('admin')->user();
+        $socialLinks = UserSocialLink::where('admin_id', $user->id)->get();
 
     	return view('admin.profile')
-    							->withUser($user);
+    							->withUser($user)
+                                ->withSocialLinks($socialLinks);
+    }
+
+    // Get Public Profile
+    public function getPublicProfile($username) {
+        $user = Admin::where('username', $username)->first();
+        $posts = Post::where('user_id', $user->id)->paginate(5);
+        $socialLinks = UserSocialLink::where('admin_id', $user->id)->get();
+
+        return view('admin.publicProfile')
+                                ->withUser($user)
+                                ->withPosts($posts)
+                                ->withSocialLinks($socialLinks);
     }
 
     // Get Profile Settings Form
@@ -69,17 +84,5 @@ class ProfileController extends Controller
 
     	return redirect()->route('admin.profile.self');
     }
-
-    // Get Public Profile
-    public function getPublicProfile($username) {
-        $user = Admin::where('username', $username)->first();
-        $posts = Post::where('user_id', $user->id)->paginate(5);
-
-        return view('admin.publicProfile')
-                                ->withUser($user)
-                                ->withPosts($posts);
-    }
-
-
 
 }

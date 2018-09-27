@@ -27,12 +27,15 @@
 		</p>
 		
 		{{-- Social Media --}}
+		@if($socialLinks)
 		<p>
-			<a href="#"><img src="/images/icons/facebook.png" alt="Facebook"></a>
-			<a href="#"><img src="/images/icons/google-plus.png" alt="Google Plus"></a>
-			<a href="#"><img src="/images/icons/instagram.png" alt="Instagram"></a>
-			<a href="#"><img src="/images/icons/pinterest.png" alt="Pinterest"></a>
-			<a href="#"><img src="/images/icons/twitter.png" alt="Twitter"></a>
+			@foreach($socialLinks as $link)
+				<a href="{{ $link->link }}"><img src="{{ $link->icon }}" alt="{{ \Str::ucfirst($link->site) }}"></a>
+			@endforeach
+		</p>
+		@endif
+		<p>
+			<a href="{{ route('admin.profile.social-links.index') }}" class="btn btn-sm btn-primary">Edit Social Media Links</a>
 		</p>
 
 		{{-- Username and Email --}}
