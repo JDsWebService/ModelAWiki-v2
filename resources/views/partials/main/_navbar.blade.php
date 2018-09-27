@@ -48,10 +48,13 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('user.profile.self') }}">
-                                <i class="fas fa-user"></i> Your Profile
+                                <i class="fas fa-user"></i> My Profile
+                            </a>
+                            <a class="dropdown-item" href="{{ route('user.profile.social-links.index') }}">
+                                <i class="fas fa-share-alt-square"></i> My Social Media
                             </a>
                             <a class="dropdown-item" href="{{ route('user.profile.settings') }}">
-                                <i class="fas fa-cog"></i> Profile Settings
+                                <i class="fas fa-cog"></i> My Settings
                             </a>
                             <div class="dropdown-divider"></div>
 

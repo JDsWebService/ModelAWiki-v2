@@ -283,12 +283,15 @@
                 {{-- <span class="badge-sonar"></span> --}}
             </a>
             <div class="dropdown-menu" aria-labelledby="adminUserSettings">
-                <span class="badge badge-pill badge-primary">Coming Soon!</span>
+                {{-- <span class="badge badge-pill badge-primary">Coming Soon!</span> --}}
                 <a class="dropdown-item" href="{{ route('admin.profile.self') }}">
                     <i class="fas fa-user"></i> My Profile
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.profile.social-links.index') }}">
+                    <i class="fas fa-share-alt-square"></i> My Social Media
+                </a>
                 <a class="dropdown-item" href="{{ route('admin.profile.settings') }}">
-                    <i class="fas fa-user-cog"></i> Settings
+                    <i class="fas fa-user-cog"></i> My Settings
                 </a>
             </div>
         </div>

@@ -35,7 +35,9 @@
 		</p>
 		@endif
 		<p>
-			<a href="{{ route('admin.profile.social-links.index') }}" class="btn btn-sm btn-primary">Edit Social Media Links</a>
+			<a href="{{ route('admin.profile.social-links.index') }}" class="btn btn-sm btn-primary">
+				<i class="fas fa-share-alt-square"></i> Edit Social Media Links
+			</a>
 		</p>
 
 		{{-- Username and Email --}}

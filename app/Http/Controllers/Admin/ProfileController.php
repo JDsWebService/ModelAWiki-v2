@@ -32,7 +32,7 @@ class ProfileController extends Controller
     	$user = Auth::guard('admin')->user();
         $socialLinks = UserSocialLink::where('admin_id', $user->id)->get();
 
-    	return view('admin.profile')
+    	return view('admin.profile.self')
     							->withUser($user)
                                 ->withSocialLinks($socialLinks);
     }
@@ -43,7 +43,7 @@ class ProfileController extends Controller
         $posts = Post::where('user_id', $user->id)->paginate(5);
         $socialLinks = UserSocialLink::where('admin_id', $user->id)->get();
 
-        return view('admin.publicProfile')
+        return view('admin.profile.publicProfile')
                                 ->withUser($user)
                                 ->withPosts($posts)
                                 ->withSocialLinks($socialLinks);
@@ -53,7 +53,7 @@ class ProfileController extends Controller
     public function getSettings() {
     	$user = Auth::guard('admin')->user();
 
-    	return view('admin.settings')
+    	return view('admin.profile.settings')
     							->withUser($user);
     }
 

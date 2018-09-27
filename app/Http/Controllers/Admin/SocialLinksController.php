@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserSocialLink;
+use App\Traits\SocialMediaTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class SocialLinksController extends Controller
 {
-    use SocialMediaLinks;
+    use SocialMediaTrait;
 
     /**
      * Create a new controller instance.
