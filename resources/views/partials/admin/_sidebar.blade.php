@@ -23,7 +23,7 @@
         {{-- User Information --}}
         <div class="sidebar-header">
             <div class="user-pic">
-                <img class="img-responsive img-rounded" src="/images/users/placeholder.png" alt="User picture">
+                <img class="img-responsive img-rounded" src="{{ Auth::guard('admin')->user()->profile_image }}" alt="Your Profile Image">
             </div>
             <div class="user-info">
                 <span class="user-name">{{ Auth::guard('admin')->user()->fullName }}</span>
