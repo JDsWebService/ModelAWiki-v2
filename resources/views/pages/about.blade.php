@@ -28,20 +28,22 @@
 			<h3>Team Members</h3>
 			<div class="row justify-content-center">
 				@foreach($admins as $admin)
-					<div class="col-sm-4 text-center">
-						<img class="rounded-circle" src="{{ $admin->profile_image }}" alt="{{ $admin->fullName }}'s Profile Image" width="140" height="140">
-						<h5 class="mt-2">{{ $admin->fullName }}</h5>
-						<p>
-							@if($admin->roles->count())
-								@foreach($admin->roles as $role)
-									{{ $role->name }}
-									<br>
-								@endforeach
-							@else
-								No Roles Yet
-							@endif
-						</p>
-					</div>
+					@if(strpos($admin->active, 'Active'))
+						<div class="col-sm-4 text-center">
+							<img class="rounded-circle" src="{{ $admin->profile_image }}" alt="{{ $admin->fullName }}'s Profile Image" width="140" height="140">
+							<h5 class="mt-2">{{ $admin->fullName }}</h5>
+							<p>
+								@if($admin->roles->count())
+									@foreach($admin->roles as $role)
+										{{ $role->name }}
+										<br>
+									@endforeach
+								@else
+									No Roles Yet
+								@endif
+							</p>
+						</div>
+					@endif
 				@endforeach
 			</div>
 
