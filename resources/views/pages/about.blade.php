@@ -23,17 +23,13 @@
 						{!! $settings->our_story !!}
 					</p>
 				@endif
-			@else
-				<p>
-					Nothing to show here!
-				</p>
 			@endif
 
 			<h3>Team Members</h3>
 			<div class="row justify-content-center">
 				@foreach($admins as $admin)
 					<div class="col-sm-4 text-center">
-						<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
+						<img class="rounded-circle" src="{{ $admin->profile_image }}" alt="{{ $admin->fullName }}'s Profile Image" width="140" height="140">
 						<h5 class="mt-2">{{ $admin->fullName }}</h5>
 						<p>
 							@if($admin->roles->count())
