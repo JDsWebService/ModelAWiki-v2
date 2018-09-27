@@ -5,6 +5,8 @@
 @section('content')
     <div class="row justify-content-center text-center mt-3">
         <div class="col-sm-4 align-self-center">
+            Login Using Social Media
+            <hr>
             <a href="{{ route('login.facebook') }}" class="btn btn-facebook m-2 btn-block">
                 <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;Facebook
             </a>
@@ -16,7 +18,7 @@
             </a>
             <hr>
             Don't have an account?
-            <a href="#" class="btn btn-block m-2 btn-primary">
+            <a href="{{ route('register') }}" class="btn btn-block m-2 btn-primary">
                 <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Register
             </a>
         </div>

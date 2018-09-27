@@ -4,8 +4,26 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row justify-content-center text-center mt-3">
+        <div class="col-sm-4 align-self-center">
+            Register Using Social Media
+            <hr>
+            <a href="{{ route('login.facebook') }}" class="btn btn-facebook m-2 btn-block">
+                <i class="fab fa-facebook-f"></i>&nbsp;&nbsp;Facebook
+            </a>
+            <a href="{{ route('login.google') }}" class="btn btn-google m-2 btn-block">
+                <i class="fab fa-google-plus-g"></i>&nbsp;&nbsp;Google
+            </a>
+            <a href="{{ route('login.twitter') }}" class="btn btn-twitter m-2 btn-block">
+                <i class="fab fa-twitter"></i>&nbsp;&nbsp;Twitter
+            </a>
+            <hr>
+            Already Have An Account?
+            <a href="#" class="btn btn-block m-2 btn-secondary">
+                <i class="fas fa-sign-in-alt"></i>&nbsp;&nbsp;Login
+            </a>
+        </div>
+        <div class="col-sm-5">
             <div class="card">
                 <div class="card-header">Sign Up Today!</div>
 
