@@ -24,14 +24,11 @@
             {{-- Navigation Bar --}}
             @include('partials.main._navbar')
 
-            <div class="container mt-3">
-                {{-- Flash Messages --}}
-                @include('partials.global._messages')
+            {{-- Flash Messages --}}
+            @include('partials.global._messages')
 
-                {{-- Page Content --}}
-                @yield('content')
-            </div>
-            
+            {{-- Page Content --}}
+            @yield('content')
 
             {{-- Footer --}}
             @include('partials.global._footer')

@@ -47,7 +47,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('facebook')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile.self');
         } else {
             abort(401);
         }
@@ -73,7 +73,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('twitter')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile.self');
         } else {
             abort(401);
         }
@@ -99,7 +99,7 @@ class SocialiteLoginController extends Controller
         $socialiteUser = Socialite::driver('google')->user();
 
         if($this->loginSocialiteUser($socialiteUser)) {
-            return redirect()->route('user.profile');
+            return redirect()->route('user.profile.self');
         } else {
             abort(401);
         }
