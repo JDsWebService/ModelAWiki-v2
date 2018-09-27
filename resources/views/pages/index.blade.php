@@ -9,30 +9,32 @@
 			
 			<div class="carousel-inner">
 				@foreach($carousels as $carousel)
-				<div class="carousel-item {{ $loop->iteration = 1 ? 'active' : '' }}">
-					<img src="/images/homepage/{{ $carousel->image }}">
-					<div class="container">
-						<div class="carousel-caption text-left">
-							<h1>{{ $carousel->title }}</h1>
-							<p>{!! $carousel->description !!}</p>
-							@if($carousel->url)
-								<p>
-									<a class="btn btn-lg btn-primary" href="{{ $carousel->url }}" role="button">Learn More</a>
-								</p>
-							@endif
+					<div class="carousel-item {{ $loop->iteration = 1 ? 'active' : '' }}">
+						<img src="/images/homepage/{{ $carousel->image }}">
+						<div class="container">
+							<div class="carousel-caption text-left">
+								<h1>{{ $carousel->title }}</h1>
+								<p>{!! $carousel->description !!}</p>
+								@if($carousel->url)
+									<p>
+										<a class="btn btn-lg btn-primary" href="{{ $carousel->url }}" role="button">Learn More</a>
+									</p>
+								@endif
+							</div>
 						</div>
 					</div>
-				</div>
 				@endforeach
 			</div>
-			<a class="carousel-control-prev" href="#indexCarousel" role="button" data-slide="prev">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a>
-			<a class="carousel-control-next" href="#indexCarousel" role="button" data-slide="next">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
-			</a>
+			@if($carousels->count() > 1)
+				<a class="carousel-control-prev" href="#indexCarousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#indexCarousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			@endif
 
 		</div>
 	@endif
