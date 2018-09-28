@@ -33,7 +33,7 @@ class CategoriesController extends Controller
     {
         $categories = Category::paginate(10);
 
-        return view('category.index')->withCategories($categories);
+        return view('admin.blog.category.index')->withCategories($categories);
     }
 
     /**
@@ -46,7 +46,7 @@ class CategoriesController extends Controller
         // Check Authorization
         $this->authorize('category.create');
 
-        return view('category.create');
+        return view('admin.blog.category.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
 
         $category = Category::find($id);
 
-        return view('category.show')->withCategory($category);
+        return view('admin.blog.category.show')->withCategory($category);
     }
 
     /**
@@ -100,7 +100,7 @@ class CategoriesController extends Controller
 
         $category = Category::find($id);
 
-        return view('category.edit')->withCategory($category);
+        return view('admin.blog.category.edit')->withCategory($category);
     }
 
     /**

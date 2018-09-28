@@ -31,7 +31,7 @@ class SectionsController extends Controller
     {
         $sections = Section::paginate(10);
 
-        return view('part.section.index')->withSections($sections);
+        return view('admin.part.section.index')->withSections($sections);
     }
 
     /**
@@ -44,7 +44,7 @@ class SectionsController extends Controller
         // Check Authorization
         $this->authorize('part.section.create');
 
-        return view('part.section.create');
+        return view('admin.part.section.create');
     }
 
     /**
@@ -84,7 +84,7 @@ class SectionsController extends Controller
 
         $parts = Section::find($id)->parts()->paginate(10);
 
-        return view('part.section.show')->withSection($section)->withParts($parts);
+        return view('admin.part.section.show')->withSection($section)->withParts($parts);
     }
 
     /**
@@ -100,7 +100,7 @@ class SectionsController extends Controller
 
         $section = Section::find($id);
 
-        return view('part.section.edit')->withSection($section);
+        return view('admin.part.section.edit')->withSection($section);
     }
 
     /**

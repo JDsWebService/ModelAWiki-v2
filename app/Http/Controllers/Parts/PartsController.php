@@ -35,7 +35,7 @@ class PartsController extends Controller
     {
         $parts = Part::orderBy('part_number', 'desc')->paginate(10);
 
-        return view('part.index')->withParts($parts);
+        return view('admin.part.index')->withParts($parts);
     }
 
     /**
@@ -54,7 +54,7 @@ class PartsController extends Controller
         	return redirect()->route('part.section.index');
         }
 
-        return view('part.create')->withSections($sections);
+        return view('admin.part.create')->withSections($sections);
     }
 
     /**
@@ -97,7 +97,7 @@ class PartsController extends Controller
 
         $part = Part::find($id);
 
-        return view('part.show')->withPart($part);
+        return view('admin.part.show')->withPart($part);
     }
 
     /**
@@ -124,7 +124,7 @@ class PartsController extends Controller
         $sections = Section::orderBy('name', 'asc')->get();
 
         // Return the view with the part variable
-        return view('part.edit')
+        return view('admin.part.edit')
                                 ->withPart($part)
                                 ->withSections($sections);
     }

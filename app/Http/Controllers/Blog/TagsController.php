@@ -32,7 +32,7 @@ class TagsController extends Controller
     {
         $tags = Tag::paginate(10);
 
-        return view('tag.index')->withTags($tags);
+        return view('admin.blog.tag.index')->withTags($tags);
     }
 
     /**
@@ -45,7 +45,7 @@ class TagsController extends Controller
         // Check Authorization
         $this->authorize('tag.create');
 
-        return view('tag.create');
+        return view('admin.blog.tag.create');
     }
 
     /**
@@ -83,7 +83,7 @@ class TagsController extends Controller
 
         $tag = Tag::find($id);
 
-        return view('tag.show')->withTag($tag);
+        return view('admin.blog.tag.show')->withTag($tag);
     }
 
     /**
@@ -99,7 +99,7 @@ class TagsController extends Controller
 
         $tag = Tag::find($id);
 
-        return view('tag.edit')->withTag($tag);
+        return view('admin.blog.tag.edit')->withTag($tag);
     }
 
     /**

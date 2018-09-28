@@ -25,6 +25,7 @@
 					</div>
 				@endforeach
 			</div>
+			
 			@if($carousels->count() > 1)
 				<a class="carousel-control-prev" href="#indexCarousel" role="button" data-slide="prev">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>

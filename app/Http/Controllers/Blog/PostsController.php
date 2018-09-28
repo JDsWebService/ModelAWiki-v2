@@ -39,7 +39,7 @@ class PostsController extends Controller
         // Grab all the posts from the database
         $posts = Post::select('id', 'title', 'created_at', 'published_at')->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('post.index')->withPosts($posts);
+        return view('admin.blog.post.index')->withPosts($posts);
     }
 
     /**
@@ -60,7 +60,7 @@ class PostsController extends Controller
 
         $tags = Tag::all();
         
-        return view('post.create')->withCategories($categories)->withTags($tags);
+        return view('admin.blog.post.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -106,7 +106,7 @@ class PostsController extends Controller
 
         $post = Post::find($id);
 
-        return view('post.show')->withPost($post);
+        return view('admin.blog.post.show')->withPost($post);
     }
 
     /**
@@ -132,7 +132,7 @@ class PostsController extends Controller
 
         $tags = $this->getTagsArray($tags);
 
-        return view('post.edit')->withPost($post)->withCategories($categories)->withTags($tags);
+        return view('admin.blog.post.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
