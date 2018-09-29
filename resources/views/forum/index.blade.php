@@ -10,7 +10,7 @@
 			    <div class="row">
 			        <div class="col-sm-2 text-center p-2">
 			        	<a href="{{ route('user.profile.public', $post->user->username) }}">
-			            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle border border-secondary">
+			            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
 			        	</a>
 			        </div>
 			        <div class="col-sm-10 p-2">

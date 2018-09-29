@@ -7,7 +7,7 @@
 	    <div class="row">
 	        <div class="col-sm-2 text-center p-2">
 	        	<a href="{{ route('user.profile.public', $post->user->username) }}">
-	            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle border border-secondary">
+	            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
 	        	</a>
 	        	@if(Auth::guard('user')->user()->id === $post->user_id)
 					<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editPostModal">
@@ -45,7 +45,7 @@
     			    <div class="row">
     			        <div class="col-sm-2 text-center p-2">
     			        	<a href="{{ route('user.profile.public', $reply->user->username) }}">
-    			            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle border border-secondary">
+    			            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
     			        	</a>
     			        	@if(Auth::guard('user')->user()->id === $reply->user_id)
     							<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editReplyModal">
