@@ -59,10 +59,10 @@
             <div id="forum_header" class="carousel" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="http://via.placeholder.com/1280x150" alt="Featured Image">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h3>Welcome to the Forums</h3>
-                            <p>Forum Description Will Go Here</p>
+                        <img class="d-block w-100" src="{{ $settings->image }}" alt="Forum Header Image">
+                        <div class="carousel-caption d-none d-sm-block" style="text-shadow: 2px 2px #000000;">
+                            <h3>{{ $settings->heading }}</h3>
+                            <p>{{ $settings->motd }}</p>
                         </div>
                     </div>
                 </div>

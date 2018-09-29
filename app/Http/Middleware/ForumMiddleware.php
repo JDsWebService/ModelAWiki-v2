@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Forum\ForumCategory;
+use App\Models\Forum\ForumSettings;
 use Closure;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -19,11 +20,14 @@ class ForumMiddleware
     public function handle($request, Closure $next)
     {
         $categories = ForumCategory::all();
+        $settings = ForumSettings::first();
 
         // Check to see if $categories has any items in collection
-        if($categories->count()) {
-            // Pass a 'categories' varible to all views
+        if($categories->count() and $settings) {
+            // Pass a 'categories' varible to all forum views
             View::share('categories', $categories);
+            // Pass a 'settings' variable to all forum views
+            View::share('settings', $settings);
             // Return the users request
             return $next($request);
         } 
