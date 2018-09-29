@@ -23,6 +23,11 @@ yarn-error.log
 !/public/images/icons
 !/public/images/icons/*
 
+# Forum Images
+!/public/images/forum
+/public/images/forum/*
+!/public/images/forum/placeholder.png
+
 # Parts Images
 !/public/images/parts
 

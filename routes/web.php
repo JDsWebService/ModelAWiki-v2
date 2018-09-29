@@ -23,6 +23,10 @@ Route::prefix('admin')->group(function () {
 		Route::resource('category', 'Admin\Forum\CategoriesController')->except('create');
 		Route::get('category/restore/{id}', 'Admin\Forum\CategoriesController@restore')->name('category.restore');
 
+		// Forum Settings
+		Route::get('settings', 'Admin\Forum\SettingsController@getSettings')->name('settings');
+		Route::post('settings', 'Admin\Forum\SettingsController@saveSettings')->name('settings.save');
+
 	});
 
 

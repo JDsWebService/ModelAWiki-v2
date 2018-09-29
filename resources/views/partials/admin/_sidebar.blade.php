@@ -106,13 +106,13 @@
                         <div class="sidebar-submenu">
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="">
-                                        <i class="far fa-newspaper"></i>Posts
+                                    <a href="{{ route('admin.forum.category.index') }}">
+                                        <i class="fas fa-puzzle-piece"></i>Categories
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('admin.forum.category.index') }}">
-                                        <i class="fas fa-puzzle-piece"></i>Categories
+                                    <a href="{{ route('admin.forum.settings') }}">
+                                        <i class="fas fa-cog"></i>Settings
                                     </a>
                                 </li>
                                 <li>
