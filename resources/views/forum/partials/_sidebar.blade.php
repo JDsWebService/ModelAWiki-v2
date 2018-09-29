@@ -10,11 +10,11 @@
 	</a>
 	{{-- List All Active Categories --}}
 	@foreach($categories as $category)
-		<button type="button" class="list-group-item list-group-item-action border-0">
+		<a href="{{ route('forum.category', $category->slug) }}" class="list-group-item list-group-item-action border-0">
 			<span style="color: {{ $category->color }};"><i class="fas fa-square-full"></i></span>&nbsp;&nbsp;{{ $category->name }}
-		</button>
+		</a>
 	@endforeach
 </div>
 
 {{-- Create Post Modal --}}
-@include('forum.post.modals.create')
+@include('forum.post.modals.createPost')

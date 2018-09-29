@@ -30,4 +30,9 @@ class ForumPost extends Model
     public function user() {
     	return $this->belongsTo('App\Models\User\User');
     }
+
+    // Define Forum Replies Relationship
+    public function replies() {
+        return $this->hasMany('App\Models\Forum\ForumReply', 'post_id');
+    }
 }

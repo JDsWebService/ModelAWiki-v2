@@ -43,4 +43,9 @@ class User extends Authenticatable
     public function posts() {
         return $this->hasMany('App\Models\Forum\ForumPost', 'user_id');
     }
+
+    // Define Forum Replies Relationship
+    public function replies() {
+        return $this->hasMany('App\Models\Forum\ForumReply', 'user_id');
+    }
 }

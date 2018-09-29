@@ -11,10 +11,10 @@
 	        	</a>
 	        	@if(Auth::guard('user')->user()->id === $post->user_id)
 					<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editPostModal">
-						<i class="fas fa-edit"></i> Edit Post
+						<i class="fas fa-edit"></i> Edit
 					</a>
 					<a href="" class="btn btn-danger btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#deletePostModal">
-						<i class="fas fa-trash-alt"></i> Delete Post
+						<i class="fas fa-trash-alt"></i> Delete
 					</a>
 	            @endif
 	        </div>
@@ -35,11 +35,82 @@
 	            </p>
 	        </div>
 	    </div>
-		
+
+	    {{-- Post Replies --}}
+	    @if($replies->count())
+	    	<h4>Replies</h4>
+	    	<hr>
+	    	@foreach($replies as $reply)
+	    		<div class="bd-callout" style="border-left-color: #6c757d;">
+    			    <div class="row">
+    			        <div class="col-sm-2 text-center p-2">
+    			        	<a href="{{ route('user.profile.public', $reply->user->username) }}">
+    			            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle border border-secondary">
+    			        	</a>
+    			        	@if(Auth::guard('user')->user()->id === $reply->user_id)
+    							<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editReplyModal">
+    								<i class="fas fa-edit"></i> Edit
+    							</a>
+    							<a href="" class="btn btn-danger btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#deleteReplyModal">
+    								<i class="fas fa-trash-alt"></i> Delete
+    							</a>
+    			            @endif
+    			        </div>
+    			        <div class="col-sm-10 p-2">
+    			            <p>
+    			            	<small>
+    			            		Posted By <a href="{{ route('user.profile.public', $reply->user->username) }}">{{ $reply->user->fullName }}</a> {{ $reply->created_at }}
+    			            	</small>
+    			            </p>
+    			            <p>
+    			                {!! $reply->body !!}
+    			            </p>
+    			            <p>
+    			            	@if($reply->created_at != $reply->updated_at)
+									<small>Updated {{ $reply->updated_at }}</small>
+			            		@endif
+    			            </p>
+    			        </div>
+    			    </div>
+	    		</div>
+
+	    		{{-- Edit Reply Modal --}}
+	    		@include('forum.post.modals.editReply')
+
+	    		{{-- Delete Reply Modal --}}
+	    		@include('forum.post.modals.deleteReply')
+			@endforeach
+
+			<div class="row justify-content-center">
+				<div class="col-sm-12">
+					{{ $replies->links() }}
+				</div>
+			</div>
+	    @endif
+
+	    {{-- Forum Reply Form --}}
+	    <hr>
+	    <div class="row justify-content-center">
+	    	<div class="col-sm-12">
+	    		{!! Form::open(['route' => ['forum.reply.store', $post->slug], 'method' => 'POST']) !!}
+					
+					{{ Form::textarea('body', null, ['class' => 'form-control', 'rows' => 2, 'placeholder' => 'Reply to this user\'s post?']) }}
+					
+					<div class="row justify-content-center mt-2">
+						<div class="col-sm-4">
+							<button type="submit" class="btn btn-block btn-success rounded-0">
+								<i class="fas fa-reply"></i> Post Your Reply
+							</button>
+						</div>
+					</div>
+	    		{!! Form::close() !!}
+	    	</div>
+	    </div>
+
 		{{-- Edit Post Modal --}}
-		@include('forum.post.modals.edit')
+		@include('forum.post.modals.editPost')
 	    
 		{{-- Delete Post Modal --}}
-	    @include('forum.post.modals.delete')
+	    @include('forum.post.modals.deletePost')
 
 @endsection

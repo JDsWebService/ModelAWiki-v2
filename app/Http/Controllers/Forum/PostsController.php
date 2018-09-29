@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Models\Forum\ForumPost;
+use App\Models\Forum\ForumReply;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -61,9 +62,11 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = ForumPost::where('slug', $slug)->first();
+        $replies = ForumReply::where('post_id', $post->id)->orderBy('created_at')->paginate(5);
 
         return view('forum.post.show')
-        						->withPost($post);
+        						->withPost($post)
+                                ->withReplies($replies);
     }
 
     /**

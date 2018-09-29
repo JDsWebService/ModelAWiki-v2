@@ -32,6 +32,12 @@
 			    </div>
 			</div>
 		@endforeach
+
+		<div class="row mt-3">
+			<div class="col-sm-12">
+				{{ $posts->links() }}
+			</div>
+		</div>
 	@else
 		<div class="row text-center">
 			<div class="col-sm-12">

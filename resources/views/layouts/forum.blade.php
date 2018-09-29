@@ -7,7 +7,8 @@
         @include('partials.global._head')
         
         {{-- Main Layout CSS --}}
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="/css/app.css" rel="stylesheet">
+        <link href="/css/custom.css" rel="stylesheet">
 
         {{-- Forum Global Stylesheets --}}
         <style type="text/css">

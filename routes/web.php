@@ -172,9 +172,13 @@ Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function 
 	Route::delete('post/{slug}', 'Forum\PostsController@destroy')->name('post.destroy');
 	Route::get('post/{slug}', 'Forum\PostsController@show')->name('post.show');
 
+	// Forum Replies
+	Route::post('post/{postSlug}/reply', 'Forum\RepliesController@store')->name('reply.store');
+	Route::put('post/{postSlug}/reply/{replySlug}', 'Forum\RepliesController@update')->name('reply.update');
+	Route::delete('post/{postSlug}/reply/{replySlug}', 'Forum\RepliesController@destroy')->name('reply.destroy');
 
 	// Specific Category
-	// Route::get('category/{slug}', 'Forum\PagesController@category')->name('category');
+	Route::get('category/{slug}', 'Forum\PagesController@category')->name('category');
 
 	// Forum Index
 	Route::get('/', 'Forum\PagesController@index')->name('index');

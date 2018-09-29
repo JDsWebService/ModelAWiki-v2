@@ -1,20 +1,3 @@
-hr {
-	background-color: #cccccc;
-}
-
-.pagination {
-	justify-content: center;
-}
-
-/* Select 2 Text Color */
-.select2-results__option {
-	color: black;
-}
-
-.select2-container--default .select2-selection--multiple .select2-selection__choice {
-	color: black;
-}
-
 /* Bootstrap Callouts V4 */
 .bd-callout {
     padding: 1.25rem;
