@@ -19,6 +19,7 @@ Route::prefix('admin')->group(function () {
 	// Forum Administration
 	Route::prefix('forum')->name('admin.forum.')->middleware('auth:admin')->group(function () {
 
+		// Forum Category Management
 		Route::resource('category', 'Admin\Forum\CategoriesController')->except('create');
 		Route::get('category/restore/{id}', 'Admin\Forum\CategoriesController@restore')->name('category.restore');
 
