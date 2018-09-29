@@ -22,7 +22,7 @@ class PagesController extends Controller
 
     // Get the Forum Index
     public function index() {
-        $posts = ForumPost::orderBy('created_at')->paginate(5);
+        $posts = ForumPost::orderBy('created_at', 'desc')->paginate(5);
 
     	return view('forum.index')
                                 ->withPosts($posts);

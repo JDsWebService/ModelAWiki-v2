@@ -62,7 +62,7 @@ class PostsController extends Controller
     public function show($slug)
     {
         $post = ForumPost::where('slug', $slug)->first();
-        $replies = ForumReply::where('post_id', $post->id)->orderBy('created_at')->paginate(5);
+        $replies = ForumReply::where('post_id', $post->id)->orderBy('created_at', 'desc')->paginate(5);
 
         return view('forum.post.show')
         						->withPost($post)
@@ -98,14 +98,12 @@ class PostsController extends Controller
 
         	Session::flash('success', 'Edited The Forum Post Successfully!');
 
-        	return view('forum.post.show')
-        						->withPost($post);
+        	return redirect()->route('forum.post.show', $post->slug);
         }
 
         Session::flash('danger', 'You do not have permission to edit this forum post!');
 
-        return view('forum.post.show')
-        						->withPost($post);
+        return redirect()->route('forum.post.show', $post->slug);
         
     }
 
@@ -129,8 +127,7 @@ class PostsController extends Controller
 
         Session::flash('danger', 'You do not have permission to delete this forum post!');
 
-        return view('forum.post.show')
-        						->withPost($post);
+        return redirect()->route('forum.post.show', $post->slug);
 
     }
 }
