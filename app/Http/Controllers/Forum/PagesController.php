@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
+use App\Models\Forum\ForumPost;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -20,11 +21,17 @@ class PagesController extends Controller
 
     // Get the Forum Index
     public function index() {
-    	return view('forum.index');
+        $posts = ForumPost::orderBy('created_at')->paginate(5);
+
+    	return view('forum.index')
+                                ->withPosts($posts);
     }
 
-    // Get Forum Discussion Post
-    public function discussion() {
-    	return "test";
-    }
+    // Get a specific category
+    // public function category($slug) {
+    // 	$category = ForumCategory::where('slug', $slug)->paginate(5);
+
+    // 	return view('forum.index')
+    // 							->withCategory($category);
+    // }
 }

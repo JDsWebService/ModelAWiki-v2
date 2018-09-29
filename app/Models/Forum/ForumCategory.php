@@ -19,4 +19,9 @@ class ForumCategory extends Model
     protected $dates = ['deleted_at'];
 
     protected $table = 'forum_categories';
+
+    // Define Posts Relationship
+    public function posts() {
+    	return $this->hasMany('App\Models\Forum\ForumPost', 'category_id');
+    }
 }

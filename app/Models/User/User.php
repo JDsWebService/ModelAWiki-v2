@@ -38,4 +38,9 @@ class User extends Authenticatable
     public function socialLinks() {
         return $this->hasMany('App\Models\UserSocialLink', 'user_id');
     }
+
+    // Define Forum Posts Relationship
+    public function posts() {
+        return $this->hasMany('App\Models\Forum\ForumPost', 'user_id');
+    }
 }

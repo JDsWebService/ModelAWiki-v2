@@ -1,11 +1,11 @@
-<a href="#" class="btn btn-success btn-block rounded-0">
+<a href="" class="btn btn-success btn-block rounded-0" data-toggle="modal" data-target="#createForumPostModal">
 	<i class="fas fa-plus-circle"></i> New Discussion
 </a>
 
 
 {{-- Categories --}}
 <div class="list-group mt-3">
-	<a href="#" class="list-group-item list-group-item-action border-0">
+	<a href="{{ route('forum.index') }}" class="list-group-item list-group-item-action border-0">
 		<i class="far fa-comment"></i>&nbsp;&nbsp;All Discussions
 	</a>
 	{{-- List All Active Categories --}}
@@ -15,3 +15,6 @@
 		</button>
 	@endforeach
 </div>
+
+{{-- Create Post Modal --}}
+@include('forum.post.modals.create')

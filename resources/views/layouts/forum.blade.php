@@ -16,6 +16,28 @@
                 text-decoration-line: none !important;
                 text-decoration-style: none !important;
             }
+            
+            /* Forum Post */
+            .profile-image {
+                width: 100px;
+            }
+            .badge-category {
+                color: white;
+            }
+            .post-preview-link div[class^="col-"] {
+                color: black;
+            }
+            .post-preview-link:hover div[class^="col-"] {
+                background: #eee;
+            }
+            
+            /* Title Text Black */
+            .text-black {
+                color: black;
+            }
+            .text-black:hover {
+                color: #444;
+            }
         </style>
         
         {{-- Page Specific Stylesheets --}}
@@ -73,6 +95,9 @@
 
         <!-- Scripts -->
         @include('partials.global._scripts')
+
+        {{-- Tiny MCE --}}
+        <script src="/js/tinymce/tinymce.min.js"></script>
         
         {{-- Page Specific Scripts --}}
         @yield('scripts')

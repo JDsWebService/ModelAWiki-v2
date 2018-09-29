@@ -166,8 +166,18 @@ Route::prefix('admin')->group(function () {
 // Forum Routes
 Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function () {
 
-	Route::get('/', 'Forum\PagesController@index')->name('index');
+	// Forum Posts
+	Route::post('post', 'Forum\PostsController@store')->name('post.store');
+	Route::put('post/{slug}', 'Forum\PostsController@update')->name('post.update');
+	Route::delete('post/{slug}', 'Forum\PostsController@destroy')->name('post.destroy');
+	Route::get('post/{slug}', 'Forum\PostsController@show')->name('post.show');
 
+
+	// Specific Category
+	// Route::get('category/{slug}', 'Forum\PagesController@category')->name('category');
+
+	// Forum Index
+	Route::get('/', 'Forum\PagesController@index')->name('index');
 });
 
 // Wiki Routes
