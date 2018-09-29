@@ -20,7 +20,7 @@
                     <a class="nav-link" href="{{ route('wiki.section.index') }}">Wiki</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Forums</a>
+                    <a class="nav-link" href="{{ route('forum.index') }}">Forums</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('pages.about') }}">About Us</a>

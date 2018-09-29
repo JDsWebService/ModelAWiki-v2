@@ -3,7 +3,6 @@
 @section('title', 'Home')
 
 @section('content')
-	
 	@if($carousels->count())
 		<div id="indexCarousel" class="carousel slide" data-ride="carousel">
 			

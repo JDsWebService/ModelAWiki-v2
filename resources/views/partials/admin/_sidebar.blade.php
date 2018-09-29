@@ -95,6 +95,34 @@
                         </div>
                     </li>
                 @endif
+
+                    {{-- Blog Dropdown --}}
+                    <li class="sidebar-dropdown">
+                        <a href="#">
+                            <i class="fas fa-comments"></i>
+                            <span>Forum</span>
+                            {{-- <span class="badge badge-pill badge-primary">3</span> --}}
+                        </a>
+                        <div class="sidebar-submenu">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="">
+                                        <i class="far fa-newspaper"></i>Posts
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.forum.category.index') }}">
+                                        <i class="fas fa-puzzle-piece"></i>Categories
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fas fa-flag"></i>Reports
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                 
 
                 @if(

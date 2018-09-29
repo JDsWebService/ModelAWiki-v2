@@ -16,6 +16,15 @@
 // Admin (/admin)
 Route::prefix('admin')->group(function () {
 
+	// Forum Administration
+	Route::prefix('forum')->name('admin.forum.')->middleware('auth:admin')->group(function () {
+
+		Route::resource('category', 'Admin\Forum\CategoriesController')->except('create');
+		Route::get('category/restore/{id}', 'Admin\Forum\CategoriesController@restore')->name('category.restore');
+
+	});
+
+
 	// Site Settings (/admin/site)
 	Route::prefix('site')->middleware('can:admin.global')->group(function () {
 
@@ -153,6 +162,13 @@ Route::prefix('admin')->group(function () {
 
 
 // ------------------------- User Facing Routes ------------------------- //
+
+// Forum Routes
+Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function () {
+
+	Route::get('/', 'Forum\PagesController@index')->name('index');
+
+});
 
 // Wiki Routes
 Route::prefix('wiki')->group(function () {
