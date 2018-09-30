@@ -1,8 +1,12 @@
 <?php
 
-use App\Models\Blog\Tag;
 use App\Models\Blog\Post;
+use App\Models\Blog\Tag;
+use App\Models\Forum\ForumCategory;
+use App\Models\Forum\ForumPost;
+use App\Models\Forum\ForumReply;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,6 +33,30 @@ class DatabaseSeeder extends Seeder
         // Parts Section and Parts Seeders
         // factory(App\Models\Parts\Section::class, 20)->create();
         // factory(App\Models\Parts\Part::class, 500)->create();
+
+        // Forum Seeders
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // ForumReply::truncate();
+        // ForumPost::truncate();
+        // ForumCategory::truncate();
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // $this->command->comment('Seeding Forum...');
+        // $this->command->comment('Creating Forum Categories...');
+        // for($i = 1; $i <= 5; $i++) {
+        //     $this->command->line(" Forum Category: " . $i);
+        //     factory(App\Models\Forum\ForumCategory::class, 1)->create();
+        // }
+        // $this->command->comment('Creating Forum Posts...');
+        // for($i = 1; $i <= 500; $i++) {
+        //     $this->command->line(" Forum Post: " . $i);
+        //     factory(App\Models\Forum\ForumPost::class, 1)->create();
+        // }
+        // $this->command->comment('Creating Forum Replies...');
+        // for($i = 1; $i <= 20000; $i++) {
+        //     $this->command->line(" Forum Reply: " . $i);
+        //     factory(App\Models\Forum\ForumReply::class, 1)->create();
+        // }
+        
 
     	
     }

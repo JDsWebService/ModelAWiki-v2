@@ -56,6 +56,9 @@
                             <a class="dropdown-item" href="{{ route('user.profile.settings') }}">
                                 <i class="fas fa-cog"></i> My Settings
                             </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="far fa-life-ring"></i> Support Messages
+                            </a>
                             <div class="dropdown-divider"></div>
 
                             <a class="dropdown-item" href="{{ route('logout') }}"
