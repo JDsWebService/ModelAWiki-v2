@@ -22,4 +22,9 @@ class ForumReply extends Model
     public function post() {
     	return $this->belongsTo('App\Models\Forum\ForumPost');
     }
+
+    // Define Support Messages Relationship
+    public function supportMessages() {
+        return $this->hasMany('App\Models\Support\Message', 'reply_id');
+    }
 }

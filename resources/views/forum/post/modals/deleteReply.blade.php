@@ -10,7 +10,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary rounded-0" data-dismiss="modal">Close</button>
-					{{ Form::open(['method'  => 'DELETE', 'route' => ['forum.reply.destroy', $post->slug, $reply->slug]]) }}
+					{{ Form::open(['method'  => 'DELETE', 'route' => ['forum.reply.destroy', $reply->slug]]) }}
 						<button type="submit" class="btn btn-danger rounded-0">
 							<i class="fas fa-trash-alt"></i> Delete Reply
 						</button>

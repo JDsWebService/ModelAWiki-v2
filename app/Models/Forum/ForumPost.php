@@ -35,4 +35,9 @@ class ForumPost extends Model
     public function replies() {
         return $this->hasMany('App\Models\Forum\ForumReply', 'post_id');
     }
+
+    // Define Support Messages Relationship
+    public function supportMessages() {
+        return $this->hasMany('App\Models\Support\Message', 'post_id');
+    }
 }

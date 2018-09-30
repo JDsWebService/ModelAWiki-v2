@@ -1,9 +1,9 @@
 <!-- Create Forum Post Modal -->
-<div class="modal fade" id="createForumPostModal" tabindex="-1" role="dialog" aria-labelledby="createForumPostLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+<div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header bg-success text-white rounded-0">
-				<h5 class="modal-title" id="createForumPostLabel">Create New Forum Post</h5>
+				<h5 class="modal-title" id="createPostLabel">Create New Forum Post</h5>
 			</div>
 			{!! Form::open(['route' => 'forum.post.store', 'method' => 'POST']) !!}
 				<div class="modal-body">

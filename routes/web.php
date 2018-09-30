@@ -11,7 +11,9 @@
 |
 */
 
+// ----------------------------------------------------------------------- //
 // ------------------------- Admin Facing Routes ------------------------- //
+// ----------------------------------------------------------------------- //
 
 // Admin (/admin)
 Route::prefix('admin')->group(function () {
@@ -165,8 +167,17 @@ Route::prefix('admin')->group(function () {
 
 }); // End Admin
 
-
+// ---------------------------------------------------------------------- //
 // ------------------------- User Facing Routes ------------------------- //
+// ---------------------------------------------------------------------- //
+
+// Support Messages Routes
+Route::prefix('report')->middleware('auth:user')->name('report.')->group(function () {
+
+	// Generate Support Message
+	Route::post('generate', 'Support\ReportingController@generateReport')->name('generate');
+
+});
 
 // Forum Routes
 Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function () {
@@ -179,8 +190,9 @@ Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function 
 
 	// Forum Replies
 	Route::post('post/{postSlug}/reply', 'Forum\RepliesController@store')->name('reply.store');
-	Route::put('post/{postSlug}/reply/{replySlug}', 'Forum\RepliesController@update')->name('reply.update');
-	Route::delete('post/{postSlug}/reply/{replySlug}', 'Forum\RepliesController@destroy')->name('reply.destroy');
+	Route::put('reply/{replySlug}', 'Forum\RepliesController@update')->name('reply.update');
+	Route::delete('reply/{replySlug}', 'Forum\RepliesController@destroy')->name('reply.destroy');
+	Route::get('reply/{replySlug}', 'Forum\RepliesController@show')->middleware('auth:admin')->name('reply.show');
 
 	// Specific Category
 	Route::get('category/{slug}', 'Forum\PagesController@category')->name('category');

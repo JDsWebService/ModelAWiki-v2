@@ -1,4 +1,4 @@
-<a href="" class="btn btn-success btn-block rounded-0" data-toggle="modal" data-target="#createForumPostModal">
+<a href="" class="btn btn-success btn-block rounded-0" data-toggle="modal" data-target="#createPostModal">
 	<i class="fas fa-plus-circle"></i> New Discussion
 </a>
 

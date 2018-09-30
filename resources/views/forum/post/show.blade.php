@@ -9,11 +9,14 @@
 	        	<a href="{{ route('user.profile.public', $post->user->username) }}">
 	            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
 	        	</a>
+	        	<a href="" class="btn btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#reportPostModal">
+	        		<i class="far fa-flag"></i> Report
+	        	</a>
 	        	@if(Auth::guard('user')->user()->id === $post->user_id)
-					<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editPostModal">
+					<a href="" class="btn btn-primary btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#editPostModal">
 						<i class="fas fa-edit"></i> Edit
 					</a>
-					<a href="" class="btn btn-danger btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#deletePostModal">
+					<a href="" class="btn btn-danger btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#deletePostModal">
 						<i class="fas fa-trash-alt"></i> Delete
 					</a>
 	            @endif
@@ -33,6 +36,11 @@
 	            <p>
 	                {!! $post->body !!}
 	            </p>
+	            <p>
+	            	@if($post->created_at != $post->updated_at)
+						<small>Updated {{ $post->updated_at }}</small>
+            		@endif
+	            </p>
 	        </div>
 	    </div>
 
@@ -46,6 +54,9 @@
     			        <div class="col-sm-2 text-center p-2">
     			        	<a href="{{ route('user.profile.public', $reply->user->username) }}">
     			            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+    			        	</a>
+    			        	<a href="" class="btn btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#reportReplyModal">
+    			        		<i class="far fa-flag"></i> Report
     			        	</a>
     			        	@if(Auth::guard('user')->user()->id === $reply->user_id)
     							<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editReplyModal">
@@ -79,6 +90,9 @@
 
 	    		{{-- Delete Reply Modal --}}
 	    		@include('forum.post.modals.deleteReply')
+
+	    		{{-- Report Reply Modal --}}
+	    		@include('forum.post.modals.reportReply')
 			@endforeach
 
 			<div class="row justify-content-center">
@@ -112,5 +126,8 @@
 	    
 		{{-- Delete Post Modal --}}
 	    @include('forum.post.modals.deletePost')
+
+	    {{-- Report Post Modal --}}
+	    @include('forum.post.modals.reportPost')
 
 @endsection

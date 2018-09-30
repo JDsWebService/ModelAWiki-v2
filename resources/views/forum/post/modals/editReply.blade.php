@@ -5,7 +5,7 @@
 			<div class="modal-header bg-secondary text-white rounded-0">
 				<h5 class="modal-title" id="editForumReplyLabel">Edit Forum Reply</h5>
 			</div>
-			{!! Form::model($reply, ['route' => ['forum.reply.update', $post->slug, $reply->slug], 'method' => 'PUT']) !!}
+			{!! Form::model($reply, ['route' => ['forum.reply.update', $reply->slug], 'method' => 'PUT']) !!}
 				<div class="modal-body">
 					{{ Form::textarea('body', null, ['class' => 'form-control', 'placeholder' => 'Your Post Content Goes Here...']) }}
 				</div>

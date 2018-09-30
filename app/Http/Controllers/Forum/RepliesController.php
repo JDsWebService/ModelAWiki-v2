@@ -27,7 +27,6 @@ class RepliesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  string $postSlug
-     * @param  string $replySlug
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $postSlug)
@@ -54,67 +53,75 @@ class RepliesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Show the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $postSlug
      * @param  string  $replySlug
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $postSlug, $replySlug)
+    public function show($replySlug) {
+        $reply = ForumReply::where('slug', $replySlug)->first();
+
+        return view('forum.reply.show')
+                                ->withReply($reply);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $replySlug
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $replySlug)
     {
         $this->validate($request, [
             'body' => 'required|max:40000|min:10|string',
         ]);
 
         $user = Auth::guard('user')->user();
-        $post = ForumPost::where('slug', $postSlug)->first();
+        $reply = ForumReply::where('slug', $replySlug)->first();
 
-        if($user->id = $post->user_id) {
-
-            $reply = ForumReply::where('slug', $replySlug)->first();
+        if($user->id === $reply->post->user_id or Auth::guard('admin')->check()) {
 
             $reply->body = Purifier::clean($request->body);
-            $reply->post_id = $post->id;
-            $reply->user_id = $user->id;
 
             $reply->save();
 
             Session::flash('success', 'Saved Your Reply Successfully!');
 
-            return redirect()->route('forum.post.show', $post->slug);
+            return redirect()->route('forum.post.show', $reply->post->slug);
         }
 
         Session::flash('danger', 'You do not have permission to edit this forum post!');
 
-        return redirect()->route('forum.post.show', $post->slug);
+        return redirect()->route('forum.post.show', $reply->post->slug);
         
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  string  $postSlug
      * @param  string  $replySlug
      * @return \Illuminate\Http\Response
      */
-    public function destroy($postSlug, $replySlug)
+    public function destroy($replySlug)
     {
-        $post = ForumPost::where('slug', $postSlug)->first();
         $reply = ForumReply::where('slug', $replySlug)->first();
 
-        if(Auth::guard('user')->user()->id === $reply->user_id) {
+        if(Auth::guard('user')->user()->id === $reply->user_id or Auth::guard('admin')->check()) {
+            $postSlug = $reply->post->slug;
 
             $reply->delete();
 
             Session::flash('success', 'Deleted The Forum Reply Successfully!');
 
-            return redirect()->route('forum.post.show', $post->slug);
+            return redirect()->route('forum.post.show', $postSlug);
         }
 
         Session::flash('danger', 'You do not have permission to delete this forum post!');
 
-        return redirect()->route('forum.post.show', $post->slug);
+        return redirect()->route('forum.post.show', $reply->post->slug);
 
     }
 }
