@@ -13,7 +13,7 @@
 	}
 </style>
 
-<div class="row footer-bg p-5 mt-4">
+<div class="row footer-bg p-4 mt-4">
 
 	<div class="container">
 		<div class="row justify-content-center">
@@ -33,6 +33,14 @@
 				<a href="{{ route('pages.contact') }}">Contact</a>
 			</div>
 		</div>
+
+		<hr>
+		<div class="row">
+			<div class="col-sm-12 text-center">
+				<a href="{{ route('pages.terms') }}">Terms of Service</a> | <a href="{{ route('pages.privacy') }}">Privacy Policy</a>
+			</div>
+		</div>
+		
 	</div>
 	
 
