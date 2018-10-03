@@ -82,4 +82,9 @@ class Admin extends Authenticatable
     public function socialLinks() {
         return $this->hasMany('App\Models\UserSocialLink', 'admin_id');
     }
+
+    // Support Response Relationship
+    public function supportResponse() {
+        return $this->hasMany('App\Models\Support\Response', 'admin_id');
+    }
 }

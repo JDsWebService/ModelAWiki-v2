@@ -49,8 +49,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Forum\ForumReply', 'user_id');
     }
 
-    // Define Support Message Replies
+    // Define Support Message Relationship
     public function supportMessages() {
         return $this->hasMany('App\Models\Support\Message', 'user_id');
+    }
+
+    // Define Support Response Relationship
+    public function supportResponse() {
+        return $this->hasMany('App\Models\Support\Response', 'user_id');
     }
 }

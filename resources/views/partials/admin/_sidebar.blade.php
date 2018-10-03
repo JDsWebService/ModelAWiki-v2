@@ -116,9 +116,15 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="">
+                                    <a href="{{ route('admin.support.index') }}">
                                         <i class="fas fa-flag"></i>Reports
+                                        @if(isset($reportCount))
+                                        <span class="badge badge-pill badge-warning">
+                                            {{ $reportCount }}
+                                        </span>
+                                        @endif
                                     </a>
+
                                 </li>
                             </ul>
                         </div>

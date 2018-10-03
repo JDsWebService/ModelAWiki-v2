@@ -16,7 +16,20 @@
 // ----------------------------------------------------------------------- //
 
 // Admin (/admin)
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('support.messages.count')->group(function () {
+
+	// Support Messages
+	Route::prefix('support')->name('admin.support.')->middleware('auth:admin')->group(function () {
+
+		// Get Support Homepage
+		Route::get('/', 'Admin\Support\PagesController@index')->name('index');
+		// View Single Report
+		Route::get('view/{id}', 'Admin\Support\PagesController@viewReport')->name('viewReport');
+		// Close Report
+		Route::get('close/{id}', 'Admin\Support\PagesController@closeReport')->name('closeReport');
+		// Request More Information
+		Route::post('requestInfo/{id}', 'Admin\Support\PagesController@requestInfo')->name('requestInfo');
+	});
 
 	// Forum Administration
 	Route::prefix('forum')->name('admin.forum.')->middleware('auth:admin')->group(function () {
@@ -171,11 +184,21 @@ Route::prefix('admin')->group(function () {
 // ------------------------- User Facing Routes ------------------------- //
 // ---------------------------------------------------------------------- //
 
-// Support Messages Routes
+// Reporting Routes
 Route::prefix('report')->middleware('auth:user')->name('report.')->group(function () {
-
 	// Generate Support Message
 	Route::post('generate', 'Support\ReportingController@generateReport')->name('generate');
+});
+
+// User Support Messages Routes
+Route::prefix('user/support')->middleware('auth:user')->name('user.support.')->group(function () {
+
+	// View User Submitted Reports
+	Route::get('/', 'Support\User\PagesController@index')->name('index');
+	// View Specific Report
+	Route::get('view/{id}', 'Support\User\PagesController@viewReport')->name('viewReport');
+	// Send Response
+	Route::post('response/{id}', 'Support\User\PagesController@sendResponse')->name('sendResponse');
 
 });
 
@@ -192,7 +215,7 @@ Route::prefix('forum')->middleware('auth:user')->name('forum.')->group(function 
 	Route::post('post/{postSlug}/reply', 'Forum\RepliesController@store')->name('reply.store');
 	Route::put('reply/{replySlug}', 'Forum\RepliesController@update')->name('reply.update');
 	Route::delete('reply/{replySlug}', 'Forum\RepliesController@destroy')->name('reply.destroy');
-	Route::get('reply/{replySlug}', 'Forum\RepliesController@show')->middleware('auth:admin')->name('reply.show');
+	Route::get('reply/{replySlug}', 'Forum\RepliesController@show')->name('reply.show');
 
 	// Specific Category
 	Route::get('category/{slug}', 'Forum\PagesController@category')->name('category');
