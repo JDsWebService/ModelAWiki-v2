@@ -10,37 +10,40 @@
 @endsection
 
 @section('content')
+	
+	<div class="container mt-3">
+		<div class="row">
+			<div class="col-sm-12">
+				
+				{!! Form::model($link, ['route' => 'user.profile.social-links.store', 'method' => 'POST']) !!}
 
-	<div class="row">
-		<div class="col-sm-12">
-			
-			{!! Form::model($link, ['route' => 'user.profile.social-links.store', 'method' => 'POST']) !!}
+					{{ Form::label('site', 'Social Media Site', ['class' => 'control-label']) }}
+					<select name="site" class="form-control site-select">
+						<option value="" disabled>Select a Type...</option>
+						<option value="facebook" {{ $link->site == 'facebook' ? 'selected' : ''}}>Facebook</option>
+						<option value="google" {{ $link->site == 'google' ? 'selected' : ''}}>Google</option>
+						<option value="instagram" {{ $link->site == 'instagram' ? 'selected' : ''}}>Instagram</option>
+						<option value="pintrest" {{ $link->site == 'pinterest' ? 'selected' : ''}}>Pintrest</option>
+						<option value="twitter" {{ $link->site == 'twitter' ? 'selected' : ''}}>Twitter</option>
+					</select>
 
-				{{ Form::label('site', 'Social Media Site', ['class' => 'control-label']) }}
-				<select name="site" class="form-control site-select">
-					<option value="" disabled>Select a Type...</option>
-					<option value="facebook" {{ $link->site == 'facebook' ? 'selected' : ''}}>Facebook</option>
-					<option value="google" {{ $link->site == 'google' ? 'selected' : ''}}>Google</option>
-					<option value="instagram" {{ $link->site == 'instagram' ? 'selected' : ''}}>Instagram</option>
-					<option value="pintrest" {{ $link->site == 'pinterest' ? 'selected' : ''}}>Pintrest</option>
-					<option value="twitter" {{ $link->site == 'twitter' ? 'selected' : ''}}>Twitter</option>
-				</select>
+					{{ Form::label('link', 'Your Profile Link', ['class' => 'control-label mt-3']) }}
+					{{ Form::text('link', null, ['class' => 'form-control form-control-sm', 'placeholder' => 'http://somesite.com/yourprofile']) }}
 
-				{{ Form::label('link', 'Your Profile Link', ['class' => 'control-label mt-3']) }}
-				{{ Form::text('link', null, ['class' => 'form-control form-control-sm', 'placeholder' => 'http://somesite.com/yourprofile']) }}
-
-				<div class="row justify-content-center mt-3">
-					<div class="col-sm-6">
-						<button type="submit" class="btn btn-block btn-success">
-							Create Social Media Link
-						</button>
+					<div class="row justify-content-center mt-3">
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-block btn-success">
+								Create Social Media Link
+							</button>
+						</div>
 					</div>
-				</div>
 
-			{!! Form::close() !!}
+				{!! Form::close() !!}
 
+			</div>
 		</div>
-	</div>
+
+	</div> <!-- /.container -->
 
 @endsection
 
