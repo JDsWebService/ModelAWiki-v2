@@ -9,9 +9,15 @@
 			<div class="post-preview-link">
 			    <div class="row">
 			        <div class="col-sm-2 text-center p-2">
-			        	<a href="{{ route('user.profile.public', $post->user->username) }}">
-			            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
-			        	</a>
+			        	@if($post->user_id)
+				        	<a href="{{ route('user.profile.public', $post->user->username) }}">
+				            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+				        	</a>
+				        @else
+				        	<a href="{{ route('admin.profile.public', $post->admin->username) }}">
+				            	<img src="{{ $post->admin->profile_image }}" alt="{{ $post->admin->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+				        	</a>
+			        	@endif
 			        </div>
 			        <div class="col-sm-10 p-2">
 			            <h4>
@@ -23,7 +29,11 @@
 			                </small>
 			            </h4>
 			            <p>
-			            	<small>Posted By <a href="{{ route('user.profile.public', $post->user->username) }}">{{ $post->user->fullName }}</a> {{ $post->created_at }}</small>
+			            	@if($post->user_id)
+			            		<small>Posted By <a href="{{ route('user.profile.public', $post->user->username) }}">{{ $post->user->fullName }}</a> {{ $post->created_at }}</small>
+			            	@else
+			            		<small>Posted By <a href="{{ route('admin.profile.public', $post->admin->username) }}">{{ $post->admin->fullName }}</a> {{ $post->created_at }}</small>
+			            	@endif
 			            </p>
 			            <p>
 			                {!! strip_tags(htmlspecialchars_decode(str_limit($post->body, 150))) !!}

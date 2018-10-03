@@ -87,4 +87,14 @@ class Admin extends Authenticatable
     public function supportResponse() {
         return $this->hasMany('App\Models\Support\Response', 'admin_id');
     }
+
+    // Forum Posts Relationship
+    public function forumPosts() {
+        return $this->hasMany('App\Models\Forum\ForumPost', 'admin_id');
+    }
+
+    // Forum Replies Relationship
+    public function forumReplies() {
+        return $this->hasMany('App\Models\Forum\ForumReply', 'admin_id');
+    }
 }

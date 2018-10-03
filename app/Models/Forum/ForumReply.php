@@ -18,6 +18,11 @@ class ForumReply extends Model
     	return $this->belongsTo('App\Models\User\User');
     }
 
+    // Define Admin Relationship
+    public function admin() {
+        return $this->belongsTo('App\Models\Admin\Admin');
+    }
+
     // Define Post Relationship
     public function post() {
     	return $this->belongsTo('App\Models\Forum\ForumPost');

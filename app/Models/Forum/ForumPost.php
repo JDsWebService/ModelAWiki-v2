@@ -31,6 +31,11 @@ class ForumPost extends Model
     	return $this->belongsTo('App\Models\User\User');
     }
 
+    // Define Admins Relationship
+    public function admin() {
+        return $this->belongsTo('App\Models\Admin\Admin');
+    }
+
     // Define Forum Replies Relationship
     public function replies() {
         return $this->hasMany('App\Models\Forum\ForumReply', 'post_id');

@@ -36,14 +36,20 @@ class PostsController extends Controller
     		'category_id' => 'required|integer'
     	]);
 
-    	$user = Auth::guard('user')->user();
-
     	$post = new ForumPost;
 
     	$post->title = Purifier::clean($request->title);
     	$post->body = Purifier::clean($request->body);
     	$post->category_id = $request->category_id;
-    	$post->user_id = $user->id;
+
+        if(Auth::guard('admin')->check()) {
+            $admin = Auth::guard('admin')->user();
+            $post->admin_id = $admin->id;
+        } else {
+            $user = Auth::guard('user')->user();
+            $post->user_id = $user->id;
+        }
+    	
     	$post->slug = str_slug($request->title) . '-' . time();
 
     	$post->save();
@@ -84,15 +90,12 @@ class PostsController extends Controller
         	'category_id' => 'required|integer'
         ]);
 
-        $user = Auth::guard('user')->user();
-
         $post = ForumPost::where('slug', $slug)->first();
 
-        if($user->id = $post->user_id) {
+        if(Auth::guard('user')->user()->id = $post->user_id or Auth::guard('admin')->check()) {
         	$post->title = Purifier::clean($request->title);
         	$post->body = Purifier::clean($request->body);
         	$post->category_id = $request->category_id;
-        	$post->user_id = $user->id;
 
         	$post->save();
 
@@ -117,7 +120,7 @@ class PostsController extends Controller
     {
         $post = ForumPost::where('slug', $slug)->first();
 
-        if(Auth::guard('user')->user()->id === $post->user_id) {
+        if(Auth::guard('user')->user()->id === $post->user_id or Auth::guard('admin')->check()) {
         	$post->delete();
 
         	Session::flash('success', 'Deleted The Forum Post Successfully!');

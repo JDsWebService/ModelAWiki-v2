@@ -35,14 +35,21 @@ class RepliesController extends Controller
             'body' => 'required|max:40000|min:10|string',
         ]);
 
-        $user = Auth::guard('user')->user();
         $post = ForumPost::where('slug', $postSlug)->first();
 
         $reply = new ForumReply;
 
         $reply->body = Purifier::clean($request->body);
         $reply->post_id = $post->id;
-        $reply->user_id = $user->id;
+        
+        if(Auth::guard('admin')->check()) {
+            $admin = Auth::guard('admin')->user();
+            $reply->admin_id = $admin->id;
+        } else {
+            $user = Auth::guard('user')->user();
+            $reply->user_id = $user->id;
+        }
+
         $reply->slug = $post->id . '-' . time();
 
         $reply->save();
@@ -79,10 +86,9 @@ class RepliesController extends Controller
             'body' => 'required|max:40000|min:10|string',
         ]);
 
-        $user = Auth::guard('user')->user();
         $reply = ForumReply::where('slug', $replySlug)->first();
 
-        if($user->id === $reply->post->user_id or Auth::guard('admin')->check()) {
+        if(Auth::guard('user')->user()->id === $reply->post->user_id or Auth::guard('admin')->check()) {
 
             $reply->body = Purifier::clean($request->body);
 

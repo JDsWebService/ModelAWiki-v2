@@ -6,13 +6,22 @@
 
 	    <div class="row">
 	        <div class="col-sm-2 text-center p-2">
-	        	<a href="{{ route('user.profile.public', $post->user->username) }}">
-	            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
-	        	</a>
+	        	@if($post->user_id)
+		        	<a href="{{ route('user.profile.public', $post->user->username) }}">
+		            	<img src="{{ $post->user->profile_image }}" alt="{{ $post->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+		        	</a>
+		        @else
+		        	<a href="{{ route('admin.profile.public', $post->admin->username) }}">
+		            	<img src="{{ $post->admin->profile_image }}" alt="{{ $post->admin->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+		        	</a>
+	        	@endif
 	        	<a href="" class="btn btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#reportPostModal">
 	        		<i class="far fa-flag"></i> Report
 	        	</a>
-	        	@if(Auth::guard('user')->user()->id === $post->user_id)
+	        	@if(
+	        		Auth::guard('user')->user()->id === $post->user_id
+	        		or
+	        		Auth::guard('admin')->check())
 					<a href="" class="btn btn-primary btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#editPostModal">
 						<i class="fas fa-edit"></i> Edit
 					</a>
@@ -31,7 +40,11 @@
 	                </small>
 	            </h4>
 	            <p>
-	            	<small>Posted By <a href="{{ route('user.profile.public', $post->user->username) }}">{{ $post->user->fullName }}</a> {{ $post->created_at }}</small>
+	            	@if($post->user_id)
+	            		<small>Posted By <a href="{{ route('user.profile.public', $post->user->username) }}">{{ $post->user->fullName }}</a> {{ $post->created_at }}</small>
+	            	@else
+	            		<small>Posted By <a href="{{ route('admin.profile.public', $post->admin->username) }}">{{ $post->admin->fullName }}</a> {{ $post->created_at }}</small>
+	            	@endif
 	            </p>
 	            <p>
 	                {!! $post->body !!}
@@ -52,13 +65,22 @@
 	    		<div class="bd-callout" style="border-left-color: #6c757d;">
     			    <div class="row">
     			        <div class="col-sm-2 text-center p-2">
-    			        	<a href="{{ route('user.profile.public', $reply->user->username) }}">
-    			            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
-    			        	</a>
+    			        	@if($reply->user_id)
+					        	<a href="{{ route('user.profile.public', $reply->user->username) }}">
+					            	<img src="{{ $reply->user->profile_image }}" alt="{{ $reply->user->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+					        	</a>
+					        @else
+					        	<a href="{{ route('admin.profile.public', $reply->admin->username) }}">
+					            	<img src="{{ $reply->admin->profile_image }}" alt="{{ $reply->admin->fullName }}'s Profile Picture" class="profile-image rounded-circle">
+					        	</a>
+				        	@endif
     			        	<a href="" class="btn btn-sm rounded-0 mt-1" data-toggle="modal" data-target="#reportReplyModal">
     			        		<i class="far fa-flag"></i> Report
     			        	</a>
-    			        	@if(Auth::guard('user')->user()->id === $reply->user_id)
+    			        	@if(
+				        		Auth::guard('user')->user()->id === $reply->user_id
+				        		or
+				        		Auth::guard('admin')->check())
     							<a href="" class="btn btn-primary btn-sm rounded-0 mt-2" data-toggle="modal" data-target="#editReplyModal">
     								<i class="fas fa-edit"></i> Edit
     							</a>
@@ -69,9 +91,11 @@
     			        </div>
     			        <div class="col-sm-10 p-2">
     			            <p>
-    			            	<small>
-    			            		Posted By <a href="{{ route('user.profile.public', $reply->user->username) }}">{{ $reply->user->fullName }}</a> {{ $reply->created_at }}
-    			            	</small>
+    			            	@if($reply->user_id)
+				            		<small>Posted By <a href="{{ route('user.profile.public', $reply->user->username) }}">{{ $reply->user->fullName }}</a> {{ $reply->created_at }}</small>
+				            	@else
+				            		<small>Posted By <a href="{{ route('admin.profile.public', $reply->admin->username) }}">{{ $reply->admin->fullName }}</a> {{ $reply->created_at }}</small>
+				            	@endif
     			            </p>
     			            <p>
     			                {!! $reply->body !!}
