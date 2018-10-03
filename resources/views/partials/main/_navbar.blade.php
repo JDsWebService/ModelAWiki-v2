@@ -22,12 +22,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('forum.index') }}">Forums</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pages.about') }}">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('pages.contact') }}">Contact</a>
-                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

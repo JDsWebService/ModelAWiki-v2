@@ -90,7 +90,7 @@
             </div>
 
             {{-- Footer --}}
-            @include('partials.global._footer')
+            @include('partials.main._footer')
 
         </div> <!-- /.app -->
 
