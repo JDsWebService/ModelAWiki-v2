@@ -5,6 +5,7 @@ namespace App\Models\Forum;
 use App\Traits\TimestampsTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class ForumPost extends Model
 {
