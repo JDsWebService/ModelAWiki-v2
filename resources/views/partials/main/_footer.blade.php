@@ -11,9 +11,12 @@
 		text-decoration: none;
 		color: rgba(255,255,255,0.6);
 	}
+	.footer-row {
+		width: 100vw;
+	}
 </style>
 
-<div class="row footer-bg p-4 mt-4">
+<div class="row footer-row footer-bg py-4 mt-4">
 
 	<div class="container">
 		<div class="row justify-content-center">
