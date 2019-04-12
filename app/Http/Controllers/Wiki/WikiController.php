@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Wiki;
 
 use App\Http\Controllers\Controller;
+use App\Models\Parts\Image;
 use App\Models\Parts\Part;
 use App\Models\Parts\Section;
 use Illuminate\Http\Request;
@@ -28,10 +29,12 @@ class WikiController extends Controller
     }
 
     // Specific Part
-    public function getPart($partNumber) {
-    	$part = Part::where('part_number', $partNumber)->first();
+    public function getPart($slug) {
+    	$part = Part::where('slug', $slug)->first();
+        $images = Image::where('part_id', $part->id)->where('approved', '1')->get();
 
     	return view('wiki.part')
-    				->withPart($part);
+    				->withPart($part)
+                    ->withImages($images);
     }
 }

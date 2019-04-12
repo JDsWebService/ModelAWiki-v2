@@ -39,4 +39,9 @@ class Part extends Model
     public function section() {
     	return $this->belongsTo('App\Models\Parts\Section');
     }
+
+    // Define Parts Images Relationship
+    public function images() {
+        return $this->hasMany('App\Models\Parts\Image', 'part_id');
+    }
 }

@@ -10,7 +10,6 @@
 			<p class="lead text-muted">This is the most comprehensive Ford Model A online parts database. We have over 15,000 parts and counting! Help contribute to our database by creating a new account and submitting your content.</p>
 			<p>
 				<a href="{{ route('register') }}" class="btn btn-success my-2">Create New Account</a>
-				<a href="#" class="btn btn-primary my-2">Submit New Entry</a>
 			</p>
 		</div>
 	</section>

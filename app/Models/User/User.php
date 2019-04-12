@@ -58,4 +58,9 @@ class User extends Authenticatable
     public function supportResponse() {
         return $this->hasMany('App\Models\Support\Response', 'user_id');
     }
+
+    // Define Parts Images Model
+    public function partsImages() {
+        return $this->hasMany('App\Models\Parts\Image', 'user_id');
+    }
 }

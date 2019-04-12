@@ -233,8 +233,19 @@ Route::prefix('wiki')->group(function () {
 	// Specific Section (/wiki/section/{slug})
 	Route::get('section/{slug}', 'Wiki\WikiController@getSection')->name('wiki.section');
 
-	// Specific Part (/wiki/part/{part_number})
-	Route::get('part/{part_number}', 'Wiki\WikiController@getPart')->name('wiki.part');
+	// Specific Part (/wiki/part/{slug})
+	Route::get('part/{slug}', 'Wiki\WikiController@getPart')->name('wiki.part');
+
+	// Part Images Gallery
+	Route::prefix('part/{slug}/images')->name('wiki.part.images.')->group(function () {
+		
+		// Submit Part Image
+		Route::post('/', 'Parts\ImagesController@store')->middleware('auth:user')->name('store');
+
+		// Part Image Gallery
+		Route::get('/', 'Parts\ImagesController@publicIndex')->name('publicIndex');
+
+	});
 
 }); // End Wiki
 

@@ -10,13 +10,16 @@
 			<div class="carousel-item active">
 				<img class="d-block w-100" src="/images/parts/headers/{{ $part->featured_image }}" alt="Featured Image">
 				<div class="carousel-caption d-none d-md-block">
-					<h5>More Pictures</h5>
-					<a href="#" class="btn btn-sm btn-primary">View</a>
+					@if($images->count())
+						<a href="{{ route('wiki.part.images.publicIndex', $part->slug) }}" class="btn btn-sm btn-secondary">View More Pictures</a>
+					@endif
+					<a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#partImageFormModal">Submit Pictures</a>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
+	@include('wiki.modals.partImageFormModal')
 
 	<div class="container mt-3">
 		<div class="row">
@@ -125,5 +128,12 @@
 		</div>
 	</div>
 	
+
+@endsection
+
+@section('scripts')
+
+	{{-- Image Upload Javascript --}}
+	<script src="/js/imageupload.js"></script>
 
 @endsection
